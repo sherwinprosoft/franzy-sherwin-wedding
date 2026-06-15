@@ -1,0 +1,448 @@
+.imageWash,
+.verticalOverlay,
+.edgeOverlay,
+.vellumGlow,
+.bottomFade {
+  position: absolute;
+  pointer-events: none;
+}
+
+.imageWash,
+.verticalOverlay,
+.edgeOverlay {
+  inset: 0;
+}
+
+.heroImage {
+  animation: heroPhotoSettle 5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  filter: brightness(0.94) saturate(0.94) contrast(1.05);
+  transform-origin: 50% 46%;
+}
+
+.imageWash {
+  background: rgb(var(--cream-rgb) / 0.05);
+}
+
+.verticalOverlay {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--cream-rgb) / 0.16) 0%,
+    rgb(var(--primary-rgb) / 0.15) 34%,
+    rgb(var(--shadow-rgb) / 0.36) 68%,
+    rgb(var(--shadow-rgb) / 0.56) 100%
+  );
+}
+
+.edgeOverlay {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--shadow-rgb) / 0.28) 0%,
+    rgb(var(--shadow-rgb) / 0.08) 22%,
+    rgb(var(--shadow-rgb) / 0.08) 78%,
+    rgb(var(--shadow-rgb) / 0.28) 100%
+  );
+}
+
+.vellumGlow {
+  inset: 5.5rem 0 6rem;
+  width: min(94vw, 68rem);
+  margin-inline: auto;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgb(var(--cream-rgb) / 0.18), transparent 58%),
+    radial-gradient(ellipse at 50% 54%, rgb(var(--shadow-rgb) / 0.22), transparent 70%);
+  filter: blur(8px);
+  opacity: 0.9;
+}
+
+.bottomFade {
+  inset: auto 0 0;
+  height: 11rem;
+  background: linear-gradient(
+    0deg,
+    rgb(var(--stone-rgb) / 0.6),
+    rgb(var(--stone-rgb) / 0.2),
+    transparent
+  );
+}
+
+.heroContent {
+  isolation: isolate;
+}
+
+.lockupPanel {
+  position: relative;
+  isolation: isolate;
+}
+
+.lockupPanel::before {
+  position: absolute;
+  inset: -0.75rem 0 -0.35rem;
+  z-index: -1;
+  width: min(100%, 58rem);
+  margin-inline: auto;
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgb(var(--cream-rgb) / 0.11), transparent 64%),
+    radial-gradient(ellipse at 50% 72%, rgb(var(--shadow-rgb) / 0.18), transparent 70%);
+  content: "";
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+.titleStack {
+  display: grid;
+  justify-items: center;
+  gap: 0.82rem;
+}
+
+.titleStack::before,
+.titleStack::after {
+  display: block;
+  width: min(46%, 11rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.68), transparent);
+  content: "";
+  opacity: 0.72;
+}
+
+.eyebrow {
+  max-width: 30rem;
+  margin: 0;
+  color: rgb(var(--cream-rgb) / 0.92);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow:
+    0 2px 8px rgb(var(--shadow-rgb) / 0.48),
+    0 10px 28px rgb(var(--shadow-rgb) / 0.32);
+}
+
+.coupleTitle {
+  max-width: 62rem;
+  margin-inline: auto;
+  color: var(--cream);
+  font-family: var(--font-script), cursive;
+  font-size: 3.7rem;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.95;
+  text-shadow:
+    0 1px 0 rgb(var(--gold-rgb) / 0.18),
+    0 2px 10px rgb(var(--shadow-rgb) / 0.58),
+    0 22px 58px rgb(var(--shadow-rgb) / 0.44);
+}
+
+.invitationDetails {
+  box-sizing: border-box;
+  display: flex;
+  width: fit-content;
+  max-width: min(100%, 46rem);
+  margin: 1.7rem auto 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.36rem;
+  padding: 1.08rem 1rem 0.9rem;
+  border-top: 1px solid rgb(var(--cream-rgb) / 0.58);
+  border-bottom: 1px solid rgb(var(--cream-rgb) / 0.34);
+  color: rgb(var(--cream-rgb) / 0.96);
+  text-align: center;
+  text-shadow:
+    0 2px 8px rgb(var(--shadow-rgb) / 0.5),
+    0 10px 24px rgb(var(--shadow-rgb) / 0.3);
+}
+
+.invitationDetails::before {
+  content: "";
+  width: 0.38rem;
+  height: 0.38rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid rgb(var(--cream-rgb) / 0.72);
+  background: rgb(var(--cream-rgb) / 0.22);
+  transform: rotate(45deg);
+}
+
+.dateLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.58rem;
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.dateLine span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dateLine span + span::before {
+  content: "";
+  width: 0.28rem;
+  height: 0.28rem;
+  margin-right: 0.58rem;
+  border-radius: 999px;
+  background: rgb(var(--cream-rgb) / 0.62);
+}
+
+.venue {
+  margin: 0;
+  max-width: 32rem;
+  color: rgb(var(--cream-rgb) / 0.9);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.heroActions {
+  display: flex;
+  width: min(100%, 44rem);
+  margin: 1.45rem auto 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.countdownNote {
+  position: relative;
+  display: flex;
+  width: min(100%, 17.5rem);
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.48);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 0%, rgb(var(--cream-rgb) / 0.88), transparent 64%),
+    linear-gradient(180deg, rgb(var(--cream-rgb) / 0.84), rgb(var(--section-light-white-soft-rgb) / 0.68));
+  color: var(--primary);
+  padding: 0.62rem 1.15rem 0.68rem;
+  text-shadow: none;
+  box-shadow:
+    0 1rem 2.4rem rgb(var(--shadow-rgb) / 0.2),
+    0 0 0 1px rgb(var(--cream-rgb) / 0.22) inset,
+    0 0.5rem 1.6rem rgb(var(--gold-rgb) / 0.12) inset;
+  backdrop-filter: blur(12px);
+}
+
+.countdownNote::before,
+.countdownNote::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.countdownNote::before {
+  inset: 0;
+  background: linear-gradient(112deg, transparent 34%, rgb(var(--cream-rgb) / 0.42) 48%, transparent 62%);
+  transform: translateX(-120%);
+  animation: sealSheen 4.2s ease 1.1s both;
+}
+
+.countdownNote::after {
+  inset: 0.34rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.28);
+  border-radius: inherit;
+}
+
+.countdownDays {
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 2.05rem;
+  font-weight: 600;
+  line-height: 0.9;
+}
+
+.countdownKicker,
+.countdownDaysLabel,
+.countdownTime,
+.countdownLoading {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.countdownKicker {
+  color: rgb(var(--secondary-rgb) / 0.82);
+  font-size: 0.54rem;
+}
+
+.countdownMain {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.countdownDaysLabel {
+  color: rgb(var(--primary-rgb) / 0.76);
+}
+
+.countdownTime,
+.countdownLoading {
+  color: rgb(var(--secondary-rgb) / 0.72);
+  font-size: 0.55rem;
+}
+
+.countdownLoading {
+  padding: 0.45rem 0;
+}
+
+.cta {
+  display: inline-flex;
+  min-height: 3rem;
+  margin-top: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--cream-rgb) / 0.55);
+  border-radius: 999px;
+  background: rgb(var(--cream-rgb) / 0.9);
+  color: var(--secondary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  padding: 0.8rem 2rem;
+  text-transform: uppercase;
+  box-shadow:
+    0 18px 42px rgb(var(--shadow-rgb) / 0.22),
+    0 0 0 0 rgb(var(--gold-rgb) / 0),
+    inset 0 1px 0 rgba(255, 255, 255, 0.58);
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.cta:hover {
+  border-color: rgb(var(--gold-rgb) / 0.7);
+  background: rgb(var(--primary-rgb) / 0.94);
+  color: var(--cream);
+  box-shadow:
+    0 20px 48px rgb(var(--shadow-rgb) / 0.28),
+    0 0 0 0.22rem rgb(var(--gold-rgb) / 0.16);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
+}
+
+@media (min-width: 640px) {
+  .eyebrow {
+    font-size: 0.78rem;
+  }
+
+  .titleStack {
+    gap: 0.95rem;
+  }
+
+  .coupleTitle {
+    font-size: 5.9rem;
+  }
+
+  .invitationDetails {
+    margin-top: 1.85rem;
+    padding: 1.18rem 1.45rem 1rem;
+  }
+
+  .dateLine {
+    gap: 0.8rem;
+    font-size: 1.22rem;
+  }
+
+  .dateLine span + span::before {
+    margin-right: 0.8rem;
+  }
+
+  .venue {
+    font-size: 0.9rem;
+  }
+
+  .heroActions {
+    margin-top: 1.65rem;
+  }
+
+  .countdownNote {
+    width: min(100%, 18rem);
+    gap: 0.24rem;
+    padding: 0.68rem 1.35rem 0.72rem;
+  }
+
+  .countdownDays {
+    font-size: 2.3rem;
+  }
+
+  .countdownKicker,
+  .countdownDaysLabel,
+  .countdownTime {
+    font-size: 0.6rem;
+  }
+
+  .cta {
+    padding-inline: 2.45rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .coupleTitle {
+    font-size: 7.1rem;
+  }
+
+  .dateLine {
+    font-size: 1.32rem;
+  }
+
+  .heroActions {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .countdownNote {
+    margin-inline: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .coupleTitle {
+    font-size: 8.1rem;
+  }
+}
+
+@keyframes heroPhotoSettle {
+  from {
+    transform: scale(1.045);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes sealSheen {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroImage,
+  .countdownNote::before {
+    animation: none;
+  }
+}

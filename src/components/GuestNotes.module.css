@@ -1,0 +1,585 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgb(var(--gold-rgb) / 0.34) 0, rgb(var(--section-mid-white-rgb) / 0.92) 0.55rem, rgb(var(--section-mid-white-soft-rgb) / 0.88) 4.5rem, rgb(var(--cream-rgb) / 0.74) 10rem, transparent 14rem),
+    radial-gradient(circle at 18% 8%, rgb(var(--gold-rgb) / 0.055), transparent 18rem),
+    radial-gradient(circle at 88% 12%, rgb(var(--secondary-rgb) / 0.035), transparent 18rem),
+    linear-gradient(180deg, var(--section-mid-white-soft) 0%, var(--section-mid-white) 100%);
+  padding-top: clamp(4.75rem, 7vw, 6rem);
+  padding-bottom: 7rem;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 1.25rem 0 0;
+  background:
+    radial-gradient(ellipse at 18% 12%, rgb(var(--gold-rgb) / 0.08), transparent 18rem),
+    radial-gradient(ellipse at 86% 14%, rgb(var(--primary-rgb) / 0.045), transparent 20rem),
+    linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.08), transparent);
+  opacity: 0.68;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 2.5rem, #000 75%, transparent);
+  mask-image: linear-gradient(180deg, transparent 0, #000 2.5rem, #000 75%, transparent);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.heading {
+  max-width: 44rem;
+  margin: 0 auto 3.1rem;
+  text-align: center;
+}
+
+.heading::before {
+  content: "";
+  display: block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin: 0 auto 0.95rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.72);
+  background: rgb(var(--paper-rgb) / 0.42);
+  transform: rotate(45deg);
+}
+
+.eyebrow,
+.kicker {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-top: 1.15rem;
+  color: var(--primary);
+  font-family: var(--font-script), cursive;
+  font-size: clamp(3.65rem, 9vw, 4.9rem);
+  font-weight: 400;
+  line-height: 0.94;
+}
+
+.rule {
+  width: 14rem;
+  height: 1px;
+  margin: 2rem auto 0;
+  background: linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.85), transparent);
+}
+
+.intro {
+  max-width: 38rem;
+  margin: 1.7rem auto 0;
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.guideGrid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.guideReveal,
+.guideRevealContent {
+  height: 100%;
+}
+
+.guideRevealContent {
+  display: flex;
+}
+
+.attireGuidePanel,
+.guestStrip,
+.giftPanel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.38);
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(180deg, rgb(var(--paper-rgb) / 0.9), rgb(var(--cream-rgb) / 0.96)),
+    var(--paper);
+  box-shadow:
+    0 18px 52px rgb(var(--primary-rgb) / 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.54);
+}
+
+.attireGuidePanel::before,
+.guestStrip::before,
+.giftPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.28rem;
+  background: linear-gradient(90deg, rgb(var(--primary-rgb) / 0.72), rgb(var(--gold-rgb) / 0.42));
+  pointer-events: none;
+}
+
+.attireGuidePanel::after,
+.guestStrip::after {
+  content: "";
+  position: absolute;
+  inset: 1rem auto 1rem 1rem;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgb(var(--gold-rgb) / 0.5), transparent);
+  pointer-events: none;
+}
+
+.attireGuidePanel {
+  display: grid;
+  width: 100%;
+  gap: 1.45rem;
+  padding: 1.5rem;
+}
+
+.kicker {
+  margin-top: 1rem;
+}
+
+.guestCopy {
+  min-width: 0;
+}
+
+.guestTitle {
+  margin: 0.75rem 0 0;
+  overflow-wrap: break-word;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-weight: 400;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.attireGroupLabel {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.guestTitle {
+  font-size: 1.65rem;
+}
+
+.guestText {
+  margin: 1rem auto 0;
+  max-width: 42rem;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.guestText {
+  font-family: var(--font-serif), ui-serif, Georgia;
+}
+
+.attireColumnGrid {
+  display: grid;
+  gap: clamp(1.2rem, 2vw, 1.75rem);
+}
+
+.attireColumn {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.2);
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(180deg, rgb(var(--paper-rgb) / 0.82), rgb(var(--cream-rgb) / 0.66)),
+    var(--paper);
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.attireColumnHeader {
+  display: grid;
+  gap: 0.48rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.22);
+  text-align: left;
+}
+
+.attireColumnTitle {
+  margin: 0;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.attireColumnText {
+  max-width: 31rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.attireCallout {
+  margin: 0;
+  border: 1px solid rgb(var(--gold-rgb) / 0.32);
+  border-left: 4px solid rgb(var(--primary-rgb) / 0.54);
+  border-radius: 0.45rem;
+  background:
+    linear-gradient(90deg, rgb(var(--primary-rgb) / 0.055), rgb(var(--paper-rgb) / 0.72)),
+    rgb(var(--paper-rgb) / 0.68);
+  color: var(--secondary);
+  font-size: 0.83rem;
+  font-weight: 700;
+  line-height: 1.45;
+  padding: 0.72rem 0.9rem;
+  text-align: left;
+}
+
+.attireRoleList {
+  display: grid;
+  gap: 0.72rem;
+  align-content: start;
+}
+
+.attireRole {
+  position: relative;
+  display: grid;
+  grid-template-areas:
+    "copy"
+    "swatches"
+    "preview";
+  gap: 0.82rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.2);
+  border-radius: 0.45rem;
+  background:
+    linear-gradient(135deg, rgb(var(--paper-rgb) / 0.84), rgb(var(--cream-rgb) / 0.54)),
+    rgb(var(--paper-rgb) / 0.72);
+  padding: 1rem;
+}
+
+.attireRoleCopy {
+  grid-area: copy;
+  display: grid;
+  align-content: start;
+  gap: 0.46rem;
+  padding: 0;
+}
+
+.attireRoleColorBar {
+  position: absolute;
+  inset: 0.9rem auto auto 1rem;
+  width: 2rem;
+  height: 0.18rem;
+  border-radius: 999px;
+  opacity: 0.78;
+}
+
+.attireRolePreviewGrid {
+  grid-area: preview;
+  display: grid;
+  gap: 0.58rem;
+  align-self: stretch;
+}
+
+.attireRolePreviewFrame {
+  position: relative;
+  min-height: unset;
+  height: clamp(11.5rem, 34vw, 15rem);
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.2);
+  border-radius: 0.38rem;
+  background:
+    linear-gradient(180deg, rgb(var(--stone-rgb) / 0.36), rgb(var(--cream-rgb) / 0.68)),
+    var(--stone);
+}
+
+.attireRolePreviewGridSplit {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.attireRolePreviewImage {
+  object-fit: contain;
+}
+
+.attireRoleKicker {
+  margin: 0 0 0.06rem 2.6rem;
+  color: var(--accent);
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.attireRoleTitle {
+  margin: 0;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.attireRoleAttire {
+  margin: 0;
+  color: var(--secondary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  font-weight: 800;
+  line-height: 1.16;
+  text-wrap: balance;
+}
+
+.attireRoleNote {
+  margin: 0.1rem 0 0;
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.roleSwatches {
+  grid-area: swatches;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.62rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.roleSwatchItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  min-height: 2.25rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.24);
+  border-radius: 999px;
+  background: rgb(var(--paper-rgb) / 0.62);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.25;
+  padding: 0.34rem 0.58rem;
+}
+
+.roleSwatch {
+  width: 1.32rem;
+  height: 1.32rem;
+  flex: 0 0 auto;
+  border: 1px solid rgb(var(--secondary-rgb) / 0.36);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 2px rgb(var(--paper-rgb) / 0.55);
+}
+
+.referenceIntro {
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.referenceTitle {
+  margin: 0.75rem 0 0;
+  overflow-wrap: break-word;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.95rem;
+  font-weight: 400;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.referenceText {
+  margin: 1rem auto 0;
+  max-width: 40rem;
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.attireSwatches {
+  display: grid;
+  gap: 0.8rem;
+  list-style: none;
+  margin: 1.75rem auto 0;
+  max-width: 17rem;
+  padding: 0;
+}
+
+.attireSwatchItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-height: 3.4rem;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.34);
+  border-radius: 999px;
+  background: rgb(var(--paper-rgb) / 0.72);
+  color: var(--secondary);
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 0.65rem 1rem;
+  text-align: left;
+}
+
+.attireSwatch {
+  width: 2.15rem;
+  height: 2.15rem;
+  border: 2px solid rgb(var(--secondary-rgb) / 0.2);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 0 0 2px rgb(var(--paper-rgb) / 0.72),
+    0 0 0 1px rgb(var(--primary-rgb) / 0.06);
+}
+
+.guestStrip {
+  display: grid;
+  gap: 1.4rem;
+  margin-top: 0;
+  padding: 1.5rem;
+}
+
+.giftPanel {
+  margin-top: 1.25rem;
+  padding: 2.4rem 1.5rem;
+  text-align: center;
+}
+
+.giftTitle {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--font-script), cursive;
+  font-size: 3.1rem;
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.giftHeadline {
+  max-width: 40rem;
+  margin: 1.35rem auto 0;
+  color: var(--secondary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.giftDivider {
+  width: min(43rem, 100%);
+  height: 0.45rem;
+  margin: 1.35rem auto 1.2rem;
+  background-image: radial-gradient(circle, rgb(var(--gold-rgb) / 0.82) 2px, transparent 2.4px);
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: 0.72rem 0.45rem;
+}
+
+.giftText {
+  max-width: 45rem;
+  margin: 0 auto;
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.04rem;
+  font-style: italic;
+  line-height: 1.72;
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: clamp(4.8rem, 7.5vw, 5.35rem);
+  }
+
+  .intro {
+    font-size: 1.2rem;
+  }
+
+  .attireGuidePanel,
+  .guestStrip,
+  .giftPanel {
+    padding: 2rem;
+  }
+
+  .referenceTitle {
+    font-size: 2.35rem;
+  }
+
+  .attireRole {
+    grid-template-areas:
+      "copy preview"
+      "swatches preview";
+    grid-template-columns: minmax(0, 1fr) minmax(9rem, 0.34fr);
+    align-items: center;
+  }
+
+  .attireRolePreviewGrid {
+    align-self: stretch;
+  }
+
+  .attireRolePreviewFrame {
+    height: clamp(10.5rem, 20vw, 13.5rem);
+  }
+
+  .attireRoleMultiPreview {
+    grid-template-columns: minmax(0, 0.94fr) minmax(11.5rem, 0.48fr);
+  }
+
+  .attireRoleMultiPreview .attireRolePreviewGridSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .attireRoleMultiPreview .attireRolePreviewFrame {
+    height: clamp(7.5rem, 13vw, 8.75rem);
+  }
+
+  .giftTitle {
+    font-size: 4.4rem;
+  }
+
+  .giftHeadline {
+    font-size: 1.18rem;
+    letter-spacing: 0.03em;
+  }
+
+  .giftText {
+    font-size: 1.16rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .attireGuideReveal {
+    grid-column: 1 / -1;
+  }
+
+  .attireGuidePanel,
+  .guestStrip,
+  .giftPanel {
+    padding: 2.35rem;
+  }
+
+  .guestStrip {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+  }
+
+  .attireColumnGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .attireColumn {
+    grid-template-rows: auto 1fr;
+  }
+}

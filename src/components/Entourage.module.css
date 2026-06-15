@@ -1,0 +1,577 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgb(var(--gold-rgb) / 0.3) 0, rgb(var(--paper-rgb) / 0.94) 0.55rem, rgb(var(--cream-rgb) / 0.88) 4.5rem, rgb(var(--cream-rgb) / 0.68) 10rem, transparent 14rem),
+    radial-gradient(circle at 8% 10%, rgb(var(--gold-rgb) / 0.055), transparent 18rem),
+    radial-gradient(circle at 92% 14%, rgb(var(--secondary-rgb) / 0.035), transparent 18rem),
+    linear-gradient(180deg, var(--section-light-white) 0%, var(--section-light-white-soft) 100%);
+  padding-top: clamp(4.75rem, 7vw, 6rem);
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.section::after {
+  inset: 1.25rem 0 0;
+  background:
+    radial-gradient(ellipse at 50% 34%, rgb(var(--cream-rgb) / 0.18), rgb(var(--cream-rgb) / 0.08) 46%, transparent 68%),
+    linear-gradient(180deg, rgb(var(--stone-rgb) / 0.08), transparent 20%, transparent 78%, rgb(var(--stone-rgb) / 0.14));
+  opacity: 0.48;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 74rem;
+  margin-inline: auto;
+}
+
+.heading {
+  max-width: 48rem;
+  margin: 0 auto 2.6rem;
+  text-align: center;
+}
+
+.heading::before {
+  content: "";
+  display: block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin: 0 auto 0.95rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.72);
+  background: rgb(var(--paper-rgb) / 0.42);
+  transform: rotate(45deg);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-top: 1.1rem;
+  color: var(--primary);
+  font-family: var(--font-script), cursive;
+  font-size: clamp(3.65rem, 9vw, 4.9rem);
+  font-weight: 400;
+  line-height: 0.94;
+}
+
+.rule {
+  width: min(14rem, 70vw);
+  height: 1px;
+  margin: 2rem auto 0;
+  background: linear-gradient(90deg, transparent, rgb(var(--secondary-rgb) / 0.48), transparent);
+}
+
+.intro {
+  max-width: 40rem;
+  margin: 1.7rem auto 0;
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.programShell {
+  position: relative;
+  max-width: 66rem;
+  margin: 1.75rem auto 0;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.42);
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(180deg, rgb(var(--paper-rgb) / 0.96), rgb(var(--cream-rgb) / 0.98)),
+    var(--paper);
+  box-shadow:
+    0 28px 72px rgb(var(--primary-rgb) / 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.68);
+}
+
+.programShell::before,
+.programShell::after {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.24);
+  border-radius: 0.35rem;
+  pointer-events: none;
+}
+
+.programShell::after {
+  inset: 1.35rem;
+  border-color: rgb(var(--primary-rgb) / 0.11);
+}
+
+.programBand {
+  position: relative;
+  background: transparent;
+  padding: 3.35rem 1.25rem;
+}
+
+.programBand + .programBand {
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.42);
+}
+
+.programBand::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 50%;
+  width: min(28rem, calc(100% - 3rem));
+  height: 1px;
+  background: rgb(var(--gold-rgb) / 0.58);
+  transform: translateX(-50%);
+}
+
+.familyBand::before {
+  display: none;
+}
+
+.familyBand,
+.sponsorBand,
+.partyBand,
+.ceremonyBand {
+  isolation: isolate;
+}
+
+.bandHeader {
+  max-width: 42rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.bandTitle {
+  margin: 0 auto;
+  color: var(--secondary);
+  font-family: var(--font-script), cursive;
+  font-size: 2.75rem;
+  font-weight: 400;
+  line-height: 1.14;
+  padding-block: 0.1em;
+}
+
+.bandCopy {
+  max-width: 34rem;
+  margin: 0.85rem auto 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.subgroupLabel {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 48rem;
+  margin: 1.7rem auto 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: rgb(var(--secondary-rgb) / 0.72);
+  font-size: 0.66rem;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.subgroupLabel::before,
+.subgroupLabel::after {
+  content: "";
+  height: 1px;
+  flex: 1 1 2rem;
+  background: rgb(var(--gold-rgb) / 0.42);
+}
+
+.nameList {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.name {
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: break-word;
+  color: rgb(var(--primary-rgb) / 0.94);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.42;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.parentList {
+  max-width: 25rem;
+  margin: 0 auto;
+  gap: 0.55rem;
+}
+
+.parentList .name {
+  color: var(--primary);
+  font-size: 1.22rem;
+}
+
+.parentGroupGrid {
+  display: grid;
+  max-width: 54rem;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.parentGroup {
+  border: 1px solid rgb(var(--gold-rgb) / 0.28);
+  border-radius: 0.5rem;
+  background: rgb(var(--paper-rgb) / 0.54);
+  padding: 1.1rem 1rem 1.25rem;
+}
+
+.parentGroup .subgroupLabel {
+  margin-top: 0;
+}
+
+.sponsorList {
+  position: relative;
+  max-width: 52rem;
+  margin: 0 auto;
+  gap: 0.72rem;
+}
+
+.sponsorList > div {
+  padding-bottom: 0.72rem;
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.2);
+}
+
+.sponsorList .name {
+  color: rgb(var(--shadow-rgb) / 0.86);
+}
+
+.sponsorPlaceholder {
+  position: relative;
+  max-width: 30rem;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.36);
+  border-radius: 0.5rem;
+  background: rgb(var(--paper-rgb) / 0.58);
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.08rem;
+  line-height: 1.55;
+  padding: 1.25rem 1.35rem;
+  text-align: center;
+}
+
+.honorGrid,
+.attendantGrid,
+.ceremonyGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.honorGrid {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.prepNotice {
+  position: relative;
+  display: none;
+  max-width: 50rem;
+  margin: 0 auto 1.35rem;
+  gap: 0.85rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.34);
+  border-left: 4px solid rgb(var(--primary-rgb) / 0.58);
+  border-radius: 0.5rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgb(var(--gold-rgb) / 0.12), transparent 13rem),
+    linear-gradient(135deg, rgb(var(--paper-rgb) / 0.76), rgb(var(--cream-rgb) / 0.64)),
+    rgb(var(--paper-rgb) / 0.66);
+  padding: 1.15rem 1rem;
+  text-align: left;
+}
+
+.prepNotice::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, rgb(var(--primary-rgb) / 0.34), rgb(var(--gold-rgb) / 0.3));
+}
+
+.prepNoticeKicker {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.66rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.prepNoticeTitle {
+  margin: 0;
+  color: var(--secondary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.prepNoticeDetails {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.prepNoticeDetails div {
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
+}
+
+.prepNoticeDetails dt {
+  color: var(--accent);
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.prepNoticeDetails dd {
+  margin: 0;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.prepNoticeText {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
+.attendantGrid {
+  margin-top: 0;
+}
+
+.roleCard {
+  position: relative;
+  display: grid;
+  min-height: 100%;
+  align-content: start;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.38);
+  border-radius: 0.5rem;
+  background: rgb(var(--paper-rgb) / 0.64);
+  padding: 1.55rem 1rem;
+  text-align: center;
+}
+
+.roleCard::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: rgb(var(--gold-rgb) / 0.46);
+}
+
+.roleTitle,
+.ceremonyRoleTitle {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 1rem;
+  color: var(--secondary);
+  font-family: var(--font-script), cursive;
+  font-size: 2.15rem;
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.honorCard {
+  min-height: 10.5rem;
+  background: rgb(var(--paper-rgb) / 0.72);
+}
+
+.honorCard .name {
+  color: var(--primary);
+  font-size: 1.25rem;
+}
+
+.ceremonyGrid {
+  max-width: 54rem;
+  margin: 0 auto;
+}
+
+.roleCluster {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.roleCluster + .roleCluster {
+  margin-top: 2.1rem;
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.42);
+  padding-top: 0.45rem;
+}
+
+.ceremonyRole {
+  position: relative;
+  display: grid;
+  gap: 0.2rem;
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.34);
+  padding: 1.3rem 0 1.1rem;
+  text-align: center;
+}
+
+.ceremonyRole:last-child {
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.34);
+}
+
+.ceremonyRoleTitle {
+  margin-bottom: 0.35rem;
+  font-size: 1.95rem;
+}
+
+.ceremonyNameList {
+  gap: 0.45rem;
+}
+
+.ceremonyNameList .name {
+  font-size: 1rem;
+}
+
+@media (min-width: 640px) {
+  .heading {
+    margin-bottom: 2.8rem;
+  }
+
+  .title {
+    font-size: clamp(4.8rem, 7.5vw, 5.35rem);
+  }
+
+  .intro {
+    font-size: 1.2rem;
+  }
+
+  .programShell {
+    margin-top: 2.4rem;
+  }
+
+  .programBand {
+    padding: 3.5rem 2.25rem;
+  }
+
+  .bandTitle {
+    font-size: 3.55rem;
+  }
+
+  .parentList .name {
+    font-size: 1.42rem;
+  }
+
+  .parentGroupGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .parentGroup {
+    padding: 1.25rem 1.2rem 1.45rem;
+  }
+
+  .sponsorList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+
+  .sponsorList::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 50%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgb(var(--gold-rgb) / 0.42), transparent);
+    transform: translateX(-50%);
+  }
+
+  .honorGrid,
+  .attendantGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .prepNotice {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    align-items: start;
+    padding: 1.35rem 1.45rem;
+  }
+
+  .prepNoticeKicker,
+  .prepNoticeTitle {
+    grid-column: 1;
+  }
+
+  .prepNoticeDetails,
+  .prepNoticeText {
+    grid-column: 2;
+  }
+
+  .prepNoticeDetails {
+    grid-template-columns: minmax(6rem, 0.7fr) minmax(0, 1.3fr);
+  }
+
+  .roleCard {
+    padding: 1.85rem 1.25rem;
+  }
+
+  .roleTitle {
+    font-size: 2.55rem;
+  }
+
+  .name {
+    font-size: 1.22rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .programBand {
+    padding: 4.15rem 3.5rem;
+  }
+
+  .attendantGrid {
+    margin-top: 0;
+  }
+
+  .ceremonyGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.5rem;
+  }
+
+  .roleCluster + .roleCluster {
+    margin-top: 2.7rem;
+    padding-top: 0.8rem;
+  }
+
+  .ceremonyRole:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 26rem;
+    width: 100%;
+    justify-self: center;
+  }
+}
+
+@media (min-width: 1100px) {
+  .programShell {
+    max-width: 68rem;
+  }
+}

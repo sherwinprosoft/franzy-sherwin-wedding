@@ -1,0 +1,438 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgb(var(--gold-rgb) / 0.3) 0, rgb(var(--paper-rgb) / 0.94) 0.55rem, rgb(var(--cream-rgb) / 0.88) 4.5rem, rgb(var(--cream-rgb) / 0.68) 10rem, transparent 14rem),
+    linear-gradient(180deg, var(--section-light-white) 0%, var(--section-light-white-soft) 100%);
+  padding-top: clamp(4.75rem, 7vw, 6rem);
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 1.25rem 0 auto;
+  height: 18rem;
+  background:
+    radial-gradient(ellipse at 18% 12%, rgb(var(--primary-rgb) / 0.05), transparent 18rem),
+    radial-gradient(ellipse at 84% 14%, rgb(var(--gold-rgb) / 0.09), transparent 20rem),
+    linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.08), transparent);
+  opacity: 0.68;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 2.5rem, #000 75%, transparent);
+  mask-image: linear-gradient(180deg, transparent 0, #000 2.5rem, #000 75%, transparent);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1.15rem;
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.68);
+  background: linear-gradient(180deg, transparent, rgb(var(--gold-rgb) / 0.18));
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.heading {
+  max-width: 46rem;
+  margin: 0 auto 3.1rem;
+  text-align: center;
+}
+
+.heading::before {
+  content: "";
+  display: block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin: 0 auto 0.95rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.72);
+  background: rgb(var(--paper-rgb) / 0.42);
+  transform: rotate(45deg);
+}
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--primary);
+  font-family: var(--font-script), cursive;
+  font-size: clamp(3.65rem, 9vw, 4.9rem);
+  font-weight: 400;
+  line-height: 0.94;
+}
+
+.rule {
+  width: 14rem;
+  height: 1px;
+  margin: 2rem auto 0;
+  background: linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.85), transparent);
+}
+
+.intro {
+  margin: 1.75rem auto 0;
+  max-width: 42rem;
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+.cardGrid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.schedulePanel {
+  display: grid;
+  gap: 1.2rem;
+  margin: 0 auto;
+  max-width: 58rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.42);
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(180deg, rgb(var(--paper-rgb) / 0.86), rgb(var(--cream-rgb) / 0.9)),
+    var(--paper);
+  padding: 1.4rem;
+}
+
+.scheduleIntro {
+  text-align: center;
+}
+
+.scheduleTitle {
+  margin: 0.75rem 0 0;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.scheduleList {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scheduleItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.28);
+  padding: 1rem 0;
+  text-align: left;
+}
+
+.scheduleItem:last-child {
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.28);
+}
+
+.scheduleMark {
+  display: inline-flex;
+  width: 1.85rem;
+  height: 1.85rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--gold-rgb) / 0.42);
+  border-radius: 999px;
+  background: rgb(var(--paper-rgb) / 0.52);
+  color: rgb(var(--secondary-rgb) / 0.72);
+}
+
+.scheduleCopy {
+  display: block;
+  min-width: 0;
+}
+
+.scheduleTime,
+.scheduleName,
+.scheduleText {
+  display: block;
+}
+
+.scheduleTime {
+  color: var(--accent);
+  font-size: 0.66rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.scheduleName {
+  margin-top: 0.35rem;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.2rem;
+  line-height: 1.15;
+}
+
+.scheduleText {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.venueReveal,
+.venueRevealContent {
+  height: 100%;
+}
+
+.venueRevealContent {
+  display: flex;
+}
+
+.venuePanel {
+  isolation: isolate;
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.42);
+  border-radius: 0.5rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgb(var(--gold-rgb) / 0.14), transparent 18rem),
+    linear-gradient(180deg, rgb(var(--paper-rgb) / 0.92), rgb(var(--cream-rgb) / 0.96)),
+    var(--paper);
+  box-shadow:
+    0 24px 62px rgb(var(--primary-rgb) / 0.1),
+    0 5px 18px rgb(var(--secondary-rgb) / 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.62);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.venuePanel::before {
+  content: "";
+  position: absolute;
+  inset: 0.7rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.24);
+  border-radius: 0.35rem;
+  pointer-events: none;
+}
+
+.venuePanel::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.32rem;
+  pointer-events: none;
+}
+
+.ceremonyPanel::after {
+  background: linear-gradient(90deg, var(--primary), rgb(var(--primary-rgb) / 0.42));
+}
+
+.receptionPanel::after {
+  background: linear-gradient(90deg, rgb(var(--secondary-rgb) / 0.48), var(--secondary));
+}
+
+.cardKicker {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  align-self: center;
+}
+
+.venueMark {
+  display: inline-flex;
+  width: 1.55rem;
+  height: 1.55rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--gold-rgb) / 0.36);
+  border-radius: 999px;
+  background: rgb(var(--paper-rgb) / 0.54);
+  color: rgb(var(--secondary-rgb) / 0.68);
+}
+
+.cardEyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.venueTitle {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-width: 28rem;
+  min-height: 4.95rem;
+  margin: 1rem auto 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 2.35rem;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.detailList {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  max-width: 30rem;
+  gap: 0;
+  margin: 1.45rem auto 1.75rem;
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.28);
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.28);
+  color: var(--primary);
+  text-align: center;
+}
+
+.detailItem {
+  margin: 0;
+  padding: 0.9rem 0;
+}
+
+.detailItem + .detailItem {
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.18);
+}
+
+.detailLabel {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.detailText {
+  display: block;
+  margin: 0;
+  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.mapButton {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  min-height: 2.75rem;
+  margin: auto auto 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.72);
+  border-radius: 999px;
+  color: var(--secondary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.75rem 1.35rem;
+  text-transform: uppercase;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.mapButton:hover {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--cream);
+}
+
+@media (min-width: 640px) {
+  .heading {
+    margin-bottom: 3.3rem;
+  }
+
+  .title {
+    font-size: clamp(4.8rem, 7.5vw, 5.35rem);
+  }
+
+  .intro {
+    font-size: 1.24rem;
+  }
+
+  .schedulePanel {
+    padding: 1.7rem 2rem;
+  }
+
+  .venuePanel {
+    padding: 2.5rem;
+  }
+
+  .venueTitle {
+    min-height: 5.9rem;
+    font-size: 2.8rem;
+  }
+
+  .detailList {
+    min-height: 5.35rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .scheduleList {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .scheduleItem {
+    border-top: 0;
+    border-left: 1px solid rgb(var(--gold-rgb) / 0.28);
+    padding: 0 1rem;
+  }
+
+  .scheduleItem:first-child {
+    border-left: 0;
+  }
+
+  .scheduleItem:last-child {
+    border-bottom: 0;
+  }
+
+  .cardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .venuePanel {
+    padding: 3rem 2.5rem;
+  }
+
+}

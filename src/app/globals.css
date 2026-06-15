@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fef4e8;
+  --foreground: #3f2911;
+
+  --primary: #3f2911;
+  --secondary: #6b4226;
+  --accent: #6b4226;
+  --gold: #cba98d;
+  --cream: #fef4e8;
+  --stone: #cba98d;
+  --paper: #fef4e8;
+  --muted: #6b4226;
+  --section-dark-white: #ead0b9;
+  --section-dark-white-soft: #f6e4d3;
+  --section-light-white: #fef4e8;
+  --section-light-white-soft: #fff8f1;
+  --section-mid-white: #ead0b9;
+  --section-mid-white-soft: #f8e9da;
+  --primary-rgb: 63 41 17;
+  --secondary-rgb: 107 66 38;
+  --accent-rgb: 107 66 38;
+  --gold-rgb: 203 169 141;
+  --cream-rgb: 254 244 232;
+  --stone-rgb: 203 169 141;
+  --paper-rgb: 254 244 232;
+  --section-dark-white-rgb: 234 208 185;
+  --section-dark-white-soft-rgb: 246 228 211;
+  --section-light-white-rgb: 254 244 232;
+  --section-light-white-soft-rgb: 255 248 241;
+  --section-mid-white-rgb: 234 208 185;
+  --section-mid-white-soft-rgb: 248 233 218;
+  --shadow-rgb: 63 41 17;
+  --section-break: rgb(var(--gold-rgb) / 0.88);
+  --section-break-fill: rgb(var(--gold-rgb) / 0.28);
+  --section-break-shadow: rgb(var(--secondary-rgb) / 0.28);
+  --header-height: 4.25rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-gold: var(--gold);
+  --color-cream: var(--cream);
+  --color-stone: var(--stone);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-serif);
+  --font-script: var(--font-script);
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% 0%, rgb(var(--gold-rgb) / 0.16), transparent 32rem),
+    linear-gradient(180deg, var(--cream) 0%, rgb(var(--gold-rgb) / 0.16) 48%, var(--cream) 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), ui-serif, Georgia;
+}
+
+.font-script {
+  font-family: var(--font-script), cursive;
+}
+
+/* Custom Utilities for High-End Design */
+.tracking-ultra-widest {
+  letter-spacing: 0.8em;
+}
+
+.tracking-widest-serif {
+  letter-spacing: 0.4em;
+}
+
+.font-serif {
+  font-family: var(--font-serif), ui-serif, Georgia;
+}
+
+/* Smooth selection colors */
+::selection {
+  background: rgb(var(--gold-rgb) / 0.3);
+  color: var(--primary);
+}
+
+/* Hide scrollbar for clean look but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.invitation-paper {
+  background:
+    linear-gradient(180deg, rgb(var(--paper-rgb) / 0.95), rgb(var(--cream-rgb) / 0.98)),
+    radial-gradient(circle at 50% 0%, rgb(var(--gold-rgb) / 0.16), transparent 32%),
+    radial-gradient(circle at 12% 82%, rgb(var(--primary-rgb) / 0.08), transparent 28%),
+    var(--paper);
+  box-shadow: 0 32px 100px rgb(var(--primary-rgb) / 0.14);
+}
+
+.fine-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.85), transparent);
+}
+
+.script-balance {
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.guest-card {
+  background:
+    linear-gradient(180deg, rgb(var(--paper-rgb) / 0.86), rgb(var(--cream-rgb) / 0.92)),
+    rgb(var(--paper-rgb) / 0.88);
+  border: 1px solid rgb(var(--gold-rgb) / 0.28);
+  box-shadow: 0 14px 42px rgb(var(--primary-rgb) / 0.06);
+}
