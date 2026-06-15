@@ -8,6 +8,18 @@ import styles from "./GuestNotes.module.css";
 
 const attireGuide = wedding.attireGuide;
 
+function getAttireRoleNote(group: object) {
+  if (!("note" in group)) {
+    return null;
+  }
+
+  const note = group.note;
+
+  return typeof note === "string" && note.trim().length > 0
+    ? note
+    : null;
+}
+
 export default function GuestNotes() {
   return (
     <Section id="notes" className={styles.section}>
@@ -81,65 +93,69 @@ export default function GuestNotes() {
                     ) : null}
 
                     <div className={styles.attireRoleList}>
-                      {column.roles.map((group) => (
-                        <section
-                          key={group.role}
-                          className={`${styles.attireRole} ${
-                            group.previews.length > 1 ? styles.attireRoleMultiPreview : ""
-                          }`}
-                        >
-                          <span
-                            className={styles.attireRoleColorBar}
-                            style={{
-                              background: `linear-gradient(180deg, ${group.swatches[0].hex}, ${group.swatches[0].borderHex})`,
-                            }}
-                            aria-hidden="true"
-                          />
-                          <div className={styles.attireRoleCopy}>
-                            <p className={styles.attireRoleKicker}>Choose this row for</p>
-                            <h5 className={styles.attireRoleTitle}>{group.role}</h5>
-                            <p className={styles.attireRoleAttire}>{group.attire}</p>
-                            {"note" in group ? (
-                              <p className={styles.attireRoleNote}>{group.note}</p>
-                            ) : null}
-                          </div>
-                          <ul
-                            className={styles.roleSwatches}
-                            aria-label={`${group.role} attire colors`}
-                          >
-                            {group.swatches.map((swatch) => (
-                              <li key={swatch.name} className={styles.roleSwatchItem}>
-                                <span
-                                  className={styles.roleSwatch}
-                                  style={{ backgroundColor: swatch.hex, borderColor: swatch.borderHex }}
-                                  aria-hidden="true"
-                                />
-                                <span>{swatch.name}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <div
-                            className={`${styles.attireRolePreviewGrid} ${
-                              group.previews.length > 1 ? styles.attireRolePreviewGridSplit : ""
+                      {column.roles.map((group) => {
+                        const note = getAttireRoleNote(group);
+
+                        return (
+                          <section
+                            key={group.role}
+                            className={`${styles.attireRole} ${
+                              group.previews.length > 1 ? styles.attireRoleMultiPreview : ""
                             }`}
                           >
-                            {group.previews.map((preview) => (
-                              <div key={preview.alt} className={styles.attireRolePreviewFrame}>
-                                <Image
-                                  src={preview.src}
-                                  alt={preview.alt}
-                                  fill
-                                  sizes="(min-width: 1024px) 13rem, (min-width: 640px) 30vw, 90vw"
-                                  className={styles.attireRolePreviewImage}
-                                  style={{ objectPosition: preview.position }}
-                                  loading="eager"
-                                  unoptimized
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        </section>
-                      ))}
+                            <span
+                              className={styles.attireRoleColorBar}
+                              style={{
+                                background: `linear-gradient(180deg, ${group.swatches[0].hex}, ${group.swatches[0].borderHex})`,
+                              }}
+                              aria-hidden="true"
+                            />
+                            <div className={styles.attireRoleCopy}>
+                              <p className={styles.attireRoleKicker}>Choose this row for</p>
+                              <h5 className={styles.attireRoleTitle}>{group.role}</h5>
+                              <p className={styles.attireRoleAttire}>{group.attire}</p>
+                              {note ? (
+                                <p className={styles.attireRoleNote}>{note}</p>
+                              ) : null}
+                            </div>
+                            <ul
+                              className={styles.roleSwatches}
+                              aria-label={`${group.role} attire colors`}
+                            >
+                              {group.swatches.map((swatch) => (
+                                <li key={swatch.name} className={styles.roleSwatchItem}>
+                                  <span
+                                    className={styles.roleSwatch}
+                                    style={{ backgroundColor: swatch.hex, borderColor: swatch.borderHex }}
+                                    aria-hidden="true"
+                                  />
+                                  <span>{swatch.name}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <div
+                              className={`${styles.attireRolePreviewGrid} ${
+                                group.previews.length > 1 ? styles.attireRolePreviewGridSplit : ""
+                              }`}
+                            >
+                              {group.previews.map((preview) => (
+                                <div key={preview.alt} className={styles.attireRolePreviewFrame}>
+                                  <Image
+                                    src={preview.src}
+                                    alt={preview.alt}
+                                    fill
+                                    sizes="(min-width: 1024px) 13rem, (min-width: 640px) 30vw, 90vw"
+                                    className={styles.attireRolePreviewImage}
+                                    style={{ objectPosition: preview.position }}
+                                    loading="eager"
+                                    unoptimized
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          </section>
+                        );
+                      })}
                     </div>
                   </article>
                 ))}
