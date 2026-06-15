@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { wedding } from "@/data/wedding";
+import { WeddingAudioControl } from "./WeddingAudio";
 import styles from "./Sidebar.module.css";
 
 const mobileMenuId = "mobile-navigation";
@@ -57,16 +58,19 @@ export default function Sidebar() {
           ))}
         </div>
 
-        <button
-          type="button"
-          aria-label={isOpen ? "Close navigation" : "Open navigation"}
-          aria-controls={mobileMenuId}
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((value) => !value)}
-          className={styles.toggle}
-        >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className={styles.mobileControls}>
+          <WeddingAudioControl variant="header" />
+          <button
+            type="button"
+            aria-label={isOpen ? "Close navigation" : "Open navigation"}
+            aria-controls={mobileMenuId}
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((value) => !value)}
+            className={styles.toggle}
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>

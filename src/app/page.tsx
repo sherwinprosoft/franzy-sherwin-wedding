@@ -6,21 +6,24 @@ import GuestNotes from "@/components/GuestNotes";
 import Sidebar from "@/components/Sidebar";
 import Background from "@/components/Background";
 import Footer from "@/components/Footer";
-import WeddingAudio from "@/components/WeddingAudio";
+import WeddingAudio, { WeddingAudioProvider } from "@/components/WeddingAudio";
 
 export default function Home() {
   return (
-    <main className="relative z-0 min-h-screen overflow-hidden bg-transparent selection:bg-gold/20 selection:text-primary">
-      <Background />
-      <Sidebar />
+    <WeddingAudioProvider>
       <WeddingAudio />
 
-      <Hero />
-      <Details />
-      <GuestNotes />
-      <Entourage />
-      <Story />
-      <Footer />
-    </main>
+      <main className="relative z-0 min-h-screen overflow-hidden bg-transparent selection:bg-gold/20 selection:text-primary">
+        <Background />
+        <Sidebar />
+
+        <Hero />
+        <Details />
+        <GuestNotes />
+        <Entourage />
+        <Story />
+        <Footer />
+      </main>
+    </WeddingAudioProvider>
   );
 }

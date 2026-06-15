@@ -228,7 +228,7 @@ export const wedding = {
       "Jella Marie Guevarra",
       "Paula Marie Lopez",
       "Arielle Anne Madriaga",
-      "Stefany Bernal",
+      "Steffany Bernal",
       "Maria Guinevere Arenas",
       "Angela Luisa Antonio",
     ],

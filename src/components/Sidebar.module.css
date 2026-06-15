@@ -71,6 +71,12 @@
   gap: 0.5rem;
 }
 
+.mobileControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .link,
 .mobileLink {
   display: inline-flex;
@@ -190,7 +196,7 @@
     display: flex;
   }
 
-  .toggle,
+  .mobileControls,
   .mobileMenu {
     display: none;
   }

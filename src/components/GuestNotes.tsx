@@ -1,12 +1,22 @@
 "use client";
 
+import { Maximize2, X } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { wedding } from "@/data/wedding";
 import Section from "./Section";
 import { Reveal } from "./animations/Reveal";
 import styles from "./GuestNotes.module.css";
 
 const attireGuide = wedding.attireGuide;
+
+type AttirePreview = {
+  src: string;
+  alt: string;
+  position: string;
+  role: string;
+  attire: string;
+};
 
 function getAttireRoleNote(group: object) {
   if (!("note" in group)) {
@@ -21,6 +31,29 @@ function getAttireRoleNote(group: object) {
 }
 
 export default function GuestNotes() {
+  const [selectedPreview, setSelectedPreview] = useState<AttirePreview | null>(null);
+
+  useEffect(() => {
+    if (!selectedPreview) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedPreview(null);
+      }
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [selectedPreview]);
+
   return (
     <Section id="notes" className={styles.section}>
       <div className={styles.inner}>
@@ -139,7 +172,21 @@ export default function GuestNotes() {
                               }`}
                             >
                               {group.previews.map((preview) => (
-                                <div key={preview.alt} className={styles.attireRolePreviewFrame}>
+                                <button
+                                  key={preview.alt}
+                                  type="button"
+                                  className={styles.attireRolePreviewFrame}
+                                  onClick={() =>
+                                    setSelectedPreview({
+                                      src: preview.src,
+                                      alt: preview.alt,
+                                      position: preview.position,
+                                      role: group.role,
+                                      attire: group.attire,
+                                    })
+                                  }
+                                  aria-label={`Enlarge ${group.role} attire reference`}
+                                >
                                   <Image
                                     src={preview.src}
                                     alt={preview.alt}
@@ -150,7 +197,10 @@ export default function GuestNotes() {
                                     loading="eager"
                                     unoptimized
                                   />
-                                </div>
+                                  <span className={styles.previewZoomHint} aria-hidden="true">
+                                    <Maximize2 size={15} strokeWidth={2} />
+                                  </span>
+                                </button>
                               ))}
                             </div>
                           </section>
@@ -175,6 +225,45 @@ export default function GuestNotes() {
           </section>
         </Reveal>
       </div>
+
+      {selectedPreview ? (
+        <div
+          className={styles.previewModal}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedPreview.role} attire reference`}
+          onClick={() => setSelectedPreview(null)}
+        >
+          <div
+            className={styles.previewModalPanel}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className={styles.previewModalClose}
+              onClick={() => setSelectedPreview(null)}
+              aria-label="Close attire reference"
+            >
+              <X size={20} strokeWidth={2} />
+            </button>
+            <div className={styles.previewModalImageFrame}>
+              <Image
+                src={selectedPreview.src}
+                alt={selectedPreview.alt}
+                fill
+                sizes="100vw"
+                className={styles.previewModalImage}
+                style={{ objectPosition: selectedPreview.position }}
+                unoptimized
+              />
+            </div>
+            <div className={styles.previewModalCaption}>
+              <p>{selectedPreview.role}</p>
+              <h4>{selectedPreview.attire}</h4>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </Section>
   );
 }
