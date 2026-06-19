@@ -47,10 +47,11 @@ export const wedding = {
     duration: "Please allow 4-6 hours for preparation coverage before the ceremony.",
   },
   navItems: [
-    { label: "Home", href: "#home" },
-    { label: "Wedding Day", href: "#details" },
-    { label: "Guest Guide", href: "#notes" },
-    { label: "Entourage", href: "#entourage" },
+    { label: "Home", href: "/#home" },
+    { label: "Wedding Day", href: "/#details" },
+    { label: "Guest Guide", href: "/#notes" },
+    { label: "Entourage", href: "/#entourage" },
+    { label: "RSVP", href: "/rsvp" },
   ],
   motif: weddingTheme.motif,
   guestAttire: weddingTheme.guestAttire,
@@ -79,7 +80,7 @@ export const wedding = {
           roles: [
             {
               role: "Principal Sponsors",
-              attire: "Warm Taupe Dress/Gown",
+              attire: "Warm Taupe Gown",
               previews: [
                 {
                   src: "/images/attire-principal-sponsor-warm-taupe-gown-ai.png",
@@ -107,7 +108,7 @@ export const wedding = {
             },
             {
               role: "Bridesmaids",
-              attire: "Dark Brown Dress/Gown",
+              attire: "Dark Brown Gown",
               previews: [
                 {
                   src: "/images/attire-maid-bridesmaid-dark-brown-gown-ai.png",
@@ -242,6 +243,6 @@ export const wedding = {
       { role: "Coin Bearer", names: ["Khabib Manuel Gavina"] },
       { role: "Bible Bearer", names: ["Zeus Crispin Gavina"] },
     ],
-    flowerGirls: ["Tiffany Cly Tango", "Zoe Cleone Tango"],
+    flowerGirls: ["Tiffany Cly Tango", "Zoe Cleone Tango", "Jianna L. Puchacan"],
   },
 } as const;

@@ -136,15 +136,7 @@ export default function GuestNotes() {
                               group.previews.length > 1 ? styles.attireRoleMultiPreview : ""
                             }`}
                           >
-                            <span
-                              className={styles.attireRoleColorBar}
-                              style={{
-                                background: `linear-gradient(180deg, ${group.swatches[0].hex}, ${group.swatches[0].borderHex})`,
-                              }}
-                              aria-hidden="true"
-                            />
                             <div className={styles.attireRoleCopy}>
-                              <p className={styles.attireRoleKicker}>Choose this row for</p>
                               <h5 className={styles.attireRoleTitle}>{group.role}</h5>
                               <p className={styles.attireRoleAttire}>{group.attire}</p>
                               {note ? (
@@ -198,7 +190,7 @@ export default function GuestNotes() {
                                     unoptimized
                                   />
                                   <span className={styles.previewZoomHint} aria-hidden="true">
-                                    <Maximize2 size={15} strokeWidth={2} />
+                                    <Maximize2 size={14} strokeWidth={2} />
                                   </span>
                                 </button>
                               ))}

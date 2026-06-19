@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { wedding } from "@/data/wedding";
 import { WeddingAudioControl } from "./WeddingAudio";
@@ -9,9 +10,14 @@ import styles from "./Sidebar.module.css";
 
 const mobileMenuId = "mobile-navigation";
 
-export default function Sidebar() {
+type SidebarProps = {
+  solid?: boolean;
+};
+
+export default function Sidebar({ solid = false }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isSolid = solid || isScrolled;
 
   useEffect(() => {
     const updateHeader = () => {
@@ -39,22 +45,22 @@ export default function Sidebar() {
   }, []);
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
+    <header className={`${styles.header} ${isSolid ? styles.scrolled : ""}`}>
       <nav className={styles.nav}>
-        <a
-          href="#home"
+        <Link
+          href="/#home"
           aria-label={`Home, ${wedding.couple.display}`}
           className={styles.logo}
           onClick={() => setIsOpen(false)}
         >
           {wedding.couple.monogram}
-        </a>
+        </Link>
 
         <div className={styles.links}>
           {wedding.navItems.map((item) => (
-            <a key={item.href} href={item.href} className={styles.link}>
+            <Link key={item.href} href={item.href} className={styles.link}>
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -85,14 +91,14 @@ export default function Sidebar() {
           >
             <div className={styles.mobileMenuList}>
               {wedding.navItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={styles.mobileLink}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>

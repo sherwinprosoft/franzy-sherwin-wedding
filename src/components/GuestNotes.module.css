@@ -254,35 +254,25 @@
   position: relative;
   display: grid;
   grid-template-areas:
-    "copy preview"
-    "swatches preview";
-  grid-template-columns: minmax(0, 3fr) minmax(7.5rem, 2fr);
-  align-items: center;
-  gap: 0.82rem;
+    "copy"
+    "swatches"
+    "preview";
+  gap: 0.72rem;
   overflow: hidden;
-  border: 1px solid rgb(var(--gold-rgb) / 0.2);
+  border: 1px solid rgb(var(--gold-rgb) / 0.16);
   border-radius: 0.45rem;
   background:
-    linear-gradient(135deg, rgb(var(--paper-rgb) / 0.84), rgb(var(--cream-rgb) / 0.54)),
+    linear-gradient(135deg, rgb(var(--paper-rgb) / 0.76), rgb(var(--cream-rgb) / 0.48)),
     rgb(var(--paper-rgb) / 0.72);
-  padding: 0.82rem;
+  padding: 0.9rem;
 }
 
 .attireRoleCopy {
   grid-area: copy;
   display: grid;
   align-content: start;
-  gap: 0.34rem;
+  gap: 0.28rem;
   padding: 0;
-}
-
-.attireRoleColorBar {
-  position: absolute;
-  inset: 0.78rem auto auto 0.82rem;
-  width: 1.65rem;
-  height: 0.18rem;
-  border-radius: 999px;
-  opacity: 0.78;
 }
 
 .attireRolePreviewGrid {
@@ -317,7 +307,7 @@
 
 .attireRolePreviewFrame:hover {
   border-color: rgb(var(--gold-rgb) / 0.58);
-  box-shadow: 0 1rem 2rem rgb(var(--primary-rgb) / 0.12);
+  box-shadow: 0 0.8rem 1.7rem rgb(var(--primary-rgb) / 0.1);
   transform: translateY(-1px);
 }
 
@@ -339,39 +329,41 @@
 
 .previewZoomHint {
   position: absolute;
-  right: 0.48rem;
-  bottom: 0.48rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
   z-index: 1;
   display: inline-flex;
   width: 1.75rem;
   height: 1.75rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(var(--cream-rgb) / 0.42);
+  border: 1px solid rgb(var(--cream-rgb) / 0.38);
   border-radius: 999px;
-  background: rgb(var(--primary-rgb) / 0.72);
+  background: rgb(var(--primary-rgb) / 0.64);
   color: var(--cream);
-  box-shadow: 0 0.65rem 1.5rem rgb(var(--shadow-rgb) / 0.22);
+  box-shadow: 0 0.55rem 1.2rem rgb(var(--shadow-rgb) / 0.18);
+  opacity: 0.84;
   backdrop-filter: blur(8px);
+  transition:
+    background-color 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
 }
 
-.attireRoleKicker {
-  margin: 0 0 0.02rem 2.08rem;
-  color: var(--accent);
-  font-size: 0.55rem;
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.attireRolePreviewFrame:hover .previewZoomHint,
+.attireRolePreviewFrame:focus-visible .previewZoomHint {
+  background: rgb(var(--primary-rgb) / 0.78);
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 .attireRoleTitle {
   margin: 0;
   color: var(--primary);
   font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: 0.96rem;
+  font-size: 1.08rem;
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.14;
   text-wrap: balance;
 }
 
@@ -379,9 +371,9 @@
   margin: 0;
   color: var(--secondary);
   font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: 1.04rem;
-  font-weight: 800;
-  line-height: 1.12;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.18;
   text-wrap: balance;
 }
 
@@ -397,30 +389,30 @@
   grid-area: swatches;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 0.62rem;
+  gap: 0.35rem 0.5rem;
   list-style: none;
-  margin: 0;
+  margin: 0.05rem 0 0;
   padding: 0;
 }
 
 .roleSwatchItem {
   display: inline-flex;
   align-items: center;
-  gap: 0.48rem;
-  min-height: 2rem;
-  border: 1px solid rgb(var(--gold-rgb) / 0.24);
+  gap: 0.4rem;
+  min-height: 1.55rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.14);
   border-radius: 999px;
-  background: rgb(var(--paper-rgb) / 0.62);
+  background: rgb(var(--paper-rgb) / 0.38);
   color: var(--primary);
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 650;
   line-height: 1.25;
-  padding: 0.3rem 0.48rem;
+  padding: 0.2rem 0.44rem;
 }
 
 .roleSwatch {
-  width: 1.12rem;
-  height: 1.12rem;
+  width: 0.82rem;
+  height: 0.82rem;
   flex: 0 0 auto;
   border: 1px solid rgb(var(--secondary-rgb) / 0.36);
   border-radius: 999px;
@@ -656,52 +648,37 @@
   }
 
   .attireRole {
-    gap: 0.82rem;
+    grid-template-areas:
+      "copy preview"
+      "swatches preview";
+    gap: 0.78rem 1rem;
     grid-template-columns: minmax(0, 3fr) minmax(12rem, 2fr);
     padding: 1rem;
   }
 
-  .attireRoleColorBar {
-    inset: 0.9rem auto auto 1rem;
-    width: 2rem;
-  }
-
-  .attireRoleKicker {
-    margin-left: 2.6rem;
-    font-size: 0.64rem;
-    line-height: 1;
-  }
-
   .attireRoleCopy {
-    gap: 0.46rem;
+    gap: 0.34rem;
   }
 
   .attireRoleTitle {
-    font-size: 1.12rem;
+    font-size: 1.16rem;
     line-height: 1.2;
   }
 
   .attireRoleAttire {
-    font-size: 1.28rem;
+    font-size: 1.08rem;
     line-height: 1.16;
   }
 
   .roleSwatchItem {
-    min-height: 2.25rem;
-    font-size: 0.8rem;
-    padding: 0.34rem 0.58rem;
+    min-height: 1.8rem;
+    font-size: 0.74rem;
+    padding: 0.24rem 0.52rem;
   }
 
   .roleSwatch {
-    width: 1.32rem;
-    height: 1.32rem;
-  }
-
-  .previewZoomHint {
-    right: 0.65rem;
-    bottom: 0.65rem;
-    width: 2rem;
-    height: 2rem;
+    width: 0.94rem;
+    height: 0.94rem;
   }
 
   .attireRolePreviewGrid {

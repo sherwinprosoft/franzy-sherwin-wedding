@@ -1,0 +1,439 @@
+.section {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 16% 8%, rgb(var(--gold-rgb) / 0.18), transparent 22rem),
+    radial-gradient(ellipse at 86% 10%, rgb(var(--secondary-rgb) / 0.1), transparent 24rem),
+    linear-gradient(
+      180deg,
+      var(--section-light-white-soft),
+      var(--section-dark-white-soft) 54%,
+      var(--section-light-white-soft)
+    );
+  padding: 6.4rem 1rem 5rem;
+}
+
+.floralWash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floralWash::before,
+.floralWash::after {
+  position: absolute;
+  width: 22rem;
+  height: 22rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.18);
+  border-radius: 50%;
+  content: "";
+  opacity: 0.62;
+  animation: rsvpPageDrift 14s ease-in-out infinite alternate;
+}
+
+.floralWash::before {
+  top: 5.75rem;
+  left: -8rem;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(var(--secondary-rgb) / 0.08), transparent 44%),
+    repeating-linear-gradient(112deg, transparent 0 1.35rem, rgb(var(--gold-rgb) / 0.1) 1.4rem 1.45rem);
+}
+
+.floralWash::after {
+  right: -9rem;
+  bottom: 5rem;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(var(--primary-rgb) / 0.08), transparent 48%),
+    repeating-linear-gradient(58deg, transparent 0 1.45rem, rgb(var(--gold-rgb) / 0.09) 1.5rem 1.55rem);
+  animation-delay: -5s;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 70rem);
+  margin-inline: auto;
+}
+
+.heroPanel,
+.formPanel,
+.attendeePanel,
+.infoPanel {
+  border: 1px solid rgb(var(--gold-rgb) / 0.34);
+  background:
+    radial-gradient(circle at 50% 0%, rgb(var(--gold-rgb) / 0.11), transparent 18rem),
+    linear-gradient(180deg, rgb(var(--section-light-white-soft-rgb) / 0.96), rgb(var(--paper-rgb) / 0.92)),
+    var(--paper);
+}
+
+.heroPanel,
+.formPanel {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  box-shadow:
+    0 1.4rem 4rem rgb(var(--shadow-rgb) / 0.12),
+    inset 0 1px 0 rgb(255 255 255 / 0.68);
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+.heroPanel::before,
+.formPanel::before {
+  position: absolute;
+  inset: 0.55rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.18);
+  border-radius: 0.55rem;
+  content: "";
+  pointer-events: none;
+}
+
+.heroPanel::after {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  left: 1.1rem;
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.2);
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.2);
+  content: "";
+  pointer-events: none;
+}
+
+.header {
+  display: grid;
+  gap: 0.85rem;
+  text-align: center;
+}
+
+.eyebrow,
+.statusLabel {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.title,
+.coupleName,
+.intro,
+.bodyText,
+.statusText,
+.sectionHeader h2,
+.sectionHeader p,
+.noticeText,
+.emptyText,
+.dateRule {
+  margin: 0;
+}
+
+.title {
+  color: var(--primary);
+  font-family: var(--font-script), cursive;
+  font-size: clamp(3.2rem, 12vw, 5.2rem);
+  font-weight: 400;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.coupleName {
+  color: var(--secondary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.dateRule {
+  display: grid;
+  grid-template-columns: minmax(2rem, 1fr) auto minmax(2rem, 1fr);
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.dateRule::before,
+.dateRule::after {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.82));
+  content: "";
+}
+
+.dateRule::after {
+  background: linear-gradient(90deg, rgb(var(--gold-rgb) / 0.82), transparent);
+}
+
+.intro,
+.bodyText,
+.statusText,
+.sectionHeader p,
+.noticeText,
+.emptyText {
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.intro {
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.rsvpGrid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.attendeePanel,
+.infoPanel {
+  border-radius: 0.75rem;
+  padding: 1.15rem;
+}
+
+.attendeePanel {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.infoPanel {
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+}
+
+.sectionHeader {
+  display: grid;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.sectionHeader h2 {
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.statsRow div {
+  display: grid;
+  gap: 0.3rem;
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.38);
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.22);
+  padding: 0.85rem 0.3rem;
+  text-align: center;
+}
+
+.statsRow strong {
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.statsRow span {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.attendeeList {
+  display: grid;
+  counter-reset: attendingGuests;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.attendeeList li {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 3.35rem;
+  align-items: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.24);
+  border-radius: 0.68rem;
+  background:
+    linear-gradient(135deg, rgb(var(--section-light-white-soft-rgb) / 0.9), rgb(var(--paper-rgb) / 0.62)),
+    rgb(var(--paper-rgb) / 0.74);
+  color: var(--primary);
+  counter-increment: attendingGuests;
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.08rem;
+  line-height: 1.35;
+  padding: 0.82rem 0.85rem;
+  text-align: left;
+  box-shadow: 0 0.65rem 1.5rem rgb(var(--primary-rgb) / 0.045);
+}
+
+.attendeeList li::before {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--gold-rgb) / 0.42);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgb(var(--gold-rgb) / 0.2), rgb(var(--paper-rgb) / 0.74));
+  color: var(--secondary);
+  content: counter(attendingGuests, decimal-leading-zero);
+  font-family: var(--font-sans), ui-sans-serif, system-ui;
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.noticeText,
+.emptyText {
+  border: 1px dashed rgb(var(--gold-rgb) / 0.34);
+  border-radius: 0.55rem;
+  background: rgb(var(--paper-rgb) / 0.48);
+  padding: 0.95rem;
+  text-align: center;
+}
+
+.infoBlock {
+  display: grid;
+  gap: 0.55rem;
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.28);
+  padding-top: 0.9rem;
+}
+
+.infoBlock:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.bodyText {
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.24);
+  padding-top: 0.9rem;
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.linkButton,
+.linkGhost {
+  display: inline-flex;
+  min-height: 2.8rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.85rem 1.15rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.linkButton {
+  border: 1px solid var(--secondary);
+  background: linear-gradient(180deg, var(--secondary), var(--primary));
+  color: var(--cream);
+}
+
+.linkGhost {
+  border: 1px solid rgb(var(--gold-rgb) / 0.42);
+  color: var(--secondary);
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding: 8.5rem 1.4rem 6rem;
+  }
+
+  .heroPanel,
+  .formPanel {
+    padding: 3rem 2.25rem;
+  }
+
+  .title {
+    font-size: 5.35rem;
+  }
+
+  .coupleName {
+    font-size: 1.2rem;
+  }
+
+  .attendeePanel,
+  .infoPanel {
+    padding: 1.5rem;
+  }
+
+  .attendeeList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+}
+
+@keyframes rsvpPageDrift {
+  from {
+    opacity: 0.48;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  to {
+    opacity: 0.74;
+    transform: translate3d(0.8rem, -0.55rem, 0) rotate(3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floralWash::before,
+  .floralWash::after {
+    animation: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .rsvpGrid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(18rem, 0.75fr);
+    align-items: start;
+    gap: 1.1rem;
+  }
+
+  .attendeePanel,
+  .infoPanel {
+    padding: 1.75rem;
+  }
+
+  .sectionHeader {
+    text-align: left;
+  }
+
+  .attendeeList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .formPanel {
+    width: min(100%, 58rem);
+    margin-inline: auto;
+  }
+}

@@ -1,11 +1,12 @@
 "use client";
 
 import { ArrowUp, CalendarDays, Heart, MapPin } from "lucide-react";
+import Link from "next/link";
 import { wedding } from "@/data/wedding";
 import { Reveal } from "./animations/Reveal";
 import styles from "./Footer.module.css";
 
-const footerLinks = wedding.navItems.filter(({ href }) => href !== "#home");
+const footerLinks = wedding.navItems.filter(({ label }) => label !== "Home");
 
 export default function Footer() {
   return (
@@ -62,18 +63,18 @@ export default function Footer() {
         <Reveal width="100%" delay={0.44}>
           <nav className={styles.footerNav} aria-label="Footer navigation">
             {footerLinks.map((item) => (
-              <a key={item.href} href={item.href} className={styles.footerLink}>
+              <Link key={item.href} href={item.href} className={styles.footerLink}>
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </Reveal>
 
         <Reveal width="100%" delay={0.5}>
-          <a href="#home" className={styles.backToTop} aria-label="Back to top">
+          <Link href="/#home" className={styles.backToTop} aria-label="Back to top">
             <ArrowUp size={15} strokeWidth={1.8} />
             Back to top
-          </a>
+          </Link>
         </Reveal>
       </div>
     </footer>
