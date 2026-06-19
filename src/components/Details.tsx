@@ -44,9 +44,9 @@ const guestEssentials = [
   },
   {
     icon: Clock,
-    label: "1:30 PM",
-    title: "Guest Arrival & Seating",
-    description: "Please arrive and be seated before the procession begins.",
+    label: wedding.guestArrival.time,
+    title: wedding.guestArrival.title,
+    description: wedding.guestArrival.description,
   },
   {
     icon: MapPin,

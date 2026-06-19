@@ -37,6 +37,11 @@ export const wedding = {
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Craft+1945+9+Outlook+Drive+Baguio",
     },
   },
+  guestArrival: {
+    time: "1:30 PM",
+    title: "Guest Arrival & Seating",
+    description: "Please arrive and be seated before the procession begins.",
+  },
   preparationShoot: {
     title: "Entourage Preparation Shoot",
     time: "8:00 AM",

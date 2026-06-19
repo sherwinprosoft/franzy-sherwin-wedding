@@ -141,6 +141,13 @@
   text-wrap: balance;
 }
 
+.formPanel .title {
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: clamp(2.05rem, 9vw, 3.45rem);
+  font-weight: 500;
+  line-height: 1.02;
+}
+
 .coupleName {
   color: var(--secondary);
   font-family: var(--font-serif), ui-serif, Georgia;
@@ -185,6 +192,165 @@
 .intro {
   max-width: 36rem;
   margin-inline: auto;
+}
+
+.eventSummary {
+  display: grid;
+  gap: 0.28rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.3);
+  border-radius: 0.62rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgb(var(--gold-rgb) / 0.11), transparent 12rem),
+    linear-gradient(180deg, rgb(var(--section-light-white-soft-rgb) / 0.78), rgb(var(--paper-rgb) / 0.5));
+  padding: 0.42rem;
+  text-align: left;
+}
+
+.eventSummary:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
+}
+
+.eventSummaryIntro {
+  display: grid;
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.22);
+  padding-bottom: 0.24rem;
+  text-align: center;
+}
+
+.eventSummaryIntro span {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.eventSummaryIntro p {
+  display: none;
+  max-width: 32rem;
+  margin: 0 auto;
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 0.88rem;
+  line-height: 1.36;
+}
+
+.eventDateStrip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.36rem;
+  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.22);
+  padding-bottom: 0.26rem;
+}
+
+.eventDateStrip span,
+.eventTime {
+  color: var(--accent);
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.eventDateStrip strong,
+.eventTitle,
+.eventPlace,
+.eventNote,
+.eventTimeline {
+  margin: 0;
+}
+
+.eventDateStrip strong {
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.22;
+}
+
+.eventTimeline {
+  display: grid;
+  counter-reset: weddingTimeline;
+  gap: 0.3rem;
+  padding: 0;
+  list-style: none;
+}
+
+.eventStep {
+  position: relative;
+  display: grid;
+  height: 100%;
+  align-content: start;
+  grid-template-rows: auto auto auto auto;
+  gap: 0.08rem;
+  counter-increment: weddingTimeline;
+  border: 1px solid rgb(var(--gold-rgb) / 0.26);
+  border-radius: 0.52rem;
+  background:
+    linear-gradient(135deg, rgb(var(--section-light-white-soft-rgb) / 0.86), rgb(var(--paper-rgb) / 0.54)),
+    rgb(var(--paper-rgb) / 0.58);
+  padding: 0.46rem 0.54rem 0.5rem 2.3rem;
+}
+
+.eventStep::before {
+  position: absolute;
+  top: 0.46rem;
+  left: 0.54rem;
+  display: inline-flex;
+  width: 1.32rem;
+  height: 1.32rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--gold-rgb) / 0.42);
+  border-radius: 999px;
+  background: rgb(var(--gold-rgb) / 0.14);
+  color: var(--secondary);
+  content: counter(weddingTimeline, decimal-leading-zero);
+  font-size: 0.52rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.arrivalStep {
+  border-color: rgb(var(--gold-rgb) / 0.42);
+  background:
+    radial-gradient(circle at 50% 0%, rgb(var(--gold-rgb) / 0.13), transparent 7rem),
+    linear-gradient(135deg, rgb(var(--section-light-white-soft-rgb) / 0.92), rgb(var(--paper-rgb) / 0.62));
+}
+
+.eventTitle {
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.eventPlace,
+.eventNote {
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 0.78rem;
+  line-height: 1.24;
+}
+
+.eventPlace {
+  color: var(--primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.eventNote {
+  max-width: 18rem;
+}
+
+.utilityLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
 }
 
 .rsvpGrid {
@@ -382,6 +548,41 @@
     font-size: 1.2rem;
   }
 
+  .eventSummary {
+    gap: 0.3rem;
+    padding: 0.46rem;
+  }
+
+  .eventDateStrip {
+    justify-content: center;
+    border: 1px solid rgb(var(--gold-rgb) / 0.2);
+    border-radius: 999px;
+    padding: 0.26rem 0.62rem;
+    background: rgb(var(--paper-rgb) / 0.48);
+  }
+
+  .eventTimeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.34rem;
+  }
+
+  .eventStep {
+    min-height: 0;
+    grid-template-rows: auto auto auto auto;
+    padding: 0.5rem 0.54rem 0.54rem 2.38rem;
+  }
+
+  .eventTitle,
+  .eventPlace,
+  .eventNote {
+    align-self: start;
+  }
+
+  .eventNote {
+    max-width: none;
+  }
+
   .attendeePanel,
   .infoPanel {
     padding: 1.5rem;
@@ -435,5 +636,9 @@
   .formPanel {
     width: min(100%, 58rem);
     margin-inline: auto;
+  }
+
+  .eventTimeline {
+    gap: 0.36rem;
   }
 }

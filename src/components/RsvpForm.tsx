@@ -125,10 +125,11 @@ export default function RsvpForm({ initialParty }: RsvpFormProps) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.partyHeader}>
-        <p className={styles.kicker}>Invitation for</p>
-        <h2>{party.householdName}</h2>
+        <p className={styles.kicker}>Personal RSVP</p>
+        <h2 data-rsvp-focus tabIndex={-1}>RSVP for {party.householdName}</h2>
         <p>
-          Kindly let us know who will be joining us for the wedding day.
+          Confirm each invited guest below. You can update your response later
+          using this same link.
         </p>
       </div>
 
@@ -215,7 +216,11 @@ export default function RsvpForm({ initialParty }: RsvpFormProps) {
         <p className={styles.updated}>
           Response last updated: {formatRsvpDate(party.updatedAt)}
         </p>
-      ) : null}
+      ) : (
+        <p className={styles.updated}>
+          Need to change later? Use this same link to update your response.
+        </p>
+      )}
     </form>
   );
 }

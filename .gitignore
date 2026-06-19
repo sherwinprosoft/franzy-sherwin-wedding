@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local image references and review screenshots
+/public/images/Screenshot*.png
+/public/images/screencapture-localhost-*.png
+/public/images/[0-9].png
+/public/images/06132026.jpg
+/public/images/721289502_*.jpg
+/public/images/Free-Wedding-Line-Background-1.jpg
+/public/images/attire-reference-*.png
+/public/images/attire-role-guide-*.png
+/public/images/attire-bestman-groomsman-barong-*-trousers-ai.png
+/public/images/attire-principal-sponsor-barong-black-trousers-ai.png
+/public/images/elnido.jpg
+/public/images/image*.png
+/public/images/test.png

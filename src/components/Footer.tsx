@@ -24,7 +24,7 @@ export default function Footer() {
           <p className={styles.kicker}>With love and gratitude</p>
         </Reveal>
 
-        <Reveal width="100%" delay={0.2}>
+        <Reveal width="100%" delay={0.2} overflow="visible">
           <p className={`${styles.names} script-balance`}>{wedding.couple.display}</p>
         </Reveal>
 

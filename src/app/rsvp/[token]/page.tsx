@@ -22,6 +22,9 @@ export const metadata = {
 
 export default async function RsvpTokenPage({ params }: RsvpTokenPageProps) {
   const { token } = await params;
+  const ceremony = wedding.venues.ceremony;
+  const guestArrival = wedding.guestArrival;
+  const reception = wedding.venues.reception;
   let party: RsvpParty | null = null;
   let errorResponse: ReturnType<typeof getRsvpErrorResponse> | null = null;
 
@@ -34,24 +37,64 @@ export default async function RsvpTokenPage({ params }: RsvpTokenPageProps) {
   if (party) {
     return (
       <RsvpInvitationGate
+        ceremonyLocation="Baguio City"
+        ceremonyName={ceremony.name}
+        ceremonyTime={ceremony.time}
         coupleName={wedding.couple.display}
         dateLabel={wedding.date.full}
+        guestArrivalTime={guestArrival.time}
         householdName={party.householdName}
       >
         <section className={styles.section}>
           <div className={styles.floralWash} aria-hidden="true" />
           <div className={styles.inner}>
             <div className={styles.formPanel}>
-              <div className={styles.header}>
-                <p className={styles.eyebrow}>Personal RSVP</p>
-                <h1 className={styles.title}>You Are Invited</h1>
-                <p className={styles.coupleName}>{wedding.couple.display}</p>
-                <div className={styles.dateRule}>
-                  <span>{wedding.date.full}</span>
+              <section
+                className={styles.eventSummary}
+                aria-label="Wedding event summary"
+                data-rsvp-focus
+                tabIndex={-1}
+              >
+                <div className={styles.eventSummaryIntro}>
+                  <span>Wedding Details</span>
+                  <p>Review the ceremony and reception details before confirming your response.</p>
                 </div>
-                <p className={styles.intro}>
-                  Please confirm the response for each guest in your invitation.
-                </p>
+                <div className={styles.eventDateStrip}>
+                  <span>Date</span>
+                  <strong>{wedding.date.full}</strong>
+                </div>
+                <ol className={styles.eventTimeline} aria-label="Wedding day timeline">
+                  <li className={`${styles.eventStep} ${styles.arrivalStep}`}>
+                    <span className={styles.eventTime}>{guestArrival.time}</span>
+                    <strong className={styles.eventTitle}>{guestArrival.title}</strong>
+                    <p className={styles.eventPlace}>{ceremony.name}</p>
+                    <p className={styles.eventNote}>{guestArrival.description}</p>
+                  </li>
+                  <li className={styles.eventStep}>
+                    <span className={styles.eventTime}>{ceremony.time}</span>
+                    <strong className={styles.eventTitle}>Ceremony</strong>
+                    <p className={styles.eventPlace}>{ceremony.name}</p>
+                    <p className={styles.eventNote}>Wedding ceremony begins.</p>
+                  </li>
+                  <li className={styles.eventStep}>
+                    <span className={styles.eventTime}>After Ceremony</span>
+                    <strong className={styles.eventTitle}>Reception</strong>
+                    <p className={styles.eventPlace}>{reception.name}</p>
+                    <p className={styles.eventNote}>{reception.time}</p>
+                  </li>
+                </ol>
+              </section>
+
+              <div className={styles.utilityLinks} aria-label="Wedding links">
+                <Link href={ceremony.mapUrl} target="_blank" rel="noreferrer" className={styles.linkGhost}>
+                  Church Map
+                </Link>
+                <Link href={reception.mapUrl} target="_blank" rel="noreferrer" className={styles.linkGhost}>
+                  Reception Map
+                </Link>
+                <Link href="/#details" className={styles.linkGhost}>
+                  Wedding Details
+                </Link>
               </div>
 
               <RsvpForm initialParty={party} />
