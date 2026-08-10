@@ -12,7 +12,7 @@ const publicRsvpPhotoAlt =
 const {
   props: { srcSet: publicDesktopPhotoSrcSet },
 } = getImageProps({
-  src: "/images/prewedding/tcs00454.webp",
+  src: "/images/prewedding/tcs00484.webp",
   alt: publicRsvpPhotoAlt,
   width: 1800,
   height: 1200,

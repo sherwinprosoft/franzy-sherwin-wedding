@@ -1601,16 +1601,40 @@
 
 @media (min-width: 1100px) {
   .publicInner .publicHeroContent {
-    padding-bottom: 14rem;
+    align-self: stretch;
+    grid-template-columns: minmax(0, 0.9fr) minmax(26rem, 1.1fr);
+    align-content: center;
+    justify-items: start;
+    padding: 7.5rem 2rem 3rem;
+    text-align: left;
+  }
+
+  .publicInner .publicHeroContent > * {
+    grid-column: 2;
+  }
+
+  .publicInner .publicHeroContent .intro {
+    max-width: 25rem;
+  }
+
+  .publicInner .publicEventFacts {
+    display: grid;
+    justify-content: start;
+    justify-items: start;
+    gap: 0.42rem;
+    padding-top: 0.3rem;
+  }
+
+  .publicBrandMark {
+    justify-self: start;
+    margin-left: -0.35rem;
   }
 
   .publicHeroActions {
-    position: absolute;
-    right: auto;
-    bottom: 3rem;
-    left: 50%;
-    margin-top: 0;
-    transform: translateX(-50%);
+    position: static;
+    width: min(100%, 20rem);
+    margin-top: 0.65rem;
+    transform: none;
   }
 
   .guestRollBand .householdList {

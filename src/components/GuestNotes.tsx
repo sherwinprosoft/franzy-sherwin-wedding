@@ -18,6 +18,10 @@ type AttirePreview = {
   attire: string;
 };
 
+type GuestAttireProps = {
+  onSelectPreview: (preview: AttirePreview) => void;
+};
+
 function getAttireRoleNote(group: object) {
   if (!("note" in group)) {
     return null;
@@ -30,7 +34,7 @@ function getAttireRoleNote(group: object) {
     : null;
 }
 
-function GuestAttire() {
+function GuestAttire({ onSelectPreview }: GuestAttireProps) {
   return (
     <section id="attire" className={styles.guestStrip} aria-labelledby="guest-attire-heading">
       <div className={styles.guestCopy}>
@@ -63,7 +67,20 @@ function GuestAttire() {
               }`}
             >
               {"src" in example ? (
-                <div className={styles.guestExampleImageFrame}>
+                <button
+                  type="button"
+                  className={styles.guestExampleImageFrame}
+                  onClick={() =>
+                    onSelectPreview({
+                      src: example.src,
+                      alt: example.alt,
+                      position: "50% 50%",
+                      role: "Guest Outfit Inspiration",
+                      attire: example.label,
+                    })
+                  }
+                  aria-label={`Enlarge ${example.label} guest outfit reference`}
+                >
                   <Image
                     src={example.src}
                     alt={example.alt}
@@ -72,7 +89,10 @@ function GuestAttire() {
                     className={styles.guestExampleImage}
                     loading="lazy"
                   />
-                </div>
+                  <span className={styles.previewZoomHint} aria-hidden="true">
+                    <Maximize2 size={14} strokeWidth={2} />
+                  </span>
+                </button>
               ) : null}
               <span className={styles.guestExampleCopy}>
                 <span className={styles.guestExampleLabel}>{example.label}</span>
@@ -238,7 +258,7 @@ export default function GuestNotes() {
         </div>
 
         <Reveal width="100%" delay={0.08}>
-          <GuestAttire />
+          <GuestAttire onSelectPreview={setSelectedPreview} />
         </Reveal>
 
         <Reveal width="100%" delay={0.24}>

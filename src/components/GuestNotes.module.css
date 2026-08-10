@@ -528,13 +528,36 @@
   width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
+  border: 0;
   border-radius: 0.3rem;
   background: rgb(var(--cream-rgb) / 0.62);
+  cursor: zoom-in;
+  padding: 0;
+  transition:
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.guestExampleImageFrame:hover {
+  box-shadow: 0 0.7rem 1.5rem rgb(var(--primary-rgb) / 0.14);
+  transform: translateY(-1px);
+}
+
+.guestExampleImageFrame:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
 }
 
 .guestExampleImage {
   object-fit: contain;
   object-position: 50% 50%;
+}
+
+.guestExampleImageFrame:hover .previewZoomHint,
+.guestExampleImageFrame:focus-visible .previewZoomHint {
+  background: rgb(var(--primary-rgb) / 0.78);
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 .guestExampleCopy {
