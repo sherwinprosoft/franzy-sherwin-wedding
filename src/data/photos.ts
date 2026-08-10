@@ -19,8 +19,8 @@ export const heroPhotos = {
     objectPosition: "50% 50%",
   },
   mobile: {
-    src: "/images/prewedding/tcs00324.webp",
-    alt: "Sherwin holding Franzy's hand as she laughs among misty Baguio pine trees.",
+    src: "/images/prewedding/tcs00321.webp",
+    alt: "Sherwin and Franzy holding hands in a misty Baguio pine forest.",
     width: 1200,
     height: 1800,
     layout: "portrait",

@@ -115,13 +115,15 @@ export default function GuestNotes() {
       <div className={styles.inner}>
         <Reveal width="100%">
           <div className={styles.heading}>
-            <p className={styles.eyebrow}>Attire Guide</p>
+            <p className={styles.eyebrow}>Wedding Guide</p>
             <h2 className={`${styles.title} script-balance`}>
               Attire & Gifts
             </h2>
             <div className={styles.rule} />
             <p className={styles.intro}>
-              {attireGuide.intro}
+              {attireGuide.intro.map((line) => (
+                <span key={line} className={styles.introLine}>{line}</span>
+              ))}
             </p>
           </div>
         </Reveal>

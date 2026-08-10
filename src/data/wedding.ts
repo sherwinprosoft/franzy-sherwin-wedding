@@ -68,8 +68,10 @@ export const wedding = {
   motif: weddingTheme.motif,
   guestAttire: weddingTheme.guestAttire,
   attireGuide: {
-    intro:
-      "Please find your role below and follow the assigned color guide. Guests are invited to wear soft cream formal attire.",
+    intro: [
+      "To our dear entourage, please find your assigned attire and color below.",
+      "For our guests, we would be delighted to see you in soft cream formal attire.",
+    ],
     guest: {
       eyebrow: "For Guests",
       title: "Soft Cream Formal Attire",
@@ -101,15 +103,15 @@ export const wedding = {
       ],
     },
     entourage: {
-      eyebrow: "For the Entourage",
-      title: "Entourage Attire Assignments",
+      eyebrow: "For Our Entourage",
+      title: "Attire Assignments",
       description:
-        "Find your role and follow the assigned color.",
+        "With our thanks for standing beside us, please find your role, attire, and color details below.",
       columns: [
         {
           title: "Dress & Gown Guide",
           description:
-            "Dress and gown assignments for Principal Sponsors, Maid of Honor, Matron of Honor, and Bridesmaids.",
+            "Color guidance for Principal Sponsors, the Maid and Matron of Honor, and Bridesmaids.",
           callout:
             "The pictured gowns are provided as color references only. Your dress does not need to match the exact design; please follow your assigned shade and choose a formal style appropriate for the occasion.",
           roles: [

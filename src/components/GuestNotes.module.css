@@ -84,6 +84,10 @@
   line-height: 1.75;
 }
 
+.introLine {
+  display: block;
+}
+
 .guideGrid {
   display: grid;
   gap: 1.25rem;
