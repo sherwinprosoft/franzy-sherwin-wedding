@@ -37,16 +37,22 @@ export const wedding = {
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Craft+1945+9+Outlook+Drive+Baguio",
     },
   },
+  groomsmenArrival: {
+    time: "12:00 PM",
+    title: "Groomsmen Call Time",
+    description: "Please arrive by 12:00 PM for final instructions and preparation.",
+  },
   guestArrival: {
-    time: "1:30 PM",
-    title: "Guest Arrival & Seating",
-    description: "Please arrive and be seated before the procession begins.",
+    time: "1:00 PM",
+    title: "General Guest & Participant Arrival",
+    description:
+      "Guests and ceremony participants without an earlier call time are asked to arrive by 1:00 PM for instructions and seating.",
   },
   preparationShoot: {
     title: "Entourage Preparation Shoot",
     time: "8:00 AM",
     status: "Details to follow",
-    audience: "Maid of Honor, Best Man, Bridesmaids, and Groomsmen",
+    audience: "Maid of Honor, Matron of Honor, Best Man, and Bridesmaids",
     description:
       "Our photo and video team will begin capturing preparation moments before the church wedding. Final location and detailed instructions will follow.",
     duration: "Please allow 4-6 hours for preparation coverage before the ceremony.",
@@ -54,8 +60,9 @@ export const wedding = {
   navItems: [
     { label: "Home", href: "/#home" },
     { label: "Wedding Day", href: "/#details" },
-    { label: "Guest Guide", href: "/#notes" },
+    { label: "Attire Guide", href: "/#notes" },
     { label: "Entourage", href: "/#entourage" },
+    { label: "Photos", href: "/#photos" },
     { label: "RSVP", href: "/rsvp" },
   ],
   motif: weddingTheme.motif,
@@ -71,6 +78,27 @@ export const wedding = {
       swatches: [
         colors.softCream,
       ],
+      examples: [
+        {
+          label: "For Women",
+          description:
+            "A soft cream midi or full-length dress, a polished jumpsuit, or elegant dressy separates.",
+          src: "/images/attire-guest-women-soft-cream-ai.webp",
+          alt: "Soft cream formal dress inspiration for women guests.",
+        },
+        {
+          label: "For Men",
+          description:
+            "A cream or ivory long-sleeve formal shirt with charcoal or black trousers.",
+          src: "/images/attire-guest-men-formal-shirts-ai.webp",
+          alt: "Two cream and ivory formal shirt options with charcoal and black trousers for men guests.",
+        },
+        {
+          label: "Finishing Touches",
+          description:
+            "Neutral shoes with understated gold, brown, or pearl accents complete the look.",
+        },
+      ],
     },
     entourage: {
       eyebrow: "For the Entourage",
@@ -80,15 +108,17 @@ export const wedding = {
       columns: [
         {
           title: "Dress & Gown Guide",
-          description: "Dress and gown assignments for Principal Sponsors, Maid of Honor, and Bridesmaids.",
-          callout: "",
+          description:
+            "Dress and gown assignments for Principal Sponsors, Maid of Honor, Matron of Honor, and Bridesmaids.",
+          callout:
+            "The pictured gowns are provided as color references only. Your dress does not need to match the exact design; please follow your assigned shade and choose a formal style appropriate for the occasion.",
           roles: [
             {
               role: "Principal Sponsors",
               attire: "Warm Taupe Gown",
               previews: [
                 {
-                  src: "/images/attire-principal-sponsor-warm-taupe-gown-ai.png",
+                  src: "/images/attire-principal-sponsor-warm-taupe-gown-ai.webp",
                   alt: "Warm taupe formal gown reference.",
                   position: "50% 50%",
                 },
@@ -102,7 +132,7 @@ export const wedding = {
               attire: "Rich Brown Gown",
               previews: [
                 {
-                  src: "/images/attire-bridesmaid-secondary-rich-brown-gown-ai.png",
+                  src: "/images/attire-bridesmaid-secondary-rich-brown-gown-ai.webp",
                   alt: "Rich brown formal gown reference.",
                   position: "50% 50%",
                 },
@@ -112,11 +142,26 @@ export const wedding = {
               ],
             },
             {
+              role: "Matron of Honor",
+              attire: "Champagne Gown",
+              note: "Use the champagne swatch as the color reference.",
+              previews: [
+                {
+                  src: "/images/attire-matron-of-honor-champagne-gown-ai.webp",
+                  alt: "Motif-aligned champagne formal gown reference for the Matron of Honor.",
+                  position: "50% 50%",
+                },
+              ],
+              swatches: [
+                colors.motifChampagne,
+              ],
+            },
+            {
               role: "Bridesmaids",
               attire: "Dark Brown Gown",
               previews: [
                 {
-                  src: "/images/attire-maid-bridesmaid-dark-brown-gown-ai.png",
+                  src: "/images/attire-maid-bridesmaid-dark-brown-gown-ai.webp",
                   alt: "Dark brown formal gown reference.",
                   position: "50% 50%",
                 },
@@ -137,7 +182,7 @@ export const wedding = {
               attire: "Barong Tagalog + Black Trousers",
               previews: [
                 {
-                  src: "/images/attire-principal-sponsor-barong-black-trousers-v2-ai.png",
+                  src: "/images/attire-principal-sponsor-barong-black-trousers-v2-ai.webp",
                   alt: "Barong Tagalog with black trousers reference.",
                   position: "50% 50%",
                 },
@@ -148,16 +193,16 @@ export const wedding = {
             },
             {
               role: "Best Man",
-              attire: "Barong Tagalog + Rich Brown Trousers",
+              attire: "Barong Tagalog + Olive Gray Trousers",
               previews: [
                 {
-                  src: "/images/attire-secondary-groomsman-barong-rich-brown-trousers-ai.png",
-                  alt: "Barong Tagalog with rich brown trousers reference.",
+                  src: "/images/attire-best-man-barong-olive-gray-trousers-ai.webp",
+                  alt: "Barong Tagalog with muted olive gray trousers reference for the Best Man.",
                   position: "50% 50%",
                 },
               ],
               swatches: [
-                colors.richBrownTrousers,
+                colors.oliveGrayTrousers,
               ],
             },
             {
@@ -165,8 +210,8 @@ export const wedding = {
               attire: "Barong Tagalog + Dark Brown Trousers",
               previews: [
                 {
-                  src: "/images/attire-bestman-barong-dark-brown-trousers-ai.png",
-                  alt: "Barong Tagalog with dark brown trousers reference.",
+                  src: "/images/attire-groomsmen-barong-purchased-dark-brown-trousers-ai.webp",
+                  alt: "Barong Tagalog with the purchased smoky dark brown trousers for the Groomsmen.",
                   position: "50% 50%",
                 },
               ],
@@ -219,6 +264,7 @@ export const wedding = {
     mainParty: [
       { role: "Best Man", names: ["Michael Braxton Ora"] },
       { role: "Maid of Honor", names: ["Patricia May Caparas"] },
+      { role: "Matron of Honor", names: ["Paula Marie Lopez"] },
     ],
     groomsmen: [
       "Glenn Edward Ora",
@@ -232,7 +278,6 @@ export const wedding = {
     bridesmaids: [
       "Czarina Maye Ora",
       "Jella Marie Guevarra",
-      "Paula Marie Lopez",
       "Arielle Anne Madriaga",
       "Steffany Bernal",
       "Maria Guinevere Arenas",

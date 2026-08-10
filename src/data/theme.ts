@@ -2,11 +2,12 @@
 export const attireColors = {
   softCream: { name: "Soft Cream", hex: "#FEF4E8", borderHex: "#CBA98D" },
   warmTaupe: { name: "Warm Taupe", hex: "#CBA98D", borderHex: "#6B4226" },
+  motifChampagne: { name: "Champagne", hex: "#D8BEA4", borderHex: "#6B4226" },
   richBrown: { name: "Rich Brown", hex: "#6B4226", borderHex: "#3F2911" },
   darkBrown: { name: "Dark Brown", hex: "#3F2911", borderHex: "#6B4226" },
   blackTrousers: { name: "Black Trousers", hex: "#111111", borderHex: "#3F2911" },
-  richBrownTrousers: { name: "Rich Brown Trousers", hex: "#6B4226", borderHex: "#3F2911" },
-  darkBrownTrousers: { name: "Dark Brown Trousers", hex: "#3F2911", borderHex: "#6B4226" },
+  oliveGrayTrousers: { name: "Olive Gray Trousers", hex: "#50574F", borderHex: "#30362F" },
+  darkBrownTrousers: { name: "Dark Brown Trousers", hex: "#4A403A", borderHex: "#2F2926" },
   beigeTrousers: { name: "Beige Trousers", hex: "#D6C5AE", borderHex: "#CBA98D" },
   greyTrousers: { name: "Grey Trousers", hex: "#8E8B84", borderHex: "#6B4226" },
 } as const;

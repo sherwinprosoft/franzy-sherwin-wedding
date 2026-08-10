@@ -109,7 +109,7 @@
   display: grid;
   gap: 1.2rem;
   margin: 0 auto;
-  max-width: 58rem;
+  max-width: 68rem;
   overflow: hidden;
   border: 1px solid rgb(var(--gold-rgb) / 0.42);
   border-radius: 0.5rem;
@@ -408,7 +408,7 @@
 
 @media (min-width: 1024px) {
   .scheduleList {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .scheduleItem {

@@ -85,36 +85,17 @@
   position: relative;
   max-width: 66rem;
   margin: 1.75rem auto 0;
-  overflow: hidden;
-  border: 1px solid rgb(var(--gold-rgb) / 0.42);
-  border-radius: 0.5rem;
-  background:
-    linear-gradient(180deg, rgb(var(--paper-rgb) / 0.96), rgb(var(--cream-rgb) / 0.98)),
-    var(--paper);
-  box-shadow:
-    0 28px 72px rgb(var(--primary-rgb) / 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.68);
 }
 
 .programShell::before,
 .programShell::after {
-  content: "";
-  position: absolute;
-  inset: 1rem;
-  border: 1px solid rgb(var(--gold-rgb) / 0.24);
-  border-radius: 0.35rem;
-  pointer-events: none;
-}
-
-.programShell::after {
-  inset: 1.35rem;
-  border-color: rgb(var(--primary-rgb) / 0.11);
+  display: none;
 }
 
 .programBand {
   position: relative;
   background: transparent;
-  padding: 3.35rem 1.25rem;
+  padding: 3.35rem 0;
 }
 
 .programBand + .programBand {
@@ -246,7 +227,7 @@
   gap: 0.72rem;
 }
 
-.sponsorList > div {
+.sponsorList > .name {
   padding-bottom: 0.72rem;
   border-bottom: 1px solid rgb(var(--gold-rgb) / 0.2);
 }
@@ -510,6 +491,12 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .honorGrid > :last-child:nth-child(odd) {
+    width: calc(50% - 0.5rem);
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
   .prepNotice {
     grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
     align-items: start;
@@ -550,6 +537,16 @@
 
   .attendantGrid {
     margin-top: 0;
+  }
+
+  .honorGrid {
+    max-width: 60rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .honorGrid > :last-child:nth-child(odd) {
+    width: auto;
+    grid-column: auto;
   }
 
   .ceremonyGrid {

@@ -6,6 +6,8 @@ import {
   type RsvpStatus,
   type RsvpUpdateInput,
 } from "./rsvp-types";
+import { getKnownRsvpHousehold } from "@/data/rsvp-households";
+import { wedding } from "@/data/wedding";
 
 export class RsvpError extends Error {
   status: number;
@@ -27,6 +29,7 @@ type AppsScriptResponse = {
 };
 
 export type PublicRsvpAttendee = {
+  householdName: string;
   name: string;
 };
 
@@ -217,7 +220,17 @@ function normalizePublicAttendee(value: unknown): PublicRsvpAttendee | null {
     return null;
   }
 
-  return { name };
+  return {
+    householdName:
+      getKnownRsvpHousehold(name) ||
+      getString(record.householdName) ||
+      "Confirmed Guests",
+    name,
+  };
+}
+
+function isWeddingCouple(name: string) {
+  return name === wedding.couple.groom || name === wedding.couple.bride;
 }
 
 function normalizePublicAttendees(value: unknown) {
@@ -227,8 +240,13 @@ function normalizePublicAttendees(value: unknown) {
 
   return value
     .map((guest) => normalizePublicAttendee(guest))
-    .filter((guest): guest is PublicRsvpAttendee => Boolean(guest))
-    .sort((first, second) => first.name.localeCompare(second.name));
+    .filter((guest): guest is PublicRsvpAttendee => (
+      Boolean(guest) && !isWeddingCouple(guest?.name || "")
+    ))
+    .sort((first, second) => (
+      first.householdName.localeCompare(second.householdName) ||
+      first.name.localeCompare(second.name)
+    ));
 }
 
 function normalizePublicList(value: unknown): PublicRsvpList {
@@ -341,9 +359,19 @@ async function getPublicRsvpListFromTokens(tokens: string[]) {
     .flatMap((party) => (
       party.guests
         .filter((guest) => guest.status === "Coming")
-        .map((guest) => ({ name: guest.name }))
+        .filter((guest) => !isWeddingCouple(guest.name))
+        .map((guest) => ({
+          householdName:
+            getKnownRsvpHousehold(guest.name) ||
+            party.householdName ||
+            "Confirmed Guests",
+          name: guest.name,
+        }))
     ))
-    .sort((first, second) => first.name.localeCompare(second.name));
+    .sort((first, second) => (
+      first.householdName.localeCompare(second.householdName) ||
+      first.name.localeCompare(second.name)
+    ));
   const confirmedHouseholds = parties.filter((party) => (
     party.guests.some((guest) => guest.status === "Coming")
   )).length;

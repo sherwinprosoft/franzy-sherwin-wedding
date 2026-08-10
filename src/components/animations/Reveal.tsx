@@ -19,13 +19,13 @@ export const Reveal = ({
   className,
   contentClassName,
   width = "fit-content", 
-  delay = 0.2, 
-  duration = 0.8,
-  yOffset = 75,
+  delay = 0.08,
+  duration = 0.7,
+  yOffset = 28,
   overflow = "hidden",
 }: Props) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
   const mainControls = useAnimation();
   const shouldReduceMotion = useReducedMotion();
 

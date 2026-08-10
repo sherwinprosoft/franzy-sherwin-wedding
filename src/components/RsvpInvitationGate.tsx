@@ -1,30 +1,37 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import { CalendarDays, Clock3, MailOpen, MapPin } from "lucide-react";
 import { type ReactNode, useEffect, useId, useState } from "react";
+import type { PartyCallTimeGroup } from "@/lib/wedding-schedule";
 import styles from "./RsvpInvitationGate.module.css";
 
 type RsvpInvitationGateProps = {
+  brideName: string;
   children: ReactNode;
   ceremonyLocation: string;
   ceremonyName: string;
   ceremonyTime: string;
+  callTimeGroups: PartyCallTimeGroup[];
   coupleName: string;
   dateLabel: string;
-  guestArrivalTime: string;
+  groomName: string;
   householdName: string;
 };
 
 const REVEAL_ANIMATION_MS = 1450;
 
 export default function RsvpInvitationGate({
+  brideName,
   children,
   ceremonyLocation,
   ceremonyName,
   ceremonyTime,
+  callTimeGroups,
   coupleName,
   dateLabel,
-  guestArrivalTime,
+  groomName,
   householdName,
 }: RsvpInvitationGateProps) {
   const shouldReduceMotion = useReducedMotion();
@@ -97,6 +104,30 @@ export default function RsvpInvitationGate({
             exit={{ opacity: 0 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.85, ease: [0.22, 1, 0.36, 1] }}
           >
+            <motion.div
+              className={styles.backdrop}
+              aria-hidden="true"
+              animate={isOpening ? { scale: 1.055 } : { scale: 1 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 1.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Image
+                src="/images/prewedding/tcs00454.webp"
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className={styles.desktopPhoto}
+              />
+              <Image
+                src="/images/prewedding/tcs00457.webp"
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className={styles.mobilePhoto}
+              />
+            </motion.div>
+            <div className={styles.photoWash} aria-hidden="true" />
             <div className={styles.paperTexture} aria-hidden="true" />
 
             <motion.div
@@ -110,33 +141,53 @@ export default function RsvpInvitationGate({
               }
               transition={{ duration: shouldReduceMotion ? 0 : 1.32, ease: [0.16, 1, 0.3, 1] }}
             >
-              <motion.div
-                className={styles.invitation}
-                animate={isOpening ? { boxShadow: "0 2rem 5rem rgb(63 41 17 / 0.18)" } : {}}
-                transition={{ duration: 0.9 }}
-              >
-                <div className={styles.frame} aria-hidden="true" />
+              <div className={styles.frame} aria-hidden="true" />
 
-                <p className={styles.eyebrow}>Personal RSVP</p>
-                <h1 id={titleId} className={styles.title}>
-                  You Are Invited
+              <header className={styles.masthead}>
+                <p className={styles.eyebrow}>A personal wedding invitation</p>
+                <p className={styles.monogram} aria-hidden="true">S <span>&amp;</span> F</p>
+              </header>
+
+              <div className={styles.invitationCopy}>
+                <p className={styles.preTitle}>Together with their families</p>
+                <h1
+                  id={titleId}
+                  className={`${styles.title} script-balance`}
+                  aria-label={coupleName}
+                >
+                  <span className={styles.groomName}>{groomName}</span>
+                  <span className={styles.ampersand} aria-hidden="true">&amp;</span>
+                  <span className={styles.brideName}>{brideName}</span>
                 </h1>
-                <p className={styles.couple}>{coupleName}</p>
-
-                <div className={styles.eventLine} aria-label="Wedding event summary">
-                  <span>{dateLabel}</span>
-                  <span>{guestArrivalTime} Guest Arrival</span>
-                  <span>{ceremonyTime} Ceremony</span>
-                  <span>{ceremonyName}</span>
-                  <span>{ceremonyLocation}</span>
-                </div>
-
-                <p className={styles.recipient}>
-                  Reserved for {householdName}
-                </p>
                 <p id={descriptionId} className={styles.copy}>
-                  With joy and gratitude, Sherwin and Franzy invite you to share in the celebration of their wedding day.
+                  joyfully invite you to celebrate their wedding day
                 </p>
+              </div>
+
+              <div className={styles.eventLine} aria-label="Wedding event summary">
+                <span><CalendarDays aria-hidden="true" />{dateLabel}</span>
+                <span><Clock3 aria-hidden="true" />{ceremonyTime} ceremony</span>
+                <span><MapPin aria-hidden="true" />{ceremonyName}, {ceremonyLocation}</span>
+              </div>
+
+              <section className={styles.callTimes} aria-label="Personal call times">
+                <p>{callTimeGroups.length > 1 ? "Your household call times" : "Your personal call time"}</p>
+                <div className={styles.callTimeList}>
+                  {callTimeGroups.map((group) => (
+                    <div key={group.key}>
+                      <strong>{group.time}</strong>
+                      <span>{group.title}</span>
+                      <small>{group.guestNames.join(" · ")}</small>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <footer className={styles.invitationFooter}>
+                <div className={styles.recipient}>
+                  <span>Reserved with love for</span>
+                  <strong>{householdName}</strong>
+                </div>
 
                 <button
                   type="button"
@@ -148,11 +199,12 @@ export default function RsvpInvitationGate({
                   disabled={isOpening}
                   autoFocus
                 >
-                  {isOpening ? "Opening..." : "Open Invitation"}
+                  <MailOpen aria-hidden="true" />
+                  <span>{isOpening ? "Opening invitation..." : "View Your Invitation"}</span>
                 </button>
 
-                <p className={styles.timeNote}>RSVP takes about 1 minute.</p>
-              </motion.div>
+                <p className={styles.timeNote}>Your response takes about one minute.</p>
+              </footer>
             </motion.div>
           </motion.div>
         ) : null}

@@ -1,5 +1,4 @@
 import Hero from "@/components/Hero";
-import Story from "@/components/Story";
 import Details from "@/components/Details";
 import Entourage from "@/components/Entourage";
 import GuestNotes from "@/components/GuestNotes";
@@ -7,6 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import Background from "@/components/Background";
 import Footer from "@/components/Footer";
 import WeddingAudio, { WeddingAudioProvider } from "@/components/WeddingAudio";
+import PhotoGallery from "@/components/PhotoGallery";
 
 export default function Home() {
   return (
@@ -21,7 +21,7 @@ export default function Home() {
         <Details />
         <GuestNotes />
         <Entourage />
-        <Story />
+        <PhotoGallery />
         <Footer />
       </main>
     </WeddingAudioProvider>

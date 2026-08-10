@@ -1,17 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { Check, Clock3, Send, UsersRound, X } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import {
   rsvpStatuses,
   type RsvpParty,
   type RsvpStatus,
 } from "@/lib/rsvp-types";
+import type { GuestCallTimeAssignment } from "@/lib/wedding-schedule";
 import styles from "./RsvpForm.module.css";
 
 type SaveState = "idle" | "saving" | "saved" | "error";
 
 type RsvpFormProps = {
+  callTimeAssignments: GuestCallTimeAssignment[];
   initialParty: RsvpParty;
 };
 
@@ -25,6 +28,12 @@ const statusLabels: Record<RsvpStatus, string> = {
   "Not Coming": "Unable to Attend",
   Pending: "Will Confirm Soon",
 };
+
+const statusIcons = {
+  Coming: Check,
+  "Not Coming": X,
+  Pending: Clock3,
+} as const;
 
 function formatRsvpDate(value: string) {
   const date = new Date(value);
@@ -55,7 +64,10 @@ function getInitialStatuses(party: RsvpParty) {
   }, {});
 }
 
-export default function RsvpForm({ initialParty }: RsvpFormProps) {
+export default function RsvpForm({
+  callTimeAssignments,
+  initialParty,
+}: RsvpFormProps) {
   const [party, setParty] = useState(initialParty);
   const [guestStatuses, setGuestStatuses] = useState(getInitialStatuses(initialParty));
   const [note, setNote] = useState(initialParty.note);
@@ -128,8 +140,8 @@ export default function RsvpForm({ initialParty }: RsvpFormProps) {
         <p className={styles.kicker}>Personal RSVP</p>
         <h2 data-rsvp-focus tabIndex={-1}>RSVP for {party.householdName}</h2>
         <p>
-          Confirm each invited guest below. You can update your response later
-          using this same link.
+          Please choose a response for each invited guest. You can return to
+          this personal link anytime to make an update.
         </p>
       </div>
 
@@ -142,29 +154,43 @@ export default function RsvpForm({ initialParty }: RsvpFormProps) {
       <div className={styles.guestList} aria-label="Guest responses">
         {party.guests.map((guest) => {
           const selectedStatus = guestStatuses[guest.id] ?? guest.status;
+          const callTime = callTimeAssignments.find(({ guestId }) => guestId === guest.id);
 
           return (
             <fieldset key={guest.id} className={styles.guestCard}>
               <legend className={styles.guestName}>{guest.name}</legend>
+              {callTime ? (
+                <div className={styles.guestCallTime}>
+                  <Clock3 aria-hidden="true" />
+                  <span>Your call time</span>
+                  <strong>{callTime.time}</strong>
+                  <small>{callTime.title}</small>
+                </div>
+              ) : null}
               <div className={styles.statusGrid}>
-                {rsvpStatuses.map((option) => (
-                  <label
-                    key={option}
-                    className={[
-                      styles.statusOption,
-                      selectedStatus === option ? styles.statusOptionActive : "",
-                    ].filter(Boolean).join(" ")}
-                  >
-                    <input
-                      type="radio"
-                      name={`status-${guest.id}`}
-                      value={option}
-                      checked={selectedStatus === option}
-                      onChange={() => handleStatusChange(guest.id, option)}
-                    />
-                    <span>{statusLabels[option]}</span>
-                  </label>
-                ))}
+                {rsvpStatuses.map((option) => {
+                  const StatusIcon = statusIcons[option];
+
+                  return (
+                    <label
+                      key={option}
+                      className={[
+                        styles.statusOption,
+                        selectedStatus === option ? styles.statusOptionActive : "",
+                      ].filter(Boolean).join(" ")}
+                    >
+                      <input
+                        type="radio"
+                        name={`status-${guest.id}`}
+                        value={option}
+                        checked={selectedStatus === option}
+                        onChange={() => handleStatusChange(guest.id, option)}
+                      />
+                      <StatusIcon aria-hidden="true" />
+                      <span>{statusLabels[option]}</span>
+                    </label>
+                  );
+                })}
               </div>
               {guest.updatedAt ? (
                 <p className={styles.guestUpdated}>
@@ -183,7 +209,7 @@ export default function RsvpForm({ initialParty }: RsvpFormProps) {
       ) : null}
 
       <label className={styles.field}>
-        <span>Note for the couple</span>
+        <span>Message for Sherwin &amp; Franzy</span>
         <textarea
           value={note}
           rows={4}
@@ -198,15 +224,20 @@ export default function RsvpForm({ initialParty }: RsvpFormProps) {
 
       <div className={styles.actions}>
         <button type="submit" disabled={saveState === "saving"}>
-          {saveState === "saving" ? "Saving RSVP..." : "Save RSVP"}
+          <Send aria-hidden="true" />
+          <span>{saveState === "saving" ? "Saving RSVP..." : "Save RSVP"}</span>
         </button>
         {message ? (
-          <p className={saveState === "error" ? styles.error : styles.success}>
+          <p
+            className={saveState === "error" ? styles.error : styles.success}
+            aria-live="polite"
+          >
             {message}
           </p>
         ) : null}
         {saveState === "saved" ? (
           <Link href="/rsvp" className={styles.publicLink}>
+            <UsersRound aria-hidden="true" />
             View Attending Guests
           </Link>
         ) : null}

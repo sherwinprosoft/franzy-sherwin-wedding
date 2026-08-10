@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CalendarDays, Clock3, MapPin, Navigation } from "lucide-react";
 import RsvpForm from "@/components/RsvpForm";
 import RsvpInvitationGate from "@/components/RsvpInvitationGate";
 import { wedding } from "@/data/wedding";
@@ -7,6 +8,10 @@ import {
   getRsvpErrorResponse,
   getRsvpParty,
 } from "@/lib/rsvp";
+import {
+  getGuestCallTimeAssignments,
+  groupGuestCallTimes,
+} from "@/lib/wedding-schedule";
 import styles from "../RsvpPage.module.css";
 
 type RsvpTokenPageProps = {
@@ -35,14 +40,19 @@ export default async function RsvpTokenPage({ params }: RsvpTokenPageProps) {
   }
 
   if (party) {
+    const callTimeAssignments = getGuestCallTimeAssignments(party.guests);
+    const callTimeGroups = groupGuestCallTimes(callTimeAssignments);
+
     return (
       <RsvpInvitationGate
+        brideName="Franzy"
+        callTimeGroups={callTimeGroups}
         ceremonyLocation="Baguio City"
         ceremonyName={ceremony.name}
         ceremonyTime={ceremony.time}
         coupleName={wedding.couple.display}
         dateLabel={wedding.date.full}
-        guestArrivalTime={guestArrival.time}
+        groomName="Sherwin"
         householdName={party.householdName}
       >
         <section className={styles.section}>
@@ -56,13 +66,45 @@ export default async function RsvpTokenPage({ params }: RsvpTokenPageProps) {
                 tabIndex={-1}
               >
                 <div className={styles.eventSummaryIntro}>
-                  <span>Wedding Details</span>
-                  <p>Review the ceremony and reception details before confirming your response.</p>
+                  <span>Your Invitation</span>
+                  <h1>Wedding Day Details</h1>
+                  <p>Everything you need for our celebration in Baguio City.</p>
                 </div>
-                <div className={styles.eventDateStrip}>
-                  <span>Date</span>
-                  <strong>{wedding.date.full}</strong>
+                <div className={styles.eventFacts}>
+                  <div>
+                    <CalendarDays aria-hidden="true" />
+                    <span>Date</span>
+                    <strong>{wedding.date.full}</strong>
+                  </div>
+                  <div>
+                    <Clock3 aria-hidden="true" />
+                    <span>Your call time</span>
+                    <strong>{callTimeGroups.length === 1 ? callTimeGroups[0].time : "See schedule"}</strong>
+                  </div>
+                  <div>
+                    <MapPin aria-hidden="true" />
+                    <span>Location</span>
+                    <strong>Baguio City</strong>
+                  </div>
                 </div>
+                <section className={styles.personalSchedule} aria-labelledby="personal-schedule-title">
+                  <div className={styles.personalScheduleHeader}>
+                    <span>For your household</span>
+                    <h2 id="personal-schedule-title">Personal Call Times</h2>
+                  </div>
+                  <ul>
+                    {callTimeGroups.map((group) => (
+                      <li key={group.key}>
+                        <strong>{group.time}</strong>
+                        <div>
+                          <span>{group.title}</span>
+                          <p>{group.guestNames.join(" · ")}</p>
+                          <small>{group.description}</small>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
                 <ol className={styles.eventTimeline} aria-label="Wedding day timeline">
                   <li className={`${styles.eventStep} ${styles.arrivalStep}`}>
                     <span className={styles.eventTime}>{guestArrival.time}</span>
@@ -74,30 +116,35 @@ export default async function RsvpTokenPage({ params }: RsvpTokenPageProps) {
                     <span className={styles.eventTime}>{ceremony.time}</span>
                     <strong className={styles.eventTitle}>Ceremony</strong>
                     <p className={styles.eventPlace}>{ceremony.name}</p>
-                    <p className={styles.eventNote}>Wedding ceremony begins.</p>
+                    <p className={styles.eventNote}>{ceremony.address}</p>
                   </li>
                   <li className={styles.eventStep}>
                     <span className={styles.eventTime}>After Ceremony</span>
-                    <strong className={styles.eventTitle}>Reception</strong>
+                    <strong className={styles.eventTitle}>Reception &amp; Dinner</strong>
                     <p className={styles.eventPlace}>{reception.name}</p>
-                    <p className={styles.eventNote}>{reception.time}</p>
+                    <p className={styles.eventNote}>{reception.address}</p>
                   </li>
                 </ol>
               </section>
 
               <div className={styles.utilityLinks} aria-label="Wedding links">
                 <Link href={ceremony.mapUrl} target="_blank" rel="noreferrer" className={styles.linkGhost}>
-                  Church Map
+                  <Navigation aria-hidden="true" />
+                  Church Directions
                 </Link>
                 <Link href={reception.mapUrl} target="_blank" rel="noreferrer" className={styles.linkGhost}>
-                  Reception Map
+                  <Navigation aria-hidden="true" />
+                  Reception Directions
                 </Link>
                 <Link href="/#details" className={styles.linkGhost}>
-                  Wedding Details
+                  Wedding Website
                 </Link>
               </div>
 
-              <RsvpForm initialParty={party} />
+              <RsvpForm
+                callTimeAssignments={callTimeAssignments}
+                initialParty={party}
+              />
             </div>
           </div>
         </section>

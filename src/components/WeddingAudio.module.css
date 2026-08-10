@@ -23,13 +23,7 @@
 }
 
 .floatingControl {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 90;
-  box-shadow:
-    0 0.9rem 2rem rgb(var(--shadow-rgb) / 0.26),
-    0 1px 0 rgb(var(--cream-rgb) / 0.16) inset;
+  display: none;
 }
 
 .headerControl {
@@ -69,14 +63,8 @@
   border-color: rgb(var(--gold-rgb) / 0.5);
 }
 
-@media (max-width: 767px) {
-  .floatingControl {
-    display: none;
-  }
-}
-
 @media (min-width: 768px) {
   .headerControl {
-    display: none;
+    display: inline-flex;
   }
 }

@@ -5,6 +5,7 @@ import {
   Clock,
   ExternalLink,
   MapPin,
+  Users,
   Utensils,
 } from "lucide-react";
 import { wedding } from "@/data/wedding";
@@ -41,6 +42,12 @@ const guestEssentials = [
     label: wedding.preparationShoot.time,
     title: wedding.preparationShoot.title,
     description: `For ${wedding.preparationShoot.audience} only. ${wedding.preparationShoot.status}.`,
+  },
+  {
+    icon: Users,
+    label: wedding.groomsmenArrival.time,
+    title: wedding.groomsmenArrival.title,
+    description: wedding.groomsmenArrival.description,
   },
   {
     icon: Clock,

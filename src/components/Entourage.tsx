@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { wedding } from "@/data/wedding";
 import Section from "./Section";
@@ -15,45 +14,6 @@ const parentGroups = [
   { label: "Groom's Parents", names: entourage.parents.members.slice(2, 4) },
 ];
 
-const StaggerContainer = ({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, margin: "-50px" }}
-    variants={{
-      visible: {
-        transition: {
-          staggerChildren: 0.08,
-          delayChildren: delay,
-        },
-      },
-    }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
-
-const StaggerItem = ({ children }: { children: ReactNode }) => (
-  <motion.div
-    variants={{
-      hidden: { opacity: 0, y: 16 },
-      visible: { opacity: 1, y: 0 },
-    }}
-    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-  >
-    {children}
-  </motion.div>
-);
-
 const NameList = ({
   names,
   className = "",
@@ -61,13 +21,11 @@ const NameList = ({
   names: readonly string[];
   className?: string;
 }) => (
-  <StaggerContainer className={`${styles.nameList} ${className}`}>
+  <div className={`${styles.nameList} ${className}`}>
     {names.map((name) => (
-      <StaggerItem key={name}>
-        <p className={styles.name}>{name}</p>
-      </StaggerItem>
+      <p key={name} className={styles.name}>{name}</p>
     ))}
-  </StaggerContainer>
+  </div>
 );
 
 const BandHeader = ({
@@ -77,12 +35,10 @@ const BandHeader = ({
   title: string;
   copy: string;
 }) => (
-  <Reveal width="100%">
-    <div className={styles.bandHeader}>
-      <h3 className={styles.bandTitle}>{title}</h3>
-      <p className={styles.bandCopy}>{copy}</p>
-    </div>
-  </Reveal>
+  <div className={styles.bandHeader}>
+    <h3 className={styles.bandTitle}>{title}</h3>
+    <p className={styles.bandCopy}>{copy}</p>
+  </div>
 );
 
 const RoleCard = ({

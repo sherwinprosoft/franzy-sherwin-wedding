@@ -1,7 +1,34 @@
 import Link from "next/link";
+import { getImageProps } from "next/image";
+import { ArrowDown, CalendarDays, Clock3, Link2, MapPin } from "lucide-react";
 import { wedding } from "@/data/wedding";
 import { getPublicRsvpList } from "@/lib/rsvp";
 import styles from "./RsvpPage.module.css";
+
+const publicRsvpPhotoAlt =
+  "Sherwin and Franzy in matching denim beneath the rainy Baguio pines.";
+
+const {
+  props: { srcSet: publicDesktopPhotoSrcSet },
+} = getImageProps({
+  src: "/images/prewedding/tcs00552-rsvp.webp",
+  alt: publicRsvpPhotoAlt,
+  width: 2400,
+  height: 1600,
+  sizes: "100vw",
+  priority: true,
+});
+
+const {
+  props: { srcSet: publicMobilePhotoSrcSet, ...publicMobilePhotoProps },
+} = getImageProps({
+  src: "/images/prewedding/tcs00405.webp",
+  alt: publicRsvpPhotoAlt,
+  width: 1200,
+  height: 1800,
+  sizes: "100vw",
+  priority: true,
+});
 
 export const metadata = {
   title: `RSVP | ${wedding.couple.display}`,
@@ -13,44 +40,75 @@ export const dynamic = "force-dynamic";
 export default async function RsvpPage() {
   const publicList = await getPublicRsvpList();
   const confirmedCount = publicList.attendees.length;
+  const attendingHouseholds = Array.from(
+    publicList.attendees.reduce((households, guest) => {
+      const familyGuests = households.get(guest.householdName) || [];
+      familyGuests.push(guest);
+      households.set(guest.householdName, familyGuests);
+      return households;
+    }, new Map<string, typeof publicList.attendees>()),
+  );
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles.publicSection}`}>
       <div className={styles.floralWash} aria-hidden="true" />
-      <div className={styles.inner}>
-        <header className={styles.heroPanel}>
-          <p className={styles.eyebrow}>RSVP</p>
-          <h1 className={styles.title}>Guests Joining Us</h1>
-          <p className={styles.coupleName}>{wedding.couple.display}</p>
-          <div className={styles.dateRule}>
-            <span>{wedding.date.full}</span>
+      <div className={styles.publicInner}>
+        <header className={styles.publicHero}>
+          <div className={styles.publicHeroPhoto}>
+            <picture>
+              <source media="(min-width: 700px)" srcSet={publicDesktopPhotoSrcSet} />
+              <img
+                {...publicMobilePhotoProps}
+                alt={publicRsvpPhotoAlt}
+                srcSet={publicMobilePhotoSrcSet}
+              />
+            </picture>
           </div>
-          <p className={styles.intro}>
-            Please use the personal RSVP link sent with your invitation. Each
-            link is unique to your household.
-          </p>
+
+          <div className={styles.publicHeroContent}>
+            <p className={styles.eyebrow}>Confirmed Guest List · Wedding RSVP</p>
+            <h1 className={styles.publicTitle}>Together in Baguio</h1>
+            <p className={styles.intro}>
+              Our favorite people, gathering in one place to share the beginning
+              of our married life.
+            </p>
+
+            <div className={styles.publicEventFacts} aria-label="Wedding details">
+              <span><CalendarDays aria-hidden="true" />{wedding.date.full}</span>
+              <span><Clock3 aria-hidden="true" />{wedding.guestArrival.time} general arrival</span>
+              <span><MapPin aria-hidden="true" />{wedding.venues.ceremony.name}</span>
+            </div>
+
+            <div className={styles.publicHeroActions}>
+              <a href="#attendee-list-title" className={styles.publicHeroCta}>
+                <span>View confirmed guest list</span>
+                <ArrowDown aria-hidden="true" />
+              </a>
+              <div
+                className={styles.publicHeroStatus}
+                aria-label={`${confirmedCount} confirmed guests across ${publicList.confirmedHouseholds} invitation parties`}
+              >
+                <span>Celebration so far</span>
+                <div>
+                  <strong>{confirmedCount}</strong>
+                  <p>Guests confirmed</p>
+                </div>
+                <small>{publicList.confirmedHouseholds} invitation parties</small>
+              </div>
+            </div>
+          </div>
         </header>
 
-        <div className={styles.rsvpGrid}>
-          <section className={styles.attendeePanel} aria-labelledby="attendee-list-title">
-            <div className={styles.sectionHeader}>
-              <p className={styles.eyebrow}>Attending Guests</p>
-              <h2 id="attendee-list-title">Guests Joining Us</h2>
-              <p>
-                This list shows guests who have confirmed that they will attend.
-              </p>
-            </div>
+        <section className={styles.guestRollBand} aria-labelledby="attendee-list-title">
+          <div className={styles.guestRollInner}>
+            <header className={styles.guestRollHeader}>
+              <div>
+                <p className={styles.eyebrow}>Confirmed Attendance</p>
+                <h2 id="attendee-list-title">Celebrating With Us</h2>
+                <p>A family-by-family roll of everyone joining our wedding day.</p>
+              </div>
 
-            <div className={styles.statsRow} aria-label="RSVP response summary">
-              <div>
-                <strong>{confirmedCount}</strong>
-                <span>Guests attending</span>
-              </div>
-              <div>
-                <strong>{publicList.confirmedHouseholds}</strong>
-                <span>Households replied</span>
-              </div>
-            </div>
+            </header>
 
             {publicList.unavailable ? (
               <p className={styles.noticeText}>
@@ -60,11 +118,24 @@ export default async function RsvpPage() {
             ) : null}
 
             {confirmedCount > 0 ? (
-              <ul className={styles.attendeeList}>
-                {publicList.attendees.map((guest, index) => (
-                  <li key={`${guest.name}-${index}`}>{guest.name}</li>
+              <div className={styles.householdList}>
+                {attendingHouseholds.map(([householdName, guests], index) => (
+                  <section className={styles.householdGroup} key={householdName}>
+                    <header>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <div>
+                        <p>Invitation Party</p>
+                        <h3>{householdName}</h3>
+                      </div>
+                    </header>
+                    <ul>
+                      {guests.map((guest) => (
+                        <li key={guest.name}>{guest.name}</li>
+                      ))}
+                    </ul>
+                  </section>
                 ))}
-              </ul>
+              </div>
             ) : (
               <p className={styles.emptyText}>
                 {publicList.configured
@@ -72,38 +143,36 @@ export default async function RsvpPage() {
                   : "The attending guest list will appear here as responses come in."}
               </p>
             )}
-          </section>
+          </div>
+        </section>
 
-          <aside className={styles.infoPanel} aria-label="RSVP instructions">
-            <div className={styles.infoBlock}>
-              <p className={styles.statusLabel}>How to RSVP</p>
-              <p className={styles.statusText}>
-                Open your personal link, choose a response for each invited
-                guest, and save your reply.
-              </p>
+        <section className={styles.publicGuide} aria-label="RSVP information">
+          <div className={styles.publicGuideInner}>
+            <header>
+              <p className={styles.eyebrow}>Your Invitation</p>
+              <h2>Looking for your personal invitation?</h2>
+            </header>
+
+            <div className={styles.publicGuideBody}>
+              <Link2 aria-hidden="true" />
+              <div>
+                <p>
+                  Return to the message sent to you and open your unique link to
+                  reply or update your response. Please reach out to Sherwin or
+                  Franzy if you need the link sent again.
+                </p>
+                <small>
+                  Only confirmed names appear here. Notes and other responses remain private.
+                </small>
+                <div className={styles.linkRow}>
+                  <Link href="/#home" className={styles.linkGhost}>
+                    Back to Home
+                  </Link>
+                </div>
+              </div>
             </div>
-
-            <div className={styles.infoBlock}>
-              <p className={styles.statusLabel}>Privacy Note</p>
-              <p className={styles.statusText}>
-                Only guests marked as attending are shown here. Notes and other
-                responses remain private to Sherwin and Franzy.
-              </p>
-            </div>
-
-            <p className={styles.bodyText}>
-              Each link is unique and will open only the guests included in your
-              invitation. If you misplaced your link or need to update your
-              response, please reach out to Sherwin or Franzy.
-            </p>
-
-            <div className={styles.linkRow}>
-              <Link href="/#home" className={styles.linkGhost}>
-                Back to Home
-              </Link>
-            </div>
-          </aside>
-        </div>
+          </div>
+        </section>
       </div>
     </section>
   );

@@ -234,13 +234,17 @@ function getPublicList() {
     const householdKey = token || householdName || guest.id;
 
     confirmedHouseholds[householdKey] = true;
-    list.push({ name: guest.name });
+    list.push({
+      name: guest.name,
+      householdName: householdName || "Confirmed Guests",
+    });
 
     return list;
   }, []);
 
   attendees.sort(function (first, second) {
-    return first.name.localeCompare(second.name);
+    return first.householdName.localeCompare(second.householdName) ||
+      first.name.localeCompare(second.name);
   });
 
   return {

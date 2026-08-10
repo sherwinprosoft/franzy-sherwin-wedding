@@ -30,6 +30,62 @@ function getAttireRoleNote(group: object) {
     : null;
 }
 
+function GuestAttire() {
+  return (
+    <section id="attire" className={styles.guestStrip} aria-labelledby="guest-attire-heading">
+      <div className={styles.guestCopy}>
+        <p className={styles.kicker}>{attireGuide.guest.eyebrow}</p>
+        <h3 id="guest-attire-heading" className={styles.guestTitle}>
+          {attireGuide.guest.title}
+        </h3>
+        <p className={styles.guestText}>{attireGuide.guest.description}</p>
+      </div>
+      <ul className={styles.attireSwatches} aria-label="Encouraged guest attire colors">
+        {attireGuide.guest.swatches.map((color) => (
+          <li key={color.name} className={styles.attireSwatchItem}>
+            <span
+              className={styles.attireSwatch}
+              style={{ backgroundColor: color.hex, borderColor: color.borderHex }}
+              aria-hidden="true"
+            />
+            <span>{color.name}</span>
+          </li>
+        ))}
+      </ul>
+      <div className={styles.guestExamples}>
+        <p className={styles.guestExamplesLabel}>Outfit ideas</p>
+        <ul className={styles.guestExampleList}>
+          {attireGuide.guest.examples.map((example) => (
+            <li
+              key={example.label}
+              className={`${styles.guestExample} ${
+                "src" in example ? styles.guestExampleWithImage : styles.guestExampleNote
+              }`}
+            >
+              {"src" in example ? (
+                <div className={styles.guestExampleImageFrame}>
+                  <Image
+                    src={example.src}
+                    alt={example.alt}
+                    fill
+                    sizes="(min-width: 1024px) 8rem, 6.25rem"
+                    className={styles.guestExampleImage}
+                    loading="lazy"
+                  />
+                </div>
+              ) : null}
+              <span className={styles.guestExampleCopy}>
+                <span className={styles.guestExampleLabel}>{example.label}</span>
+                <span className={styles.guestExampleText}>{example.description}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 export default function GuestNotes() {
   const [selectedPreview, setSelectedPreview] = useState<AttirePreview | null>(null);
 
@@ -59,9 +115,7 @@ export default function GuestNotes() {
       <div className={styles.inner}>
         <Reveal width="100%">
           <div className={styles.heading}>
-            <p className={styles.eyebrow}>
-              Guest Guide
-            </p>
+            <p className={styles.eyebrow}>Attire Guide</p>
             <h2 className={`${styles.title} script-balance`}>
               Attire & Gifts
             </h2>
@@ -70,30 +124,6 @@ export default function GuestNotes() {
               {attireGuide.intro}
             </p>
           </div>
-        </Reveal>
-
-        <Reveal width="100%" delay={0.08}>
-          <section id="attire" className={styles.guestStrip} aria-labelledby="guest-attire-heading">
-            <div className={styles.guestCopy}>
-              <p className={styles.kicker}>{attireGuide.guest.eyebrow}</p>
-              <h3 id="guest-attire-heading" className={styles.guestTitle}>
-                {attireGuide.guest.title}
-              </h3>
-              <p className={styles.guestText}>{attireGuide.guest.description}</p>
-            </div>
-            <ul className={styles.attireSwatches} aria-label="Encouraged guest attire colors">
-              {attireGuide.guest.swatches.map((color) => (
-                <li key={color.name} className={styles.attireSwatchItem}>
-                  <span
-                    className={styles.attireSwatch}
-                    style={{ backgroundColor: color.hex, borderColor: color.borderHex }}
-                    aria-hidden="true"
-                  />
-                  <span>{color.name}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
         </Reveal>
 
         <div className={styles.guideGrid}>
@@ -183,11 +213,10 @@ export default function GuestNotes() {
                                     src={preview.src}
                                     alt={preview.alt}
                                     fill
-                                    sizes="(min-width: 1024px) 13rem, (min-width: 640px) 30vw, 90vw"
+                                    sizes="(min-width: 1024px) 13rem, (min-width: 640px) 30vw, 6.5rem"
                                     className={styles.attireRolePreviewImage}
                                     style={{ objectPosition: preview.position }}
-                                    loading="eager"
-                                    unoptimized
+                                    loading="lazy"
                                   />
                                   <span className={styles.previewZoomHint} aria-hidden="true">
                                     <Maximize2 size={14} strokeWidth={2} />
@@ -205,6 +234,10 @@ export default function GuestNotes() {
             </section>
           </Reveal>
         </div>
+
+        <Reveal width="100%" delay={0.08}>
+          <GuestAttire />
+        </Reveal>
 
         <Reveal width="100%" delay={0.24}>
           <section id="gifts" className={styles.giftPanel} aria-labelledby="gift-note-heading">
@@ -246,6 +279,7 @@ export default function GuestNotes() {
                 sizes="100vw"
                 className={styles.previewModalImage}
                 style={{ objectPosition: selectedPreview.position }}
+                loading="eager"
                 unoptimized
               />
             </div>

@@ -1,3 +1,16 @@
+.heroSection {
+  align-items: stretch;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.heroPicture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
 .imageWash,
 .verticalOverlay,
 .edgeOverlay,
@@ -14,44 +27,42 @@
 }
 
 .heroImage {
-  animation: heroPhotoSettle 5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  filter: brightness(0.94) saturate(0.94) contrast(1.05);
-  transform-origin: 50% 46%;
+  width: 100%;
+  height: 100%;
+  animation: heroPhotoSettleMobile 5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  filter: brightness(0.93) saturate(0.94) contrast(1.04);
+  object-fit: cover;
+  object-position: 50% 0%;
+  transform: scale(1.18);
+  transform-origin: 50% 50%;
 }
 
 .imageWash {
-  background: rgb(var(--cream-rgb) / 0.05);
+  background: rgb(var(--cream-rgb) / 0.025);
 }
 
 .verticalOverlay {
   background: linear-gradient(
     180deg,
-    rgb(var(--cream-rgb) / 0.16) 0%,
-    rgb(var(--primary-rgb) / 0.15) 34%,
-    rgb(var(--shadow-rgb) / 0.36) 68%,
-    rgb(var(--shadow-rgb) / 0.56) 100%
+    rgb(var(--shadow-rgb) / 0.54) 0%,
+    rgb(var(--shadow-rgb) / 0.22) 36%,
+    rgb(var(--shadow-rgb) / 0.05) 66%,
+    rgb(var(--shadow-rgb) / 0.52) 100%
   );
 }
 
 .edgeOverlay {
   background: linear-gradient(
     90deg,
-    rgb(var(--shadow-rgb) / 0.28) 0%,
-    rgb(var(--shadow-rgb) / 0.08) 22%,
-    rgb(var(--shadow-rgb) / 0.08) 78%,
-    rgb(var(--shadow-rgb) / 0.28) 100%
+    rgb(var(--shadow-rgb) / 0.26) 0%,
+    transparent 34%,
+    transparent 70%,
+    rgb(var(--shadow-rgb) / 0.18) 100%
   );
 }
 
 .vellumGlow {
-  inset: 5.5rem 0 6rem;
-  width: min(94vw, 68rem);
-  margin-inline: auto;
-  background:
-    radial-gradient(ellipse at 50% 42%, rgb(var(--cream-rgb) / 0.18), transparent 58%),
-    radial-gradient(ellipse at 50% 54%, rgb(var(--shadow-rgb) / 0.22), transparent 70%);
-  filter: blur(8px);
-  opacity: 0.9;
+  display: none;
 }
 
 .bottomFade {
@@ -67,11 +78,16 @@
 
 .heroContent {
   isolation: isolate;
+  min-height: 100svh;
+  justify-content: flex-start;
+  padding-top: clamp(6.75rem, 14svh, 8.25rem);
+  padding-bottom: 1.5rem;
 }
 
 .lockupPanel {
   position: relative;
   isolation: isolate;
+  max-width: 38rem;
 }
 
 .lockupPanel::before {
@@ -124,7 +140,7 @@
   margin-inline: auto;
   color: var(--cream);
   font-family: var(--font-script), cursive;
-  font-size: 3.7rem;
+  font-size: 3.35rem;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0;
@@ -200,38 +216,42 @@
 }
 
 .heroActions {
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
+  left: 0;
   display: flex;
-  width: min(100%, 44rem);
-  margin: 1.45rem auto 0;
+  width: min(calc(100% - 2rem), 18rem);
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 0.85rem;
+  animation: heroActionsSettle 700ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both;
 }
 
 .countdownNote {
   position: relative;
   display: flex;
   width: min(100%, 17.5rem);
+  min-height: 6.25rem;
   margin: 0 auto;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 0.2rem;
   overflow: hidden;
-  border: 1px solid rgb(var(--gold-rgb) / 0.48);
-  border-radius: 999px;
+  border: 1px solid rgb(var(--cream-rgb) / 0.24);
+  border-radius: 0.5rem;
   background:
-    radial-gradient(circle at 50% 0%, rgb(var(--cream-rgb) / 0.88), transparent 64%),
-    linear-gradient(180deg, rgb(var(--cream-rgb) / 0.84), rgb(var(--section-light-white-soft-rgb) / 0.68));
-  color: var(--primary);
+    linear-gradient(180deg, rgb(var(--shadow-rgb) / 0.62), rgb(var(--shadow-rgb) / 0.78));
+  color: var(--cream);
   padding: 0.62rem 1.15rem 0.68rem;
   text-shadow: none;
   box-shadow:
-    0 1rem 2.4rem rgb(var(--shadow-rgb) / 0.2),
-    0 0 0 1px rgb(var(--cream-rgb) / 0.22) inset,
-    0 0.5rem 1.6rem rgb(var(--gold-rgb) / 0.12) inset;
-  backdrop-filter: blur(12px);
+    0 1.2rem 2.8rem rgb(var(--shadow-rgb) / 0.28),
+    0 1px 0 rgb(var(--cream-rgb) / 0.12) inset;
+  backdrop-filter: blur(14px);
 }
 
 .countdownNote::before,
@@ -242,19 +262,19 @@
 }
 
 .countdownNote::before {
-  inset: 0;
-  background: linear-gradient(112deg, transparent 34%, rgb(var(--cream-rgb) / 0.42) 48%, transparent 62%);
-  transform: translateX(-120%);
-  animation: sealSheen 4.2s ease 1.1s both;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.68), transparent);
 }
 
 .countdownNote::after {
   inset: 0.34rem;
-  border: 1px solid rgb(var(--gold-rgb) / 0.28);
+  border: 1px solid rgb(var(--cream-rgb) / 0.08);
   border-radius: inherit;
 }
 
 .countdownDays {
+  color: var(--cream);
   font-family: var(--font-serif), ui-serif, Georgia;
   font-size: 2.05rem;
   font-weight: 600;
@@ -273,7 +293,7 @@
 }
 
 .countdownKicker {
-  color: rgb(var(--secondary-rgb) / 0.82);
+  color: rgb(var(--gold-rgb) / 0.96);
   font-size: 0.54rem;
 }
 
@@ -285,12 +305,12 @@
 }
 
 .countdownDaysLabel {
-  color: rgb(var(--primary-rgb) / 0.76);
+  color: rgb(var(--cream-rgb) / 0.78);
 }
 
 .countdownTime,
 .countdownLoading {
-  color: rgb(var(--secondary-rgb) / 0.72);
+  color: rgb(var(--cream-rgb) / 0.72);
   font-size: 0.55rem;
 }
 
@@ -303,16 +323,18 @@
   min-height: 3rem;
   margin-top: 0;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 0.8rem;
   border: 1px solid rgb(var(--cream-rgb) / 0.55);
-  border-radius: 999px;
+  border-radius: 0.5rem;
   background: rgb(var(--cream-rgb) / 0.9);
   color: var(--secondary);
-  font-size: 0.75rem;
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 0.84rem;
   font-weight: 800;
+  line-height: 1.2;
   letter-spacing: 0;
   padding: 0.8rem 2rem;
-  text-transform: uppercase;
   box-shadow:
     0 18px 42px rgb(var(--shadow-rgb) / 0.22),
     0 0 0 0 rgb(var(--gold-rgb) / 0),
@@ -339,6 +361,164 @@
   outline-offset: 3px;
 }
 
+@media (max-width: 639px) and (max-height: 700px) {
+  .heroContent {
+    padding-top: 4.6rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .lockupPanel {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+
+  .titleStack {
+    gap: 0.38rem;
+  }
+
+  .titleStack::before,
+  .titleStack::after {
+    width: min(38%, 8rem);
+  }
+
+  .eyebrow {
+    max-width: 18rem;
+    font-size: 0.58rem;
+    line-height: 1.15;
+  }
+
+  .coupleTitle {
+    font-size: 2.75rem;
+    line-height: 0.88;
+  }
+
+  .invitationDetails {
+    margin-top: 0.65rem;
+    gap: 0.12rem;
+    padding: 0.5rem 0.65rem 0.44rem;
+  }
+
+  .invitationDetails::before {
+    display: none;
+  }
+
+  .dateLine {
+    gap: 0.4rem;
+    font-size: 0.82rem;
+  }
+
+  .dateLine span + span::before {
+    margin-right: 0.4rem;
+  }
+
+  .venue {
+    font-size: 0.66rem;
+    line-height: 1.25;
+  }
+
+  .heroActions {
+    bottom: 1rem;
+    gap: 0.55rem;
+  }
+
+  .countdownNote {
+    min-height: 5rem;
+    padding: 0.44rem 0.9rem 0.48rem;
+  }
+
+  .countdownDays {
+    font-size: 1.82rem;
+  }
+
+  .countdownKicker {
+    font-size: 0.5rem;
+  }
+
+  .countdownDaysLabel,
+  .countdownTime {
+    font-size: 0.52rem;
+  }
+}
+
+@media (max-width: 639px) and (max-height: 520px) {
+  .heroContent {
+    padding-top: 4.15rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .lockupPanel {
+    padding-block: 0;
+  }
+
+  .titleStack {
+    gap: 0.18rem;
+  }
+
+  .titleStack::before,
+  .titleStack::after {
+    display: none;
+  }
+
+  .eyebrow {
+    max-width: 16rem;
+    font-size: 0.5rem;
+  }
+
+  .coupleTitle {
+    font-size: 2.25rem;
+    line-height: 0.86;
+  }
+
+  .invitationDetails {
+    margin-top: 0.34rem;
+    gap: 0.06rem;
+    padding: 0.28rem 0.5rem 0.25rem;
+  }
+
+  .dateLine {
+    gap: 0.3rem;
+    font-size: 0.7rem;
+  }
+
+  .dateLine span + span::before {
+    width: 0.2rem;
+    height: 0.2rem;
+    margin-right: 0.3rem;
+  }
+
+  .venue {
+    font-size: 0.56rem;
+    line-height: 1.15;
+  }
+
+  .heroActions {
+    bottom: 0.45rem;
+    gap: 0.32rem;
+  }
+
+  .cta {
+    min-height: 2.5rem;
+    font-size: 0.72rem;
+    padding: 0.58rem 1.4rem;
+  }
+
+  .countdownNote {
+    min-height: 3.75rem;
+    gap: 0.08rem;
+    padding: 0.3rem 0.75rem 0.34rem;
+  }
+
+  .countdownDays {
+    font-size: 1.45rem;
+  }
+
+  .countdownKicker,
+  .countdownDaysLabel,
+  .countdownTime {
+    font-size: 0.46rem;
+  }
+}
+
 @media (min-width: 640px) {
   .eyebrow {
     font-size: 0.78rem;
@@ -349,7 +529,7 @@
   }
 
   .coupleTitle {
-    font-size: 5.9rem;
+    font-size: 5.15rem;
   }
 
   .invitationDetails {
@@ -396,27 +576,94 @@
 }
 
 @media (min-width: 768px) {
+  .heroImage {
+    animation-name: heroPhotoSettle;
+    object-position: 50% 50%;
+    transform: scale(1);
+  }
+
+  .verticalOverlay {
+    background: linear-gradient(
+      180deg,
+      rgb(var(--shadow-rgb) / 0.58) 0%,
+      rgb(var(--shadow-rgb) / 0.26) 30%,
+      transparent 58%,
+      rgb(var(--shadow-rgb) / 0.34) 100%
+    );
+  }
+
+  .heroContent {
+    align-items: center;
+    padding-top: 5.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .titleStack {
+    gap: 0.35rem;
+  }
+
+  .titleStack::before,
+  .titleStack::after {
+    display: none;
+  }
+
+  .lockupPanel {
+    max-width: 52rem;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+  }
+
   .coupleTitle {
-    font-size: 7.1rem;
+    font-size: 5rem;
+  }
+
+  .invitationDetails {
+    margin-top: 0.35rem;
+    gap: 0.2rem;
+    padding: 0.48rem 1rem 0.42rem;
+  }
+
+  .invitationDetails::before {
+    display: none;
   }
 
   .dateLine {
-    font-size: 1.32rem;
+    font-size: 1.05rem;
+  }
+
+  .venue {
+    font-size: 0.76rem;
   }
 
   .heroActions {
-    flex-direction: row;
-    gap: 1rem;
+    right: auto;
+    bottom: 2rem;
+    left: 1rem;
+    width: 18rem;
+    margin: 0;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.7rem;
   }
 
   .countdownNote {
+    width: 100%;
     margin-inline: 0;
+  }
+
+  .cta {
+    width: 100%;
   }
 }
 
 @media (min-width: 1024px) {
   .coupleTitle {
-    font-size: 8.1rem;
+    font-size: 5.75rem;
+  }
+
+  .heroActions {
+    right: 0;
+    left: auto;
   }
 }
 
@@ -430,19 +677,31 @@
   }
 }
 
-@keyframes sealSheen {
-  0% {
-    transform: translateX(-120%);
+@keyframes heroPhotoSettleMobile {
+  from {
+    transform: scale(1.22);
   }
 
-  100% {
-    transform: translateX(120%);
+  to {
+    transform: scale(1.18);
+  }
+}
+
+@keyframes heroActionsSettle {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .heroImage,
-  .countdownNote::before {
+  .heroActions {
     animation: none;
   }
 }
