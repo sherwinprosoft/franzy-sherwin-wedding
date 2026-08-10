@@ -29,12 +29,9 @@
 .heroImage {
   width: 100%;
   height: 100%;
-  animation: heroPhotoSettleMobile 5s cubic-bezier(0.16, 1, 0.3, 1) both;
   filter: brightness(0.93) saturate(0.94) contrast(1.04);
   object-fit: cover;
-  object-position: 50% 0%;
-  transform: scale(1.18);
-  transform-origin: 50% 50%;
+  object-position: 50% 50%;
 }
 
 .imageWash {
@@ -590,9 +587,7 @@
 
 @media (min-width: 768px) {
   .heroImage {
-    animation-name: heroPhotoSettle;
     object-position: 50% 50%;
-    transform: scale(1);
   }
 
   .verticalOverlay {
@@ -685,26 +680,6 @@
   .heroActions {
     right: 0;
     left: auto;
-  }
-}
-
-@keyframes heroPhotoSettle {
-  from {
-    transform: scale(1.045);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
-
-@keyframes heroPhotoSettleMobile {
-  from {
-    transform: scale(1.22);
-  }
-
-  to {
-    transform: scale(1.18);
   }
 }
 

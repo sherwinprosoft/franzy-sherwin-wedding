@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { getImageProps } from "next/image";
 import { useEffect, useState } from "react";
-import { heroPhotos } from "@/data/photos";
+import { homeHeroAlt, homeHeroPhotos } from "@/data/home-hero";
 import { wedding } from "@/data/wedding";
 import { Reveal } from "./animations/Reveal";
 import CoupleNameLockup from "./CoupleNameLockup";
@@ -15,25 +15,24 @@ const MINUTE_IN_MS = SECOND_IN_MS * 60;
 const HOUR_IN_MS = MINUTE_IN_MS * 60;
 const DAY_IN_MS = HOUR_IN_MS * 24;
 
-const heroAlt = heroPhotos.desktop.alt;
-const heroImageCommon = { alt: heroAlt, sizes: "100vw" };
+const heroImageCommon = { alt: homeHeroAlt, sizes: "100vw" };
 
 const {
   props: { srcSet: desktopHeroSrcSet, src: desktopHeroSrc },
 } = getImageProps({
   ...heroImageCommon,
-  src: heroPhotos.desktop.src,
-  width: heroPhotos.desktop.width,
-  height: heroPhotos.desktop.height,
+  src: homeHeroPhotos.desktop.src,
+  width: homeHeroPhotos.desktop.width,
+  height: homeHeroPhotos.desktop.height,
 });
 
 const {
   props: { srcSet: mobileHeroSrcSet, ...mobileHeroProps },
 } = getImageProps({
   ...heroImageCommon,
-  src: heroPhotos.mobile.src,
-  width: heroPhotos.mobile.width,
-  height: heroPhotos.mobile.height,
+  src: homeHeroPhotos.mobile.src,
+  width: homeHeroPhotos.mobile.width,
+  height: homeHeroPhotos.mobile.height,
 });
 
 type Countdown = {
@@ -100,7 +99,7 @@ export default function Hero() {
         <source media="(min-width: 768px)" srcSet={desktopHeroSrcSet} />
         <img
           {...mobileHeroProps}
-          alt={heroAlt}
+          alt={homeHeroAlt}
           className={styles.heroImage}
           fetchPriority="high"
           loading="eager"
