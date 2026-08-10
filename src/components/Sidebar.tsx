@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { wedding } from "@/data/wedding";
 import { WeddingAudioControl } from "./WeddingAudio";
+import WeddingBrandMark from "./WeddingBrandMark";
 import styles from "./Sidebar.module.css";
 
 const mobileMenuId = "mobile-navigation";
@@ -53,7 +54,12 @@ export default function Sidebar({ solid = false }: SidebarProps) {
           className={styles.logo}
           onClick={() => setIsOpen(false)}
         >
-          {wedding.couple.monogram}
+          <WeddingBrandMark
+            asset="icon"
+            tone="light"
+            className={styles.logoMark}
+            priority
+          />
         </Link>
 
         <div className={styles.links}>

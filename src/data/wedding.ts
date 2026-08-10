@@ -128,27 +128,13 @@ export const wedding = {
               ],
             },
             {
-              role: "Maid of Honor",
-              attire: "Rich Brown Gown",
-              previews: [
-                {
-                  src: "/images/attire-bridesmaid-secondary-rich-brown-gown-ai.webp",
-                  alt: "Rich brown formal gown reference.",
-                  position: "50% 50%",
-                },
-              ],
-              swatches: [
-                colors.richBrown,
-              ],
-            },
-            {
-              role: "Matron of Honor",
+              role: "Maid & Matron of Honor",
               attire: "Champagne Gown",
               note: "Use the champagne swatch as the color reference.",
               previews: [
                 {
                   src: "/images/attire-matron-of-honor-champagne-gown-ai.webp",
-                  alt: "Motif-aligned champagne formal gown reference for the Matron of Honor.",
+                  alt: "Motif-aligned champagne formal gown reference for the Maid and Matron of Honor.",
                   position: "50% 50%",
                 },
               ],

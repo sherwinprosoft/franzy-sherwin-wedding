@@ -1,20 +1,21 @@
 import Link from "next/link";
 import { getImageProps } from "next/image";
 import { ArrowDown, CalendarDays, Clock3, Link2, MapPin } from "lucide-react";
+import WeddingBrandMark from "@/components/WeddingBrandMark";
 import { wedding } from "@/data/wedding";
 import { getPublicRsvpList } from "@/lib/rsvp";
 import styles from "./RsvpPage.module.css";
 
 const publicRsvpPhotoAlt =
-  "Sherwin and Franzy in matching denim beneath the rainy Baguio pines.";
+  "Sherwin and Franzy wearing denim during their Baguio pre-wedding portrait.";
 
 const {
   props: { srcSet: publicDesktopPhotoSrcSet },
 } = getImageProps({
-  src: "/images/prewedding/tcs00552-rsvp.webp",
+  src: "/images/prewedding/tcs00454.webp",
   alt: publicRsvpPhotoAlt,
-  width: 2400,
-  height: 1600,
+  width: 1800,
+  height: 1200,
   sizes: "100vw",
   priority: true,
 });
@@ -66,6 +67,12 @@ export default async function RsvpPage() {
           </div>
 
           <div className={styles.publicHeroContent}>
+            <WeddingBrandMark
+              asset="monogram"
+              tone="light"
+              className={styles.publicBrandMark}
+              priority
+            />
             <p className={styles.eyebrow}>Confirmed Guest List · Wedding RSVP</p>
             <h1 className={styles.publicTitle}>Together in Baguio</h1>
             <p className={styles.intro}>

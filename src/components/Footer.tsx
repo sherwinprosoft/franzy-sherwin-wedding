@@ -1,9 +1,10 @@
 "use client";
 
-import { ArrowUp, CalendarDays, Heart, MapPin } from "lucide-react";
+import { ArrowUp, CalendarDays, MapPin } from "lucide-react";
 import Link from "next/link";
 import { wedding } from "@/data/wedding";
 import { Reveal } from "./animations/Reveal";
+import CoupleNameLockup from "./CoupleNameLockup";
 import styles from "./Footer.module.css";
 
 const footerLinks = wedding.navItems.filter(({ label }) => label !== "Home");
@@ -14,18 +15,17 @@ export default function Footer() {
       <div className={styles.floralAccent} aria-hidden="true" />
 
       <div className={styles.inner}>
-        <Reveal width="100%" delay={0.08}>
-          <div className={styles.closingMark} aria-hidden="true">
-            <Heart size={18} fill="currentColor" strokeWidth={1.6} />
-          </div>
-        </Reveal>
-
         <Reveal width="100%" delay={0.14}>
           <p className={styles.kicker}>With love and gratitude</p>
         </Reveal>
 
         <Reveal width="100%" delay={0.2} overflow="visible">
-          <p className={`${styles.names} script-balance`}>{wedding.couple.display}</p>
+          <div className={styles.names} aria-label={wedding.couple.display}>
+            <CoupleNameLockup
+              firstName="Sherwin"
+              secondName="Franzy"
+            />
+          </div>
         </Reveal>
 
         <Reveal width="100%" delay={0.26}>

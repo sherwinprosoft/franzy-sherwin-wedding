@@ -5,6 +5,8 @@ import Image from "next/image";
 import { CalendarDays, Clock3, MailOpen, MapPin } from "lucide-react";
 import { type ReactNode, useEffect, useId, useState } from "react";
 import type { PartyCallTimeGroup } from "@/lib/wedding-schedule";
+import CoupleNameLockup from "./CoupleNameLockup";
+import WeddingBrandMark from "./WeddingBrandMark";
 import styles from "./RsvpInvitationGate.module.css";
 
 type RsvpInvitationGateProps = {
@@ -145,19 +147,28 @@ export default function RsvpInvitationGate({
 
               <header className={styles.masthead}>
                 <p className={styles.eyebrow}>A personal wedding invitation</p>
-                <p className={styles.monogram} aria-hidden="true">S <span>&amp;</span> F</p>
+                <div className={styles.monogram} aria-hidden="true">
+                  <WeddingBrandMark
+                    asset="monogram"
+                    tone="light"
+                    className={styles.monogramMark}
+                    priority
+                  />
+                </div>
               </header>
 
               <div className={styles.invitationCopy}>
                 <p className={styles.preTitle}>Together with their families</p>
                 <h1
                   id={titleId}
-                  className={`${styles.title} script-balance`}
+                  className={styles.title}
                   aria-label={coupleName}
                 >
-                  <span className={styles.groomName}>{groomName}</span>
-                  <span className={styles.ampersand} aria-hidden="true">&amp;</span>
-                  <span className={styles.brideName}>{brideName}</span>
+                  <CoupleNameLockup
+                    firstName={groomName}
+                    secondName={brideName}
+                    priority
+                  />
                 </h1>
                 <p id={descriptionId} className={styles.copy}>
                   joyfully invite you to celebrate their wedding day

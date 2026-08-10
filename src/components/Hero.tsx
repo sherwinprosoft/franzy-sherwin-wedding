@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { heroPhotos } from "@/data/photos";
 import { wedding } from "@/data/wedding";
 import { Reveal } from "./animations/Reveal";
+import CoupleNameLockup from "./CoupleNameLockup";
 import styles from "./Hero.module.css";
 
 const SECOND_IN_MS = 1000;
@@ -132,8 +133,12 @@ export default function Hero() {
               yOffset={24}
               overflow="visible"
             >
-              <h1 className={`${styles.coupleTitle} script-balance`}>
-                {couple.display}
+              <h1 className={styles.coupleTitle} aria-label={couple.display}>
+                <CoupleNameLockup
+                  firstName="Sherwin"
+                  secondName="Franzy"
+                  priority
+                />
               </h1>
             </Reveal>
           </div>

@@ -1,0 +1,38 @@
+.lockup {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  color: var(--cream);
+}
+
+.icon {
+  display: block;
+  width: var(--couple-icon-width, 7.5rem);
+  height: auto;
+  margin-bottom: var(--couple-icon-offset, -0.9rem);
+  filter:
+    drop-shadow(0 2px 7px rgb(var(--shadow-rgb) / 0.58))
+    drop-shadow(0 12px 24px rgb(var(--shadow-rgb) / 0.32));
+}
+
+.names {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--couple-name-gap, 0.34rem);
+  white-space: nowrap;
+  font-family: var(--font-script), cursive;
+  font-size: var(--couple-name-size, 3.15rem);
+  font-weight: 400;
+  line-height: 1;
+  text-shadow:
+    0 2px 8px rgb(var(--shadow-rgb) / 0.72),
+    0 16px 32px rgb(var(--shadow-rgb) / 0.42);
+}
+
+.ampersand {
+  color: rgb(var(--gold-rgb) / 0.98);
+  font-size: 0.66em;
+  transform: translateY(-0.16em);
+}

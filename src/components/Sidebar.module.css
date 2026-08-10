@@ -40,20 +40,22 @@
 
 .logo {
   display: inline-flex;
+  width: 5rem;
   min-height: 2.75rem;
   align-items: center;
-  border-radius: 999px;
-  padding-inline: 0.5rem;
-  color: var(--cream);
-  font-family: var(--font-script), cursive;
-  font-size: 1.875rem;
-  line-height: 1;
+  justify-content: flex-start;
+  border-radius: 0.25rem;
   filter: drop-shadow(0 2px 8px rgb(var(--shadow-rgb) / 0.55));
-  transition: color 160ms ease;
+  transition:
+    filter 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
 }
 
 .logo:hover {
-  color: var(--gold);
+  filter: drop-shadow(0 3px 10px rgb(var(--shadow-rgb) / 0.64));
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .scrolled .logo {
@@ -62,7 +64,13 @@
 }
 
 .scrolled .logo:hover {
-  color: var(--gold);
+  filter: drop-shadow(0 2px 8px rgb(var(--shadow-rgb) / 0.28));
+}
+
+.logoMark {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .links {
@@ -187,7 +195,7 @@
   }
 
   .logo {
-    font-size: 2.25rem;
+    width: 5.5rem;
   }
 }
 

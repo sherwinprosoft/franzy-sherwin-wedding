@@ -93,6 +93,7 @@
 
 .publicHeroPhoto {
   z-index: -2;
+  background: var(--primary);
 }
 
 .publicHeroPhoto img {
@@ -140,13 +141,16 @@
 }
 
 .publicTitle {
-  max-width: 12ch;
+  max-width: 11ch;
   margin: 0;
   color: #fffaf0;
-  font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: clamp(2.35rem, 10vw, 4.8rem);
+  font-family: var(--font-script), cursive;
+  font-size: 3.4rem;
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 0.96;
+  text-shadow:
+    0 2px 0.65rem rgb(0 0 0 / 0.7),
+    0 1.2rem 2.8rem rgb(0 0 0 / 0.38);
   text-wrap: balance;
 }
 
@@ -917,7 +921,7 @@
   }
 
   .publicTitle {
-    font-size: clamp(3.7rem, 7vw, 5.3rem);
+    font-size: 4.8rem;
   }
 
   .publicHeroContent .intro {
@@ -1077,14 +1081,16 @@
 
 .publicInner .publicHero::after {
   background:
-    linear-gradient(180deg, rgb(var(--primary-rgb) / 0.12) 0%, rgb(var(--primary-rgb) / 0.08) 38%, rgb(var(--primary-rgb) / 0.78) 100%),
-    linear-gradient(90deg, rgb(var(--primary-rgb) / 0.62), transparent 72%);
+    linear-gradient(180deg, rgb(var(--primary-rgb) / 0.26) 0%, rgb(var(--primary-rgb) / 0.04) 34%, rgb(var(--secondary-rgb) / 0.06) 61%, rgb(var(--primary-rgb) / 0.58) 100%),
+    linear-gradient(90deg, rgb(var(--primary-rgb) / 0.22), transparent 30%, transparent 70%, rgb(var(--primary-rgb) / 0.16));
 }
 
 .publicInner .publicHeroContent {
   width: min(100%, 72rem);
   margin-inline: auto;
+  justify-items: center;
   padding: 7rem 1.25rem 3rem;
+  text-align: center;
 }
 
 .publicInner .publicHeroCaption {
@@ -1094,7 +1100,23 @@
 
 .publicInner .publicTitle {
   max-width: 9ch;
-  font-size: clamp(3.15rem, 11vw, 6.5rem);
+  font-size: 4.15rem;
+}
+
+.publicInner .publicHeroContent .intro {
+  max-width: 28rem;
+}
+
+.publicInner .publicEventFacts {
+  justify-content: center;
+}
+
+.publicBrandMark {
+  display: block;
+  width: 8rem;
+  height: auto;
+  margin-bottom: -0.1rem;
+  filter: drop-shadow(0 2px 0.8rem rgb(var(--shadow-rgb) / 0.58));
 }
 
 .publicHeroActions {
@@ -1209,19 +1231,80 @@
   color: rgb(var(--cream-rgb) / 0.7);
 }
 
+@media (max-width: 699px) {
+  .publicInner .publicHero {
+    align-items: start;
+  }
+
+  .publicInner .publicHeroContent {
+    gap: 0.45rem;
+    padding: 5.25rem 1.25rem 1rem;
+  }
+
+  .publicBrandMark {
+    width: 5.5rem;
+    margin-bottom: -0.25rem;
+  }
+
+  .publicInner .publicTitle {
+    max-width: 9ch;
+    font-size: 3rem;
+    line-height: 0.92;
+  }
+
+  .publicInner .publicHeroContent .intro {
+    display: none;
+  }
+
+  .publicEventFacts {
+    gap: 0.22rem 0.65rem;
+    padding-top: 0;
+  }
+
+  .publicEventFacts span {
+    gap: 0.28rem;
+    font-size: 0.54rem;
+  }
+
+  .publicEventFacts svg {
+    width: 0.72rem;
+    height: 0.72rem;
+  }
+
+  .publicHeroActions {
+    width: min(100%, 18rem);
+    gap: 0.42rem;
+    margin-top: 0.12rem;
+  }
+
+  .publicHeroStatus {
+    gap: 0.18rem;
+    padding: 0.54rem 0.85rem 0.6rem;
+  }
+
+  .publicHeroStatus strong {
+    font-size: 2rem;
+  }
+}
+
 @media (max-width: 699px) and (max-height: 520px) {
   .publicInner .publicHeroContent {
     gap: 0.42rem;
-    padding: 4.65rem 0.9rem 0.55rem;
+    padding: 0.65rem 0.9rem 0.55rem;
   }
 
   .publicInner .publicHeroContent .eyebrow {
     font-size: 0.55rem;
   }
 
+  .publicBrandMark {
+    width: 5.5rem;
+    margin-bottom: -0.25rem;
+  }
+
   .publicInner .publicTitle {
     max-width: 10ch;
-    font-size: 2.55rem;
+    font-size: 2.8rem;
     line-height: 0.92;
   }
 
@@ -1480,11 +1563,19 @@
   }
 
   .publicInner .publicHeroPhoto img {
-    object-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 72%;
   }
 
   .publicInner .publicHeroContent {
     padding: 8rem 2rem 3.6rem;
+  }
+
+  .publicInner .publicTitle {
+    max-width: 9ch;
+    font-size: 4.8rem;
   }
 
   .guestRollInner,
@@ -1509,11 +1600,17 @@
 }
 
 @media (min-width: 1100px) {
+  .publicInner .publicHeroContent {
+    padding-bottom: 14rem;
+  }
+
   .publicHeroActions {
     position: absolute;
-    right: max(2rem, calc((100% - 68rem) / 2));
+    right: auto;
     bottom: 3rem;
+    left: 50%;
     margin-top: 0;
+    transform: translateX(-50%);
   }
 
   .guestRollBand .householdList {

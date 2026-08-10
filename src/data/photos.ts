@@ -19,12 +19,12 @@ export const heroPhotos = {
     objectPosition: "50% 50%",
   },
   mobile: {
-    src: "/images/prewedding/tcs00359-hero.webp",
-    alt: "Sherwin and Franzy seated together among misty Baguio pine trees.",
-    width: 2400,
-    height: 1600,
-    layout: "landscape",
-    objectPosition: "50% 0%",
+    src: "/images/prewedding/tcs00324.webp",
+    alt: "Sherwin holding Franzy's hand as she laughs among misty Baguio pine trees.",
+    width: 1200,
+    height: 1800,
+    layout: "portrait",
+    objectPosition: "50% 50%",
   },
 } satisfies Record<"desktop" | "mobile", PhotoAsset>;
 

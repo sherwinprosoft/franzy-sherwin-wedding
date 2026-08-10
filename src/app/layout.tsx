@@ -26,6 +26,9 @@ const greatVibes = Great_Vibes({
 export const metadata: Metadata = {
   title: "Sherwin & Franzy | December 5, 2026",
   description: "Official wedding website of Sherwin Ross Ora and Franzy Joyce Caparas",
+  icons: {
+    icon: [{ url: "/brand/icon-dark.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({

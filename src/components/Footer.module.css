@@ -29,21 +29,8 @@
   margin-inline: auto;
 }
 
-.closingMark {
-  display: inline-flex;
-  width: 2.75rem;
-  height: 2.75rem;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(var(--cream-rgb) / 0.26);
-  border-radius: 999px;
-  background: rgb(var(--cream-rgb) / 0.08);
-  color: var(--gold);
-  box-shadow: 0 18px 42px rgb(var(--shadow-rgb) / 0.18);
-}
-
 .kicker {
-  margin: 1.15rem 0 0;
+  margin: 0;
   color: rgb(var(--gold-rgb) / 0.95);
   font-size: 0.68rem;
   font-weight: 800;
@@ -52,14 +39,13 @@
 }
 
 .names {
-  display: block;
-  margin: 0.7rem 0 -0.15rem;
-  color: var(--cream);
-  font-family: var(--font-script), cursive;
-  font-size: 4.2rem;
-  font-weight: 400;
-  line-height: 1.14;
-  padding-block: 0.28rem 0.44rem;
+  --couple-icon-width: 6.75rem;
+  --couple-icon-offset: -0.82rem;
+  --couple-name-gap: 0.3rem;
+  --couple-name-size: 2.9rem;
+
+  width: min(100%, 22rem);
+  margin: 1rem auto 0;
 }
 
 .message {
@@ -164,7 +150,12 @@
   }
 
   .names {
-    font-size: 6rem;
+    --couple-icon-width: 8rem;
+    --couple-icon-offset: -0.95rem;
+    --couple-name-gap: 0.42rem;
+    --couple-name-size: 4rem;
+
+    width: min(100%, 34rem);
   }
 
   .message {
