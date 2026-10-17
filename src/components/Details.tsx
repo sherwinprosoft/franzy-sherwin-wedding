@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  CalendarDays,
   Camera,
   Clock,
   ExternalLink,
@@ -36,36 +37,52 @@ const detailCards = [
   },
 ];
 
-const guestEssentials = [
+const schedules = [
   {
-    icon: Camera,
-    label: wedding.preparationShoot.time,
-    title: wedding.preparationShoot.title,
-    description: `For ${wedding.preparationShoot.audience} only. ${wedding.preparationShoot.status}.`,
+    headingId: "day-schedule-heading",
+    eyebrow: "For Our Guests",
+    title: "Wedding Day Timeline",
+    listClassName: "",
+    events: [
+      {
+        icon: Clock,
+        label: wedding.guestArrival.time,
+        title: wedding.guestArrival.title,
+        description: wedding.guestArrival.description,
+      },
+      {
+        icon: MapPin,
+        label: wedding.date.ceremonyTime,
+        title: "Ceremony",
+        description: "Wedding ceremony begins.",
+      },
+      {
+        icon: Utensils,
+        label: "After Ceremony",
+        title: "Reception & Dinner",
+        description: "Reception and dinner to follow immediately after the ceremony.",
+      },
+    ],
   },
   {
-    icon: Users,
-    label: wedding.groomsmenArrival.time,
-    title: wedding.groomsmenArrival.title,
-    description: wedding.groomsmenArrival.description,
-  },
-  {
-    icon: Clock,
-    label: wedding.guestArrival.time,
-    title: wedding.guestArrival.title,
-    description: wedding.guestArrival.description,
-  },
-  {
-    icon: MapPin,
-    label: "2:00 PM",
-    title: "Ceremony",
-    description: "Wedding ceremony begins.",
-  },
-  {
-    icon: Utensils,
-    label: "After Ceremony",
-    title: "Reception & Dinner",
-    description: "Reception and dinner to follow immediately after the ceremony.",
+    headingId: "entourage-schedule-heading",
+    eyebrow: "Earlier Call Times",
+    title: "Entourage Preparation",
+    listClassName: styles.preparationList,
+    events: [
+      {
+        icon: Camera,
+        label: wedding.preparationShoot.time,
+        title: wedding.preparationShoot.title,
+        description: `For ${wedding.preparationShoot.audience} only. ${wedding.preparationShoot.status}.`,
+      },
+      {
+        icon: Users,
+        label: wedding.groomsmenArrival.time,
+        title: wedding.groomsmenArrival.title,
+        description: wedding.groomsmenArrival.description,
+      },
+    ],
   },
 ];
 
@@ -86,33 +103,64 @@ export default function Details() {
               Please join us in Baguio for our wedding ceremony at St. John Don
               Bosco Parish, followed by the reception at Craft 1945.
             </p>
+            <p className={styles.arrivalNote}>
+              <span>Guest arrival <strong>{wedding.guestArrival.time}</strong></span>
+              <span>Ceremony <strong>{wedding.date.ceremonyTime}</strong></span>
+            </p>
+            <nav className={styles.quickMaps} aria-label="Venue maps and calendar">
+              {detailCards.map(({ key, mapUrl, cta }) => (
+                <a
+                  key={key}
+                  href={mapUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.mapButton}
+                  aria-label={`${cta} in a new tab`}
+                >
+                  {cta}
+                  <ExternalLink size={14} strokeWidth={1.7} aria-hidden="true" />
+                </a>
+              ))}
+              <a
+                href="/wedding.ics"
+                download="sherwin-franzy-wedding.ics"
+                className={styles.mapButton}
+              >
+                Add to Calendar
+                <CalendarDays size={14} strokeWidth={1.7} aria-hidden="true" />
+              </a>
+            </nav>
           </div>
         </Reveal>
 
-        <Reveal width="100%" delay={0.08}>
-          <section className={styles.schedulePanel} aria-labelledby="day-schedule-heading">
-            <div className={styles.scheduleIntro}>
-              <p className={styles.kicker}>Day at a Glance</p>
-              <h3 id="day-schedule-heading" className={styles.scheduleTitle}>
-                Wedding Day Timeline
-              </h3>
-            </div>
-            <ol className={styles.scheduleList}>
-              {guestEssentials.map(({ icon: Icon, label, title, description }) => (
-                <li key={label} className={styles.scheduleItem}>
-                  <span className={styles.scheduleMark} aria-hidden="true">
-                    <Icon size={14} strokeWidth={1.7} />
-                  </span>
-                  <span className={styles.scheduleCopy}>
-                    <span className={styles.scheduleTime}>{label}</span>
-                    <span className={styles.scheduleName}>{title}</span>
-                    <span className={styles.scheduleText}>{description}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </section>
-        </Reveal>
+        <div className={styles.scheduleGroup}>
+          {schedules.map((schedule) => (
+            <Reveal key={schedule.headingId} width="100%" delay={0.08}>
+              <section className={styles.schedulePanel} aria-labelledby={schedule.headingId}>
+                <div className={styles.scheduleIntro}>
+                  <p className={styles.kicker}>{schedule.eyebrow}</p>
+                  <h3 id={schedule.headingId} className={styles.scheduleTitle}>
+                    {schedule.title}
+                  </h3>
+                </div>
+                <ol className={`${styles.scheduleList} ${schedule.listClassName}`}>
+                  {schedule.events.map(({ icon: Icon, label, title, description }) => (
+                    <li key={label} className={styles.scheduleItem}>
+                      <span className={styles.scheduleMark} aria-hidden="true">
+                        <Icon size={14} strokeWidth={1.7} />
+                      </span>
+                      <span className={styles.scheduleCopy}>
+                        <span className={styles.scheduleTime}>{label}</span>
+                        <span className={styles.scheduleName}>{title}</span>
+                        <span className={styles.scheduleText}>{description}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            </Reveal>
+          ))}
+        </div>
 
         <div className={styles.cardGrid}>
           {detailCards.map(({ key, icon: Icon, eyebrow, title, time, address, mapUrl, cta }) => (

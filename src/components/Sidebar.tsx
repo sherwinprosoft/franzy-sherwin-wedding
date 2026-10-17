@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { wedding } from "@/data/wedding";
 import { WeddingAudioControl } from "./WeddingAudio";
 import WeddingBrandMark from "./WeddingBrandMark";
@@ -18,7 +18,23 @@ type SidebarProps = {
 export default function Sidebar({ solid = false }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
   const isSolid = solid || isScrolled;
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIsOpen(false);
+        menuToggleRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isOpen]);
 
   useEffect(() => {
     const updateHeader = () => {
@@ -73,6 +89,7 @@ export default function Sidebar({ solid = false }: SidebarProps) {
         <div className={styles.mobileControls}>
           <WeddingAudioControl variant="header" />
           <button
+            ref={menuToggleRef}
             type="button"
             aria-label={isOpen ? "Close navigation" : "Open navigation"}
             aria-controls={mobileMenuId}

@@ -30,14 +30,19 @@ function normalizeGuestName(name: string) {
 
 const preparationNames = new Set([
   ...wedding.entourage.mainParty
-    .filter(({ role }) => ["Maid of Honor", "Matron of Honor", "Best Man"].includes(role))
+    .filter(({ role }) => ["Maid of Honor", "Matron of Honor"].includes(role))
     .flatMap(({ names }) => names),
   ...wedding.entourage.bridesmaids,
   "Steffany Tango",
 ].map(normalizeGuestName));
 
 const groomsmenNames = new Set(
-  wedding.entourage.groomsmen.map(normalizeGuestName),
+  [
+    ...wedding.entourage.mainParty
+      .filter(({ role }) => role === "Best Man")
+      .flatMap(({ names }) => names),
+    ...wedding.entourage.groomsmen,
+  ].map(normalizeGuestName),
 );
 
 const callTimes: Record<WeddingCallTimeKey, WeddingCallTime> = {

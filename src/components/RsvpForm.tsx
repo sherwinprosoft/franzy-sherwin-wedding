@@ -138,7 +138,9 @@ export default function RsvpForm({
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.partyHeader}>
         <p className={styles.kicker}>Personal RSVP</p>
-        <h2 data-rsvp-focus tabIndex={-1}>RSVP for {party.householdName}</h2>
+        <h2 data-rsvp-focus tabIndex={-1}>
+          Reply for {party.householdName}
+        </h2>
         <p>
           Please choose a response for each invited guest. You can return to
           this personal link anytime to make an update.

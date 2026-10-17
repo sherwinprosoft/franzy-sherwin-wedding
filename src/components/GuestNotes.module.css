@@ -6,8 +6,8 @@
     radial-gradient(circle at 18% 8%, rgb(var(--gold-rgb) / 0.055), transparent 18rem),
     radial-gradient(circle at 88% 12%, rgb(var(--secondary-rgb) / 0.035), transparent 18rem),
     linear-gradient(180deg, var(--section-mid-white-soft) 0%, var(--section-mid-white) 100%);
-  padding-top: clamp(4.75rem, 7vw, 6rem);
-  padding-bottom: 7rem;
+  padding-top: clamp(4rem, 6vw, 5rem);
+  padding-bottom: clamp(3.75rem, 6vw, 5rem);
 }
 
 .section::before {
@@ -34,7 +34,7 @@
 
 .heading {
   max-width: 44rem;
-  margin: 0 auto 3.1rem;
+  margin: 0 auto 2.4rem;
   text-align: center;
 }
 
@@ -71,13 +71,13 @@
 .rule {
   width: 14rem;
   height: 1px;
-  margin: 2rem auto 0;
+  margin: 1.5rem auto 0;
   background: linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.85), transparent);
 }
 
 .intro {
   max-width: 38rem;
-  margin: 1.7rem auto 0;
+  margin: 1.25rem auto 0;
   color: var(--muted);
   font-family: var(--font-serif), ui-serif, Georgia;
   font-size: 1.08rem;
@@ -140,7 +140,7 @@
   position: relative;
   display: grid;
   width: 100%;
-  gap: 1.45rem;
+  gap: 1.25rem;
   padding: 0;
 }
 
@@ -193,28 +193,75 @@
 }
 
 .attireColumn {
-  display: grid;
-  align-content: start;
-  gap: 1rem;
   border-top: 1px solid rgb(var(--gold-rgb) / 0.42);
   padding: clamp(1.35rem, 2vw, 1.75rem) 0 0;
 }
 
 .attireColumnHeader {
-  display: grid;
-  gap: 0.48rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3rem;
   padding-bottom: 0.85rem;
   border-bottom: 1px solid rgb(var(--gold-rgb) / 0.22);
+  list-style: none;
+  cursor: pointer;
   text-align: left;
+}
+
+.attireColumnHeader::-webkit-details-marker {
+  display: none;
+}
+
+.attireColumnHeader:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 5px;
+  border-radius: 0.2rem;
+}
+
+.attireSummaryCopy {
+  display: grid;
+  min-width: 0;
+  gap: 0.48rem;
+}
+
+.attireChevron {
+  flex: 0 0 auto;
+  color: var(--secondary);
+}
+
+.attireToggleHint {
+  color: var(--secondary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.attireColumn[open] .attireShowHint,
+.attireColumn:not([open]) .attireHideHint {
+  display: none;
+}
+
+.attireColumn[open] > .attireColumnHeader .attireChevron {
+  transform: rotate(180deg);
+}
+
+.attireColumnBody {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
 .attireColumnTitle {
   margin: 0;
   color: var(--primary);
   font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .attireColumnText {
@@ -226,14 +273,16 @@
 }
 
 .attireCallout {
-  margin: -0.15rem 0 0;
-  border-top: 1px solid rgb(var(--gold-rgb) / 0.22);
-  color: var(--muted);
-  font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: 0.82rem;
-  font-style: italic;
+  margin: 0;
+  border-left: 2px solid var(--gold);
+  border-radius: 0.2rem;
+  background: rgb(var(--paper-rgb) / 0.7);
+  color: var(--primary);
+  font-family: var(--font-inter), ui-sans-serif, system-ui;
+  font-size: 0.9rem;
+  font-style: normal;
   line-height: 1.55;
-  padding: 0.72rem 0.1rem 0;
+  padding: 0.65rem 0.85rem;
   text-align: left;
 }
 
@@ -425,14 +474,14 @@
   overflow-wrap: break-word;
   color: var(--primary);
   font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: 1.95rem;
+  font-size: 1.8rem;
   font-weight: 400;
   line-height: 1.08;
   text-wrap: balance;
 }
 
 .referenceText {
-  margin: 1rem auto 0;
+  margin: 0.75rem auto 0;
   max-width: 40rem;
   color: var(--muted);
   font-family: var(--font-serif), ui-serif, Georgia;
@@ -444,7 +493,7 @@
   display: grid;
   gap: 0.8rem;
   list-style: none;
-  margin: 1.75rem auto 0;
+  margin: 1.25rem auto 0;
   max-width: 17rem;
   padding: 0;
 }
@@ -477,7 +526,7 @@
 
 .guestStrip {
   display: grid;
-  gap: 1.4rem;
+  gap: 1.15rem;
   margin-top: 1.25rem;
   padding: 1.5rem;
 }
@@ -582,7 +631,7 @@
 
 .giftPanel {
   margin-top: 1.25rem;
-  padding: 2.4rem 1.5rem;
+  padding: 1.75rem 1.5rem;
   text-align: center;
 }
 
@@ -597,7 +646,7 @@
 
 .giftHeadline {
   max-width: 40rem;
-  margin: 1.35rem auto 0;
+  margin: 1rem auto 0;
   color: var(--secondary);
   font-family: var(--font-serif), ui-serif, Georgia;
   font-size: 1.08rem;
@@ -609,7 +658,7 @@
 .giftDivider {
   width: min(43rem, 100%);
   height: 0.45rem;
-  margin: 1.35rem auto 1.2rem;
+  margin: 1rem auto;
   background-image: radial-gradient(circle, rgb(var(--gold-rgb) / 0.82) 2px, transparent 2.4px);
   background-repeat: repeat-x;
   background-position: center;
@@ -629,6 +678,12 @@
 .previewModal {
   position: fixed;
   inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  border: 0;
   z-index: 100;
   display: grid;
   align-items: center;
@@ -746,7 +801,7 @@
   }
 
   .referenceTitle {
-    font-size: 2.35rem;
+    font-size: 2.1rem;
   }
 
   .attireRole {
@@ -828,7 +883,7 @@
 
   .guestStrip,
   .giftPanel {
-    padding: 2.35rem;
+    padding: 2rem;
   }
 
   .guestStrip {
@@ -855,10 +910,6 @@
   .attireColumnGrid {
     grid-template-columns: 1fr;
     align-items: start;
-  }
-
-  .attireColumn {
-    grid-template-rows: auto;
   }
 
   .attireRoleList {

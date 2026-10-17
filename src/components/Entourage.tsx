@@ -121,10 +121,15 @@ export default function Entourage() {
             />
 
             {entourage.principalSponsors.showMembers ? (
-              <NameList
-                names={entourage.principalSponsors.members}
-                className={styles.sponsorList}
-              />
+              <ul className={styles.sponsorPairs}>
+                {entourage.principalSponsors.pairs.map(([first, second]) => (
+                  <li key={`${first}-${second}`} className={styles.sponsorPair}>
+                    <p className={styles.name}>{first}</p>
+                    <span className={styles.sponsorAmpersand} aria-hidden="true">&amp;</span>
+                    <p className={styles.name}>{second}</p>
+                  </li>
+                ))}
+              </ul>
             ) : (
               <p className={styles.sponsorPlaceholder}>
                 {entourage.principalSponsors.hiddenMessage}

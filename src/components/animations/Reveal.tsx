@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useInView, useAnimation, useReducedMotion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -26,25 +26,19 @@ export const Reveal = ({
 }: Props) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const mainControls = useAnimation();
   const shouldReduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (isInView || shouldReduceMotion) {
-      mainControls.start("visible");
-    }
-  }, [isInView, mainControls, shouldReduceMotion]);
 
   return (
     <div ref={ref} className={className} style={{ position: "relative", width, overflow }}>
       <motion.div
         className={contentClassName}
         variants={{
-          hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: yOffset },
+          hidden: { opacity: 0, y: yOffset },
           visible: { opacity: 1, y: 0 },
         }}
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        animate={mainControls}
+        // Keep initial styles identical during hydration; apply preferences through animate.
+        initial="hidden"
+        animate={shouldReduceMotion || isInView ? "visible" : "hidden"}
         transition={
           shouldReduceMotion
             ? { duration: 0 }

@@ -4,7 +4,8 @@
   background:
     linear-gradient(180deg, rgb(var(--gold-rgb) / 0.3) 0, rgb(var(--paper-rgb) / 0.94) 0.55rem, rgb(var(--cream-rgb) / 0.88) 4.5rem, rgb(var(--cream-rgb) / 0.68) 10rem, transparent 14rem),
     linear-gradient(180deg, var(--section-light-white) 0%, var(--section-light-white-soft) 100%);
-  padding-top: clamp(4.75rem, 7vw, 6rem);
+  padding-top: clamp(4rem, 6vw, 5rem);
+  padding-bottom: clamp(3.75rem, 6vw, 5rem);
 }
 
 .section::before {
@@ -42,7 +43,7 @@
 
 .heading {
   max-width: 46rem;
-  margin: 0 auto 3.1rem;
+  margin: 0 auto 2.4rem;
   text-align: center;
 }
 
@@ -86,12 +87,12 @@
 .rule {
   width: 14rem;
   height: 1px;
-  margin: 2rem auto 0;
+  margin: 1.5rem auto 0;
   background: linear-gradient(90deg, transparent, rgb(var(--gold-rgb) / 0.85), transparent);
 }
 
 .intro {
-  margin: 1.75rem auto 0;
+  margin: 1.25rem auto 0;
   max-width: 42rem;
   color: var(--muted);
   font-family: var(--font-serif), ui-serif, Georgia;
@@ -103,6 +104,51 @@
   display: grid;
   gap: 1rem;
   margin-top: 1.25rem;
+}
+
+.arrivalNote {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin: 1.35rem 0 0;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.arrivalNote span {
+  white-space: nowrap;
+}
+
+.quickMaps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.quickMaps .mapButton {
+  margin: 0;
+  background: rgb(var(--paper-rgb) / 0.85);
+}
+
+.quickMaps .mapButton:hover {
+  background: var(--primary);
+}
+
+.mapButton:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.scheduleGroup {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 68rem;
+  margin: 0 auto;
 }
 
 .schedulePanel {
@@ -228,7 +274,7 @@
     0 24px 62px rgb(var(--primary-rgb) / 0.1),
     0 5px 18px rgb(var(--secondary-rgb) / 0.06),
     inset 0 0 0 1px rgba(255, 255, 255, 0.62);
-  padding: 2rem 1.5rem;
+  padding: 1.75rem 1.5rem;
   text-align: center;
 }
 
@@ -311,7 +357,7 @@
   width: 100%;
   max-width: 30rem;
   gap: 0;
-  margin: 1.45rem auto 1.75rem;
+  margin: 1.25rem auto 1.4rem;
   border-top: 1px solid rgb(var(--gold-rgb) / 0.28);
   border-bottom: 1px solid rgb(var(--gold-rgb) / 0.28);
   color: var(--primary);
@@ -377,7 +423,7 @@
 
 @media (min-width: 640px) {
   .heading {
-    margin-bottom: 3.3rem;
+    margin-bottom: 2.6rem;
   }
 
   .title {
@@ -393,7 +439,7 @@
   }
 
   .venuePanel {
-    padding: 2.5rem;
+    padding: 2rem;
   }
 
   .venueTitle {
@@ -408,7 +454,11 @@
 
 @media (min-width: 1024px) {
   .scheduleList {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .preparationList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .scheduleItem {
@@ -432,7 +482,7 @@
   }
 
   .venuePanel {
-    padding: 3rem 2.5rem;
+    padding: 2.25rem 2rem;
   }
 
 }

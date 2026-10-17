@@ -332,18 +332,19 @@
   max-width: 32rem;
   margin: 0 auto;
   color: var(--muted);
-  font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: 0.88rem;
-  line-height: 1.36;
+  font-family: var(--font-inter), ui-sans-serif, system-ui;
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
 .eventSummaryIntro h1 {
   margin: 0;
   color: var(--primary);
-  font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: clamp(2rem, 8vw, 3rem);
-  font-weight: 500;
-  line-height: 1.05;
+  font-family: var(--font-script), cursive;
+  font-size: clamp(2.8rem, 9vw, 4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  padding-block: 0.08em;
   text-wrap: balance;
 }
 
@@ -416,9 +417,9 @@
 .personalScheduleHeader h2 {
   margin: 0;
   color: var(--primary);
-  font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: 1.2rem;
-  font-weight: 650;
+  font-family: var(--font-script), cursive;
+  font-size: clamp(1.85rem, 5vw, 2.25rem);
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -1072,8 +1073,8 @@
 }
 
 .publicInner .publicHero {
-  height: 100svh;
-  min-height: 0;
+  height: auto;
+  min-height: 100svh;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -1125,6 +1126,29 @@
   gap: 0.7rem;
   margin-top: 0.35rem;
   text-shadow: none;
+}
+
+.publicRsvpInstructions {
+  max-width: 28rem;
+  margin: 0;
+  color: var(--cream);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
+.publicHeroCta.publicGuestLink {
+  border-color: rgb(var(--cream-rgb) / 0.62);
+  background: rgb(var(--primary-rgb) / 0.32);
+  color: var(--cream);
+  box-shadow: inset 0 1px 0 rgb(var(--cream-rgb) / 0.08);
+  backdrop-filter: blur(0.4rem);
+}
+
+.publicHeroCta.publicGuestLink:hover {
+  border-color: var(--cream);
+  background: rgb(var(--cream-rgb) / 0.92);
+  color: var(--secondary);
 }
 
 .publicHeroCta {
@@ -1290,7 +1314,7 @@
 @media (max-width: 699px) and (max-height: 520px) {
   .publicInner .publicHeroContent {
     gap: 0.42rem;
-    padding: 0.65rem 0.9rem 0.55rem;
+    padding: calc(var(--header-height) + 1rem) 0.9rem 1.25rem;
   }
 
   .publicInner .publicHeroContent .eyebrow {
@@ -1391,14 +1415,14 @@
   position: relative;
   width: min(100%, 72rem);
   margin-inline: auto;
-  padding: 3.8rem 1.25rem 4.2rem;
+  padding: 3rem 1.25rem;
 }
 
 .guestRollHeader {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
   border-bottom: 1px solid rgb(var(--gold-rgb) / 0.46);
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
 }
 
 .guestRollHeader > div:first-child {
@@ -1418,10 +1442,11 @@
 .guestRollHeader h2 {
   scroll-margin-top: calc(var(--header-height) + 2rem);
   color: var(--primary);
-  font-family: var(--font-serif), ui-serif, Georgia;
+  font-family: var(--font-script), cursive;
   font-size: clamp(2.5rem, 8vw, 4.8rem);
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 1.15;
+  padding-block: 0.08em;
   text-wrap: balance;
 }
 
@@ -1433,26 +1458,46 @@
   line-height: 1.55;
 }
 
-.guestRollHeader .statsRow {
-  align-self: end;
+.guestRollTotals {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
 }
 
-.guestRollHeader .statsRow div {
-  border-top-color: rgb(var(--gold-rgb) / 0.56);
-  border-bottom-color: rgb(var(--gold-rgb) / 0.28);
+.guestRollTotals div {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 5rem;
 }
 
-.guestRollHeader .statsRow strong {
-  color: var(--primary);
-  font-size: clamp(2.35rem, 7vw, 3.5rem);
+.guestRollTotals div + div {
+  border-left: 1px solid rgb(var(--gold-rgb) / 0.5);
+  padding-left: 1.5rem;
 }
 
-.guestRollHeader .statsRow span {
+.guestRollTotals dt {
   color: var(--secondary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.guestRollTotals dd {
+  order: -1;
+  margin: 0;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 2.5rem;
+  line-height: 1;
 }
 
 .guestRollBand .householdList {
-  margin-top: 1.4rem;
+  align-items: start;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .guestRollBand .noticeText,
@@ -1464,11 +1509,27 @@
 }
 
 .guestRollBand .householdGroup {
-  border-top-color: rgb(var(--gold-rgb) / 0.42);
+  position: relative;
+  min-width: 0;
+  gap: 1rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.38);
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, rgb(var(--paper-rgb) / 0.96), rgb(var(--section-light-white-soft-rgb) / 0.72));
+  box-shadow: 0 0.5rem 1.5rem rgb(var(--shadow-rgb) / 0.035);
+  padding: 1.35rem 1.15rem;
 }
 
-.guestRollBand .householdGroup:last-child {
-  border-bottom-color: rgb(var(--gold-rgb) / 0.28);
+.guestRollBand .householdGroup::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(var(--secondary-rgb) / 0.5), rgb(var(--gold-rgb) / 0.45), transparent);
+  content: "";
+}
+
+.guestRollBand .householdGroup header {
+  align-items: center;
 }
 
 .guestRollBand .householdGroup header > span {
@@ -1478,14 +1539,26 @@
 
 .guestRollBand .householdGroup header p {
   color: var(--secondary);
+  font-size: 0.6rem;
+  line-height: 1.3;
 }
 
 .guestRollBand .householdGroup h3 {
   color: var(--primary);
+  font-size: 1.4rem;
 }
 
 .guestRollBand .householdGroup li {
-  color: var(--muted);
+  color: var(--primary);
+  font-size: 1.08rem;
+  font-weight: 500;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.guestRollBand .householdGroup ul {
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.24);
+  padding-top: 0.8rem;
 }
 
 .publicGuide {
@@ -1495,71 +1568,135 @@
     linear-gradient(180deg, var(--section-light-white-soft), var(--paper));
 }
 
-.publicGuideInner {
+.publicGuideCard {
+  position: relative;
   display: grid;
-  gap: 2rem;
+  gap: 1.6rem;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb) / 0.5);
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, var(--section-light-white-soft), var(--paper));
+  box-shadow: 0 1rem 2.5rem rgb(var(--shadow-rgb) / 0.055);
+  padding: 1.5rem;
 }
 
-.publicGuideInner > header {
+.publicGuideCard::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--secondary), var(--gold), rgb(var(--gold-rgb) / 0.2));
+  content: "";
+}
+
+.publicGuideCard > header {
   display: grid;
+  justify-items: start;
+  align-content: center;
   gap: 0.6rem;
 }
 
-.publicGuideInner h2 {
+.publicGuideCard h2 {
   max-width: 18ch;
   margin: 0;
   color: var(--primary);
-  font-family: var(--font-serif), ui-serif, Georgia;
-  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-family: var(--font-script), cursive;
+  font-size: clamp(2.65rem, 7vw, 3.75rem);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 1.15;
+  padding-block: 0.08em;
   text-wrap: balance;
 }
 
-.publicGuideBody {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.85rem;
-  border-top: 1px solid rgb(var(--gold-rgb) / 0.4);
-  padding-top: 1.15rem;
+.publicGuideIntro {
+  max-width: 24rem;
+  margin: 0 0 0.4rem;
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.08rem;
+  line-height: 1.55;
 }
 
-.publicGuideBody > svg {
+.publicGuideSteps {
+  display: grid;
+  gap: 1.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.publicGuideSteps li {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.8rem;
+}
+
+.publicGuideSteps li > span {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid rgb(var(--gold-rgb) / 0.65);
+  border-radius: 50%;
+  background: rgb(var(--gold-rgb) / 0.12);
+  color: var(--secondary);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.publicGuideSteps h3 {
+  margin: 0 0 0.25rem;
+  color: var(--primary);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.publicGuideSteps p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.publicGuideHelp {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.65rem;
+  border-top: 1px solid rgb(var(--gold-rgb) / 0.32);
+  padding-top: 1.25rem;
+}
+
+.publicGuideHelp > svg {
   width: 1.1rem;
   height: 1.1rem;
   color: var(--secondary);
   stroke-width: 1.7;
 }
 
-.publicGuideBody > div {
-  display: grid;
-  gap: 0.85rem;
-}
-
-.publicGuideBody p,
-.publicGuideBody small {
+.publicGuideHelp p {
   margin: 0;
   color: var(--muted);
-  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
-.publicGuideBody p {
-  font-size: 1rem;
-}
-
-.publicGuideBody small {
-  font-size: 0.78rem;
-}
-
-.publicGuideBody .linkRow {
-  justify-content: flex-start;
+.publicGuidePrivacy {
+  grid-column: 1 / -1;
+  margin: -0.85rem 0 0;
+  color: var(--muted);
+  font-family: var(--font-inter), ui-sans-serif, system-ui;
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
 
 @media (min-width: 700px) {
   .publicInner .publicHero {
-    height: 100svh;
-    min-height: 42rem;
+    height: auto;
+    min-height: max(42rem, 100svh);
   }
 
   .publicInner .publicHeroPhoto img {
@@ -1584,17 +1721,20 @@
   }
 
   .guestRollHeader {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
   }
 
   .guestRollBand .householdList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2rem;
+    gap: 1.25rem;
   }
 
-  .publicGuideInner {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.5fr);
+  .publicGuideCard {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 1.75rem 2.5rem;
     align-items: start;
+    padding: 2.25rem;
   }
 
 }

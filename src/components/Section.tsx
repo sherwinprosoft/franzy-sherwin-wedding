@@ -16,7 +16,8 @@ export default function Section({ children, id, className = "", delay = 0 }: Sec
   return (
     <motion.section
       id={id}
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={shouldReduceMotion ? { opacity: 1, y: 0 } : undefined}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay }}

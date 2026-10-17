@@ -6,7 +6,8 @@
     radial-gradient(circle at 8% 10%, rgb(var(--gold-rgb) / 0.055), transparent 18rem),
     radial-gradient(circle at 92% 14%, rgb(var(--secondary-rgb) / 0.035), transparent 18rem),
     linear-gradient(180deg, var(--section-light-white) 0%, var(--section-light-white-soft) 100%);
-  padding-top: clamp(4.75rem, 7vw, 6rem);
+  padding-top: clamp(4rem, 6vw, 5rem);
+  padding-bottom: clamp(3.75rem, 6vw, 5rem);
 }
 
 .section::after {
@@ -32,7 +33,7 @@
 
 .heading {
   max-width: 48rem;
-  margin: 0 auto 2.6rem;
+  margin: 0 auto 2.25rem;
   text-align: center;
 }
 
@@ -68,13 +69,13 @@
 .rule {
   width: min(14rem, 70vw);
   height: 1px;
-  margin: 2rem auto 0;
+  margin: 1.5rem auto 0;
   background: linear-gradient(90deg, transparent, rgb(var(--secondary-rgb) / 0.48), transparent);
 }
 
 .intro {
   max-width: 40rem;
-  margin: 1.7rem auto 0;
+  margin: 1.25rem auto 0;
   color: var(--muted);
   font-family: var(--font-serif), ui-serif, Georgia;
   font-size: 1.08rem;
@@ -84,7 +85,7 @@
 .programShell {
   position: relative;
   max-width: 66rem;
-  margin: 1.75rem auto 0;
+  margin: 0 auto;
 }
 
 .programShell::before,
@@ -95,7 +96,15 @@
 .programBand {
   position: relative;
   background: transparent;
-  padding: 3.35rem 0;
+  padding: 2.25rem 0;
+}
+
+.programBand:first-child {
+  padding-top: 0;
+}
+
+.programBand:last-child {
+  padding-bottom: 0;
 }
 
 .programBand + .programBand {
@@ -125,7 +134,7 @@
 
 .bandHeader {
   max-width: 42rem;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.5rem;
   text-align: center;
 }
 
@@ -141,7 +150,7 @@
 
 .bandCopy {
   max-width: 34rem;
-  margin: 0.85rem auto 0;
+  margin: 0.65rem auto 0;
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.65;
@@ -152,14 +161,14 @@
   display: flex;
   width: 100%;
   max-width: 48rem;
-  margin: 1.7rem auto 1rem;
+  margin: 1.25rem auto 0.85rem;
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
   color: rgb(var(--secondary-rgb) / 0.72);
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.3;
   text-align: center;
   text-transform: uppercase;
 }
@@ -220,20 +229,37 @@
   margin-top: 0;
 }
 
-.sponsorList {
-  position: relative;
+.sponsorPairs {
+  display: grid;
   max-width: 52rem;
   margin: 0 auto;
-  gap: 0.72rem;
+  padding: 0;
+  gap: 0.85rem;
+  list-style: none;
 }
 
-.sponsorList > .name {
-  padding-bottom: 0.72rem;
-  border-bottom: 1px solid rgb(var(--gold-rgb) / 0.2);
+.sponsorPair {
+  display: grid;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid rgb(var(--gold-rgb) / 0.28);
+  border-radius: 0.5rem;
+  background: rgb(var(--paper-rgb) / 0.54);
+  padding: 1.1rem 1rem;
 }
 
-.sponsorList .name {
+.sponsorPair .name {
   color: rgb(var(--shadow-rgb) / 0.86);
+  font-size: 1.15rem;
+}
+
+.sponsorAmpersand {
+  color: var(--muted);
+  font-family: var(--font-serif), ui-serif, Georgia;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .sponsorPlaceholder {
@@ -346,7 +372,7 @@
 }
 
 .attendantGrid {
-  margin-top: 0;
+  margin-top: 1rem;
 }
 
 .roleCard {
@@ -358,7 +384,7 @@
   border: 1px solid rgb(var(--gold-rgb) / 0.38);
   border-radius: 0.5rem;
   background: rgb(var(--paper-rgb) / 0.64);
-  padding: 1.55rem 1rem;
+  padding: 1.25rem 1rem;
   text-align: center;
 }
 
@@ -374,16 +400,17 @@
 .ceremonyRoleTitle {
   position: relative;
   z-index: 1;
-  margin: 0 0 1rem;
+  margin: 0 0 0.8rem;
   color: var(--secondary);
   font-family: var(--font-script), cursive;
   font-size: 2.15rem;
   font-weight: 400;
   line-height: 0.95;
+  text-wrap: balance;
 }
 
 .honorCard {
-  min-height: 10.5rem;
+  min-height: 8.5rem;
   background: rgb(var(--paper-rgb) / 0.72);
 }
 
@@ -403,7 +430,7 @@
 }
 
 .roleCluster + .roleCluster {
-  margin-top: 2.1rem;
+  margin-top: 1.5rem;
   border-top: 1px solid rgb(var(--gold-rgb) / 0.42);
   padding-top: 0.45rem;
 }
@@ -411,9 +438,10 @@
 .ceremonyRole {
   position: relative;
   display: grid;
+  align-content: start;
   gap: 0.2rem;
   border-top: 1px solid rgb(var(--gold-rgb) / 0.34);
-  padding: 1.3rem 0 1.1rem;
+  padding: 1.05rem 0 0.9rem;
   text-align: center;
 }
 
@@ -436,7 +464,7 @@
 
 @media (min-width: 640px) {
   .heading {
-    margin-bottom: 2.8rem;
+    margin-bottom: 2.5rem;
   }
 
   .title {
@@ -447,12 +475,8 @@
     font-size: 1.2rem;
   }
 
-  .programShell {
-    margin-top: 2.4rem;
-  }
-
   .programBand {
-    padding: 3.5rem 2.25rem;
+    padding: 2.75rem 2.25rem;
   }
 
   .bandTitle {
@@ -472,18 +496,22 @@
     padding: 1.25rem 1.2rem 1.45rem;
   }
 
-  .sponsorList {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2rem;
+  .sponsorPair {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.35rem 1.5rem;
   }
 
-  .sponsorList::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 50%;
-    width: 1px;
-    background: linear-gradient(180deg, transparent, rgb(var(--gold-rgb) / 0.42), transparent);
-    transform: translateX(-50%);
+  .sponsorPair .name {
+    font-size: 1.3rem;
+  }
+
+  .sponsorPair .name:first-child {
+    text-align: right;
+  }
+
+  .sponsorPair .name:last-child {
+    text-align: left;
   }
 
   .honorGrid,
@@ -518,7 +546,7 @@
   }
 
   .roleCard {
-    padding: 1.85rem 1.25rem;
+    padding: 1.5rem 1.25rem;
   }
 
   .roleTitle {
@@ -532,11 +560,11 @@
 
 @media (min-width: 900px) {
   .programBand {
-    padding: 4.15rem 3.5rem;
+    padding: 3rem 3.5rem;
   }
 
   .attendantGrid {
-    margin-top: 0;
+    margin-top: 1rem;
   }
 
   .honorGrid {
@@ -555,7 +583,7 @@
   }
 
   .roleCluster + .roleCluster {
-    margin-top: 2.7rem;
+    margin-top: 2rem;
     padding-top: 0.8rem;
   }
 

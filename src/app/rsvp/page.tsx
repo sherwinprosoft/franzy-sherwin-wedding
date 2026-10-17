@@ -38,6 +38,21 @@ export const metadata = {
 
 export const dynamic = "force-dynamic";
 
+const rsvpSteps = [
+  {
+    title: "Open your invitation",
+    description: "Find the message sent to you and open your personal invitation link.",
+  },
+  {
+    title: "Reply for your party",
+    description: "Let us know who will be joining us, then save your response.",
+  },
+  {
+    title: "Keep your link",
+    description: "You can return to the same invitation to update your response later.",
+  },
+];
+
 export default async function RsvpPage() {
   const publicList = await getPublicRsvpList();
   const confirmedCount = publicList.attendees.length;
@@ -73,11 +88,10 @@ export default async function RsvpPage() {
               className={styles.publicBrandMark}
               priority
             />
-            <p className={styles.eyebrow}>Confirmed Guest List · Wedding RSVP</p>
+            <p className={styles.eyebrow}>Your Invitation · Wedding RSVP</p>
             <h1 className={styles.publicTitle}>Together in Baguio</h1>
-            <p className={styles.intro}>
-              Our favorite people, gathering in one place to share the beginning
-              of our married life.
+            <p className={styles.publicRsvpInstructions}>
+              To RSVP, open the personal invitation link sent to you.
             </p>
 
             <div className={styles.publicEventFacts} aria-label="Wedding details">
@@ -87,8 +101,15 @@ export default async function RsvpPage() {
             </div>
 
             <div className={styles.publicHeroActions}>
-              <a href="#attendee-list-title" className={styles.publicHeroCta}>
-                <span>View confirmed guest list</span>
+              <a href="#rsvp-instructions" className={styles.publicHeroCta}>
+                <span>Your Invitation · How to RSVP</span>
+                <ArrowDown aria-hidden="true" />
+              </a>
+              <a
+                href="#attendee-list-title"
+                className={`${styles.publicHeroCta} ${styles.publicGuestLink}`}
+              >
+                <span>View Confirmed Guests</span>
                 <ArrowDown aria-hidden="true" />
               </a>
               <div
@@ -106,15 +127,60 @@ export default async function RsvpPage() {
           </div>
         </header>
 
+        <section id="rsvp-instructions" className={styles.publicGuide} aria-labelledby="rsvp-instructions-title">
+          <div className={styles.publicGuideInner}>
+            <div className={styles.publicGuideCard}>
+              <header>
+                <p className={styles.eyebrow}>Wedding RSVP</p>
+                <h2 id="rsvp-instructions-title">Kindly Reply</h2>
+                <p className={styles.publicGuideIntro}>
+                  A few simple steps to let us know if you can celebrate with us.
+                </p>
+                <Link href="/#home" className={styles.linkGhost}>
+                  Back to Home
+                </Link>
+              </header>
+
+              <ol className={styles.publicGuideSteps}>
+                {rsvpSteps.map((step, index) => (
+                  <li key={step.title}>
+                    <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3>{step.title}</h3>
+                      <p>{step.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className={styles.publicGuideHelp}>
+                <Link2 aria-hidden="true" />
+                <p>
+                  <strong>Need your invitation link?</strong> Reach out to Sherwin or
+                  Franzy and we will send it again.
+                </p>
+              </div>
+              <p className={styles.publicGuidePrivacy}>
+                Only confirmed names appear below. Your notes and other responses remain private.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.guestRollBand} aria-labelledby="attendee-list-title">
           <div className={styles.guestRollInner}>
             <header className={styles.guestRollHeader}>
               <div>
-                <p className={styles.eyebrow}>Confirmed Attendance</p>
-                <h2 id="attendee-list-title">Celebrating With Us</h2>
+                <p className={styles.eyebrow}>Celebrating With Us</p>
+                <h2 id="attendee-list-title">Confirmed Guests</h2>
                 <p>A family-by-family roll of everyone joining our wedding day.</p>
               </div>
-
+              {!publicList.unavailable ? (
+                <dl className={styles.guestRollTotals} aria-label="Confirmed attendance">
+                  <div><dt>Guests</dt><dd>{confirmedCount}</dd></div>
+                  <div><dt>Invitation parties</dt><dd>{publicList.confirmedHouseholds}</dd></div>
+                </dl>
+              ) : null}
             </header>
 
             {publicList.unavailable ? (
@@ -153,33 +219,6 @@ export default async function RsvpPage() {
           </div>
         </section>
 
-        <section className={styles.publicGuide} aria-label="RSVP information">
-          <div className={styles.publicGuideInner}>
-            <header>
-              <p className={styles.eyebrow}>Your Invitation</p>
-              <h2>Looking for your personal invitation?</h2>
-            </header>
-
-            <div className={styles.publicGuideBody}>
-              <Link2 aria-hidden="true" />
-              <div>
-                <p>
-                  Return to the message sent to you and open your unique link to
-                  reply or update your response. Please reach out to Sherwin or
-                  Franzy if you need the link sent again.
-                </p>
-                <small>
-                  Only confirmed names appear here. Notes and other responses remain private.
-                </small>
-                <div className={styles.linkRow}>
-                  <Link href="/#home" className={styles.linkGhost}>
-                    Back to Home
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </section>
   );

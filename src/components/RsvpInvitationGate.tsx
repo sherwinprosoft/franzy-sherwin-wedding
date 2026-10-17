@@ -101,7 +101,7 @@ export default function RsvpInvitationGate({
             aria-modal="true"
             aria-labelledby={titleId}
             aria-describedby={descriptionId}
-            initial={shouldReduceMotion ? false : { opacity: 1 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -135,7 +135,7 @@ export default function RsvpInvitationGate({
             <motion.div
               className={styles.stage}
               data-opening={isOpening ? "true" : "false"}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 18, scale: 0.97 }}
+              initial={{ opacity: 0, y: 18, scale: 0.97 }}
               animate={
                 isOpening
                   ? { opacity: 0, y: -16, scale: 1.045, filter: "blur(8px)" }

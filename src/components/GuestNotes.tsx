@@ -1,8 +1,8 @@
 "use client";
 
-import { Maximize2, X } from "lucide-react";
+import { ChevronDown, Maximize2, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { wedding } from "@/data/wedding";
 import Section from "./Section";
 import { Reveal } from "./animations/Reveal";
@@ -108,25 +108,27 @@ function GuestAttire({ onSelectPreview }: GuestAttireProps) {
 
 export default function GuestNotes() {
   const [selectedPreview, setSelectedPreview] = useState<AttirePreview | null>(null);
+  const previewDialogRef = useRef<HTMLDialogElement>(null);
+  const previewCloseRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!selectedPreview) {
       return;
     }
 
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setSelectedPreview(null);
-      }
-    };
-
+    const trigger = document.activeElement;
+    const dialog = previewDialogRef.current;
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", closeOnEscape);
+    dialog?.showModal();
+    previewCloseRef.current?.focus();
 
     return () => {
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener("keydown", closeOnEscape);
+      dialog?.close();
+      if (trigger instanceof HTMLElement && trigger.isConnected) {
+        trigger.focus({ preventScroll: true });
+      }
     };
   }, [selectedPreview]);
 
@@ -148,6 +150,10 @@ export default function GuestNotes() {
           </div>
         </Reveal>
 
+        <Reveal width="100%" delay={0.08}>
+          <GuestAttire onSelectPreview={setSelectedPreview} />
+        </Reveal>
+
         <div className={styles.guideGrid}>
           <Reveal
             width="100%"
@@ -161,105 +167,110 @@ export default function GuestNotes() {
                   {attireGuide.entourage.title}
                 </h3>
                 <p className={styles.referenceText}>
-                  {attireGuide.entourage.description}
+                  {attireGuide.entourage.description} Select a guide below to view the references.
                 </p>
               </div>
 
               <div className={styles.attireColumnGrid}>
                 {attireGuide.entourage.columns.map((column) => (
-                  <article key={column.title} className={styles.attireColumn}>
-                    <div className={styles.attireColumnHeader}>
-                      <h4 className={styles.attireColumnTitle}>{column.title}</h4>
-                      <p className={styles.attireColumnText}>{column.description}</p>
-                    </div>
+                  <details key={column.title} className={styles.attireColumn} open>
+                    <summary className={styles.attireColumnHeader}>
+                      <span className={styles.attireSummaryCopy}>
+                        <span className={styles.attireColumnTitle}>{column.title}</span>
+                        <span className={styles.attireColumnText}>{column.description}</span>
+                        <span className={styles.attireToggleHint}>
+                          <span className={styles.attireShowHint}>Click to show guide</span>
+                          <span className={styles.attireHideHint}>Click to hide guide</span>
+                        </span>
+                      </span>
+                      <ChevronDown className={styles.attireChevron} size={20} strokeWidth={1.7} aria-hidden="true" />
+                    </summary>
 
-                    {column.callout ? (
-                      <p className={styles.attireCallout}>{column.callout}</p>
-                    ) : null}
+                    <div className={styles.attireColumnBody}>
+                      {column.callout ? (
+                        <p className={styles.attireCallout}>{column.callout}</p>
+                      ) : null}
 
-                    <div className={styles.attireRoleList}>
-                      {column.roles.map((group) => {
-                        const note = getAttireRoleNote(group);
+                      <div className={styles.attireRoleList}>
+                        {column.roles.map((group) => {
+                          const note = getAttireRoleNote(group);
 
-                        return (
-                          <section
-                            key={group.role}
-                            className={`${styles.attireRole} ${
-                              group.previews.length > 1 ? styles.attireRoleMultiPreview : ""
-                            }`}
-                          >
-                            <div className={styles.attireRoleCopy}>
-                              <h5 className={styles.attireRoleTitle}>{group.role}</h5>
-                              <p className={styles.attireRoleAttire}>{group.attire}</p>
-                              {note ? (
-                                <p className={styles.attireRoleNote}>{note}</p>
-                              ) : null}
-                            </div>
-                            <ul
-                              className={styles.roleSwatches}
-                              aria-label={`${group.role} attire colors`}
-                            >
-                              {group.swatches.map((swatch) => (
-                                <li key={swatch.name} className={styles.roleSwatchItem}>
-                                  <span
-                                    className={styles.roleSwatch}
-                                    style={{ backgroundColor: swatch.hex, borderColor: swatch.borderHex }}
-                                    aria-hidden="true"
-                                  />
-                                  <span>{swatch.name}</span>
-                                </li>
-                              ))}
-                            </ul>
-                            <div
-                              className={`${styles.attireRolePreviewGrid} ${
-                                group.previews.length > 1 ? styles.attireRolePreviewGridSplit : ""
+                          return (
+                            <section
+                              key={group.role}
+                              className={`${styles.attireRole} ${
+                                group.previews.length > 1 ? styles.attireRoleMultiPreview : ""
                               }`}
                             >
-                              {group.previews.map((preview) => (
-                                <button
-                                  key={preview.alt}
-                                  type="button"
-                                  className={styles.attireRolePreviewFrame}
-                                  onClick={() =>
-                                    setSelectedPreview({
-                                      src: preview.src,
-                                      alt: preview.alt,
-                                      position: preview.position,
-                                      role: group.role,
-                                      attire: group.attire,
-                                    })
-                                  }
-                                  aria-label={`Enlarge ${group.role} attire reference`}
-                                >
-                                  <Image
-                                    src={preview.src}
-                                    alt={preview.alt}
-                                    fill
-                                    sizes="(min-width: 1024px) 13rem, (min-width: 640px) 30vw, 6.5rem"
-                                    className={styles.attireRolePreviewImage}
-                                    style={{ objectPosition: preview.position }}
-                                    loading="lazy"
-                                  />
-                                  <span className={styles.previewZoomHint} aria-hidden="true">
-                                    <Maximize2 size={14} strokeWidth={2} />
-                                  </span>
-                                </button>
-                              ))}
-                            </div>
-                          </section>
-                        );
-                      })}
+                              <div className={styles.attireRoleCopy}>
+                                <h4 className={styles.attireRoleTitle}>{group.role}</h4>
+                                <p className={styles.attireRoleAttire}>{group.attire}</p>
+                                {note ? (
+                                  <p className={styles.attireRoleNote}>{note}</p>
+                                ) : null}
+                              </div>
+                              <ul
+                                className={styles.roleSwatches}
+                                aria-label={`${group.role} attire colors`}
+                              >
+                                {group.swatches.map((swatch) => (
+                                  <li key={swatch.name} className={styles.roleSwatchItem}>
+                                    <span
+                                      className={styles.roleSwatch}
+                                      style={{ backgroundColor: swatch.hex, borderColor: swatch.borderHex }}
+                                      aria-hidden="true"
+                                    />
+                                    <span>{swatch.name}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                              <div
+                                className={`${styles.attireRolePreviewGrid} ${
+                                  group.previews.length > 1 ? styles.attireRolePreviewGridSplit : ""
+                                }`}
+                              >
+                                {group.previews.map((preview) => (
+                                  <button
+                                    key={preview.alt}
+                                    type="button"
+                                    className={styles.attireRolePreviewFrame}
+                                    onClick={() =>
+                                      setSelectedPreview({
+                                        src: preview.src,
+                                        alt: preview.alt,
+                                        position: preview.position,
+                                        role: group.role,
+                                        attire: group.attire,
+                                      })
+                                    }
+                                    aria-label={`Enlarge ${group.role} attire reference`}
+                                  >
+                                    <Image
+                                      src={preview.src}
+                                      alt={preview.alt}
+                                      fill
+                                      sizes="(min-width: 1024px) 13rem, (min-width: 640px) 30vw, 6.5rem"
+                                      className={styles.attireRolePreviewImage}
+                                      style={{ objectPosition: preview.position }}
+                                      loading="lazy"
+                                    />
+                                    <span className={styles.previewZoomHint} aria-hidden="true">
+                                      <Maximize2 size={14} strokeWidth={2} />
+                                    </span>
+                                  </button>
+                                ))}
+                              </div>
+                            </section>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </article>
+                  </details>
                 ))}
               </div>
             </section>
           </Reveal>
         </div>
-
-        <Reveal width="100%" delay={0.08}>
-          <GuestAttire onSelectPreview={setSelectedPreview} />
-        </Reveal>
 
         <Reveal width="100%" delay={0.24}>
           <section id="gifts" className={styles.giftPanel} aria-labelledby="gift-note-heading">
@@ -274,11 +285,22 @@ export default function GuestNotes() {
       </div>
 
       {selectedPreview ? (
-        <div
+        <dialog
+          ref={previewDialogRef}
           className={styles.previewModal}
-          role="dialog"
           aria-modal="true"
           aria-label={`${selectedPreview.role} attire reference`}
+          onCancel={(event) => {
+            event.preventDefault();
+            setSelectedPreview(null);
+          }}
+          onKeyDown={(event) => {
+            // The close button is the only interactive element in this preview.
+            if (event.key === "Tab") {
+              event.preventDefault();
+              previewCloseRef.current?.focus();
+            }
+          }}
           onClick={() => setSelectedPreview(null)}
         >
           <div
@@ -286,6 +308,7 @@ export default function GuestNotes() {
             onClick={(event) => event.stopPropagation()}
           >
             <button
+              ref={previewCloseRef}
               type="button"
               className={styles.previewModalClose}
               onClick={() => setSelectedPreview(null)}
@@ -310,7 +333,7 @@ export default function GuestNotes() {
               <h4>{selectedPreview.attire}</h4>
             </div>
           </div>
-        </div>
+        </dialog>
       ) : null}
     </Section>
   );

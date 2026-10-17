@@ -38,12 +38,13 @@ export const wedding = {
     },
   },
   groomsmenArrival: {
-    time: "12:00 PM",
-    title: "Groomsmen Call Time",
-    description: "Please arrive by 12:00 PM for final instructions and preparation.",
+    time: "11:00 AM",
+    title: "Best Man & Groomsmen Call Time",
+    description: "Please arrive by 11:00 AM for final instructions and preparation.",
   },
   guestArrival: {
     time: "1:00 PM",
+    startsAt: "2026-12-05T13:00:00+08:00",
     title: "General Guest & Participant Arrival",
     description:
       "Guests and ceremony participants without an earlier call time are asked to arrive by 1:00 PM for instructions and seating.",
@@ -52,7 +53,7 @@ export const wedding = {
     title: "Entourage Preparation Shoot",
     time: "8:00 AM",
     status: "Details to follow",
-    audience: "Maid of Honor, Matron of Honor, Best Man, and Bridesmaids",
+    audience: "Maid of Honor, Matron of Honor, and Bridesmaids",
     description:
       "Our photo and video team will begin capturing preparation moments before the church wedding. Final location and detailed instructions will follow.",
     duration: "Please allow 4-6 hours for preparation coverage before the ceremony.",
@@ -69,8 +70,8 @@ export const wedding = {
   guestAttire: weddingTheme.guestAttire,
   attireGuide: {
     intro: [
-      "To our dear entourage, please find your assigned attire and color below.",
       "For our guests, we would be delighted to see you in soft cream formal attire.",
+      "To our dear entourage, please find your assigned attire and color below.",
     ],
     guest: {
       eyebrow: "For Guests",
@@ -238,15 +239,14 @@ export const wedding = {
     },
     principalSponsors: {
       title: "Principal Sponsors",
-      showMembers: false,
+      showMembers: true,
       hiddenMessage: "Principal Sponsor names will be shared soon.",
-      members: [
-        "Mr. Rommel Berganio",
-        "Mrs. Ruth Leah Hernan",
-        "Mr. Paulino Caparas",
-        "Mrs. Marina Caparas",
-        "Mr. Miguel Padilla",
-        "Mrs. Remedios Padilla",
+      pairs: [
+        ["Mr. Miguel Padilla", "Mrs. Remedios Padilla"],
+        ["Mr. Joseph Padilla", "Mrs. Regina Bo"],
+        ["Mr. Anthony Abella", "Mrs. Malou Abella"],
+        ["Mr. Max Ponce", "Mrs. Gloria Ponce"],
+        ["Mr. Paulino Caparas", "Mrs. Marina Caparas"],
       ],
     },
     mainParty: [
