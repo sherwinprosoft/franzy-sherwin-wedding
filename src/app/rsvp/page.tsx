@@ -82,34 +82,48 @@ export default async function RsvpPage() {
           </div>
 
           <div className={styles.publicHeroContent}>
-            <WeddingBrandMark
-              asset="monogram"
-              tone="light"
-              className={styles.publicBrandMark}
-              priority
-            />
-            <p className={styles.eyebrow}>Your Invitation · Wedding RSVP</p>
-            <h1 className={styles.publicTitle}>Together in Baguio</h1>
-            <p className={styles.publicRsvpInstructions}>
-              To RSVP, open the personal invitation link sent to you.
-            </p>
+            <div className={styles.publicHeroIntro}>
+              <WeddingBrandMark
+                asset="monogram"
+                tone="light"
+                className={styles.publicBrandMark}
+                priority
+              />
+              <p className={styles.eyebrow}>Your Invitation · Wedding RSVP</p>
+              <h1 className={styles.publicTitle}>
+                Together <span className={styles.publicTitlePlace}>in Baguio</span>
+              </h1>
+              <p className={styles.publicRsvpInstructions}>
+                To RSVP, open the personal invitation link sent to you.
+              </p>
 
-            <div className={styles.publicEventFacts} aria-label="Wedding details">
-              <span><CalendarDays aria-hidden="true" />{wedding.date.full}</span>
-              <span><Clock3 aria-hidden="true" />{wedding.guestArrival.time} general arrival</span>
-              <span><MapPin aria-hidden="true" />{wedding.venues.ceremony.name}</span>
+              <div className={styles.publicEventFacts} aria-label="Wedding details">
+                <span className={styles.publicDateFact}>
+                  <CalendarDays aria-hidden="true" />
+                  <span className={styles.publicFullFact}>{wedding.date.full}</span>
+                  <span className={styles.publicCompactFact}>
+                    {wedding.date.weekday.slice(0, 3)}, {wedding.date.monthName.slice(0, 3)} {wedding.date.day}, {wedding.date.year}
+                  </span>
+                </span>
+                <span className={styles.publicArrivalFact}>
+                  <Clock3 aria-hidden="true" />
+                  <span className={styles.publicFullFact}>{wedding.guestArrival.time} general arrival</span>
+                  <span className={styles.publicCompactFact}>{wedding.guestArrival.time.replace(":00", "")} arrival</span>
+                </span>
+                <span className={styles.publicVenueFact}><MapPin aria-hidden="true" />{wedding.venues.ceremony.name}</span>
+              </div>
             </div>
 
             <div className={styles.publicHeroActions}>
               <a href="#rsvp-instructions" className={styles.publicHeroCta}>
-                <span>Your Invitation · How to RSVP</span>
+                <span>How to RSVP</span>
                 <ArrowDown aria-hidden="true" />
               </a>
               <a
                 href="#attendee-list-title"
                 className={`${styles.publicHeroCta} ${styles.publicGuestLink}`}
               >
-                <span>View Confirmed Guests</span>
+                <span>Confirmed Guests</span>
                 <ArrowDown aria-hidden="true" />
               </a>
               <div
@@ -121,7 +135,7 @@ export default async function RsvpPage() {
                   <strong>{confirmedCount}</strong>
                   <p>Guests confirmed</p>
                 </div>
-                <small>{publicList.confirmedHouseholds} invitation parties</small>
+                <small><span>{publicList.confirmedHouseholds}</span> invitation parties</small>
               </div>
             </div>
           </div>
