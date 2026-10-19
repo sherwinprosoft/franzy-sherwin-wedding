@@ -28,6 +28,17 @@ const NameList = ({
   </div>
 );
 
+const SponsorName = ({ name }: { name: string }) => {
+  const [honorific, ...parts] = name.split(" ");
+
+  return (
+    <p className={styles.sponsorName}>
+      <span className={styles.sponsorHonorific}>{honorific}</span>{" "}
+      <span className={styles.sponsorFullName}>{parts.join(" ")}</span>
+    </p>
+  );
+};
+
 const BandHeader = ({
   title,
   copy,
@@ -114,6 +125,7 @@ export default function Entourage() {
           <section
             id="entourage-sponsors"
             className={`${styles.programBand} ${styles.sponsorBand}`}
+            aria-label={entourage.principalSponsors.title}
           >
             <BandHeader
               title={entourage.principalSponsors.title}
@@ -121,12 +133,12 @@ export default function Entourage() {
             />
 
             {entourage.principalSponsors.showMembers ? (
-              <ul className={styles.sponsorPairs}>
+              <ul className={styles.sponsorPairs} role="list" aria-label="Principal sponsor pairs">
                 {entourage.principalSponsors.pairs.map(([first, second]) => (
                   <li key={`${first}-${second}`} className={styles.sponsorPair}>
-                    <p className={styles.name}>{first}</p>
+                    <SponsorName name={first} />
                     <span className={styles.sponsorAmpersand} aria-hidden="true">&amp;</span>
-                    <p className={styles.name}>{second}</p>
+                    <SponsorName name={second} />
                   </li>
                 ))}
               </ul>

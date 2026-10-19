@@ -242,6 +242,7 @@ export const wedding = {
       showMembers: true,
       hiddenMessage: "Principal Sponsor names will be shared soon.",
       pairs: [
+        ["Mr. Rommel Berganio", "Mrs. Ruth Leah Hernan"],
         ["Mr. Miguel Padilla", "Mrs. Remedios Padilla"],
         ["Mr. Joseph Padilla", "Mrs. Regina Bo"],
         ["Mr. Anthony Abella", "Mrs. Malou Abella"],
@@ -277,10 +278,10 @@ export const wedding = {
       { role: "Cord Sponsors", names: ["Glenn Edward Ora", "Czarina Maye Ora"] },
     ],
     bearers: [
-      { role: "Ring Bearer", names: ["Coda Zorrel Ora"] },
-      { role: "Coin Bearer", names: ["Khabib Manuel Gavina"] },
-      { role: "Bible Bearer", names: ["Zeus Crispin Gavina"] },
+      { role: "Ring Bearer", names: ["Zeus Crispin Gavina"] },
+      { role: "Coin Bearer", names: ["Gervis Earl Lerit"] },
+      { role: "Bible Bearer", names: ["Jian Puchanan"] },
     ],
-    flowerGirls: ["Tiffany Cly Tango", "Zoe Cleone Tango", "Jianna L. Puchacan"],
+    flowerGirls: ["Tiffany Cly Tango", "Zoe Cleone Tango", "Lavine Zoey Capulong"],
   },
 } as const;
