@@ -1,0 +1,150 @@
+/* The reception companion uses the existing wedding website's palette,
+   Coda Continuum artwork, and locally hosted Google Fonts. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/reception/inter-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/reception/cormorant-garamond-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/reception/cormorant-garamond-italic-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/reception/great-vibes-latin.woff2') format('woff2');
+}
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-script: 'Great Vibes', cursive;
+  --primary: #3f2911;
+  --secondary: #6b4226;
+  --wedding-gold: #cba98d;
+  --paper: #fef4e8;
+  --card: #fff8f1;
+  --ink: #3f2911;
+  --muted: #79604c;
+  --line: #e6cfba;
+  --brown: #6b4226;
+  --brown-dark: #3f2911;
+  --cream: #ead0b9;
+  --gold: #946d4c;
+  --shadow: 0 12px 36px rgb(63 41 17 / 4%);
+  font-family: var(--font-sans);
+}
+body {
+  background:
+    radial-gradient(circle at 50% 0, rgb(203 169 141 / 14%), transparent 32rem),
+    var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, .serif, .brand-title, .date-tile .day {
+  font-family: var(--font-serif);
+}
+h1 { font-size: 48px; font-weight: 500; letter-spacing: -1px; }
+h2 { font-size: 31px; font-weight: 500; }
+.section-head h2 { font-size: 29px; }
+.btn.primary { background: var(--primary); border-color: var(--primary); }
+.btn.primary:hover { background: var(--secondary); border-color: var(--secondary); }
+.brand { flex-direction: column; align-items: flex-start; gap: 9px; margin-bottom: 32px; }
+.brand-icon { width: 108px; height: auto; border: 0; border-radius: 0; display: block; }
+.wedding-logo { display: block; width: 100%; height: auto; object-fit: contain; }
+.brand-title { font-size: 27px; font-weight: 600; }
+.brand-sub { font-size: 10px; letter-spacing: 1.1px; }
+.date-tile .day { font-size: 29px; font-weight: 500; }
+.topbar-mark { width: 67px; height: auto; flex-shrink: 0; margin-right: 4px; }
+.topbar-label > span:first-of-type { font-weight: 650; color: var(--primary); }
+.intro-mark { width: 115px; height: auto; opacity: .5; flex-shrink: 0; }
+.event-ribbon { gap: 18px; }
+.event-initial { width: 85px; height: auto; border: 0; border-radius: 0; }
+.couple-name { font: 400 41px/1.25 var(--font-script); margin-bottom: 8px; }
+.metric-value { font-family: var(--font-sans); font-size: 27px; font-weight: 500; letter-spacing: -.7px; }
+.metric-label { font-family: var(--font-sans); letter-spacing: 0; }
+.next-card { background: var(--primary); }
+.next-card h2 { font-size: 31px; }
+.next-card .eyebrow, .next-card .next-meta { color: #dfbea1; }
+.next-card p { color: #f6e4d3; }
+.host-card h2 { font-size: 37px; }
+.host-script { font-family: var(--font-serif); font-weight: 500; }
+.playback-dock { background: var(--card); border-color: var(--wedding-gold); }
+.nav-btn:hover, .btn:hover { background: #f4e6d6; }
+.filter-pills { background: #f0dfcc; }
+.cue-row.is-live { background: #f5e4d1; }
+.storage-warning { background: #f6e4d3; }
+.page-footer { border-color: var(--line); }
+.boot .boot-logo { width: 160px; height: auto; }
+.boot h1 { font-size: 41px; }
+.login-page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 30px 20px;
+  color: var(--primary);
+  font-size: 15px;
+}
+.login-card {
+  width: min(100%, 460px);
+  padding: 35px 36px 30px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--card);
+  box-shadow: 0 24px 70px rgb(63 41 17 / 6%);
+}
+.login-mark { width: 160px; height: auto; margin: 0 auto 20px; }
+.login-couple { font: 400 38px/1.3 var(--font-script); text-align: center; margin-bottom: 27px; }
+.login-card .eyebrow { color: var(--secondary); letter-spacing: .17em; }
+.login-card h1 { font-size: 41px; margin: 8px 0 13px; }
+.login-card p { line-height: 1.7; color: var(--muted); font-size: 13px; }
+.login-card label { display: block; margin-top: 19px; font-size: 13px; font-weight: 600; }
+.login-card input, .login-card select, .login-card button {
+  width: 100%; min-height: 49px; border: 1px solid var(--line);
+  border-radius: 9px; font: inherit; padding: 11px 12px; margin-top: 8px;
+  background: #fffcf8; color: var(--primary);
+}
+.login-card button { background: var(--primary); border-color: var(--primary); color: var(--paper); margin-top: 25px; font-size: 13px; font-weight: 600; }
+.login-card button:hover { background: var(--secondary); }
+.login-card .return-link { display: block; text-align: center; margin-top: 23px; font-size: 12px; color: var(--secondary); }
+.login-card .error { color: var(--red); }
+@media (max-width: 760px) {
+  h1 { font-size: 39px; }
+  .topbar-mark { width: 58px; }
+  .couple-name { font-size: 36px; }
+  .event-initial { width: 68px; height: auto; }
+  .host-card h2 { font-size: 33px; }
+  .section-head h2 { font-size: 28px; }
+  .metric-value { font-size: 21px; }
+}
+@media (max-width: 600px) {
+  .topbar-wordmark { display: none; }
+  .topbar-label { gap: 0; }
+  .topbar-mark { margin: 0; width: 61px; }
+}
+@media (max-width: 420px) {
+  .event-initial { display: none; }
+  .couple-name { font-size: 30px; }
+  .metric-value { font-size: 19px; }
+  .login-card { padding: 29px 23px 27px; }
+  .login-card h1 { font-size: 37px; }
+  .login-card input, .login-card select { font-size: 16px; }
+  .login-couple { font-size: 35px; }
+}
+@media print {
+  body { background: white; font-family: var(--font-sans); }
+  #print-view h1, #print-view h2, #print-view .print-cue .script { font-family: var(--font-serif); }
+}

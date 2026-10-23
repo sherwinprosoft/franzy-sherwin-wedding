@@ -38,6 +38,8 @@ New uploads go directly to the Worker using a signed 15-minute upload grant, so 
 
 The floating media player stays open while switching sections or advancing cues. Playback begins through its manual controls, as required by mobile browsers.
 
+The reception uses the existing wedding site's Coda Continuum logo, cream/brown/gold palette, Great Vibes names, Cormorant Garamond headings and Inter controls. The original vector artwork and four local font files are included in the reception's offline cache. The Home Screen icons use the same wedding artwork. HTML plan exports embed the logos and font files, so their branding also works without a network connection. Font license notices are included under `reception-assets/font-licenses`. After a design update, open the app online and prepare the device again to save the current assets.
+
 The app stores the complete program in localStorage and entire media blobs in IndexedDB. The service worker only caches the reception shell; it does not control the guest site or cache sign-in/API responses. It does not substitute a cached page for an online sign-in redirect or access denial. The downloaded copy intentionally remains usable on an already prepared device without an online session check. Possession of that device provides offline access; use its screen lock. Signing out while online removes that browser’s reception cache, plan, and media. Close other reception tabs first.
 
 Safari can evict website data under storage pressure. The app requests persistent storage, but hardware rehearsal is still required. Reference: https://webkit.org/blog/14403/updates-to-storage-policy/

@@ -3,7 +3,7 @@
 // are never cached or intercepted by its navigation strategy.
 const CACHE='reception-private-shell-__RECEPTION_VERSION__';
 const HOME='/reception';
-const ASSETS=[HOME,'/reception/desk.css','/reception/desk.js','/reception/manifest.webmanifest','/reception/icon.svg','/reception/icon-192.png','/reception/icon-512.png'];
+const ASSETS=[HOME,'/reception/desk.css','/reception/brand.css','/reception/desk.js','/reception/manifest.webmanifest','/reception/icon.svg','/reception/icon-192.png','/reception/icon-512.png','/reception/logo-dark.svg','/reception/logo-light.svg','/reception/logo-date.svg','/reception/inter-latin.woff2','/reception/cormorant-garamond-latin.woff2','/reception/cormorant-garamond-italic-latin.woff2','/reception/great-vibes-latin.woff2'];
 async function saveShell(){
  const downloaded=[];
  for(const path of ASSETS){
