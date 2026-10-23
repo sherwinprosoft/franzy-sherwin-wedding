@@ -54,3 +54,9 @@ next-env.d.ts
 /public/images/elnido.jpg
 /public/images/image*.png
 /public/images/test.png
+
+# Private reception data/media are stored in Cloudflare, never in the public repo.
+/cloudflare/reception/assets/
+/cloudflare/reception/seed.json
+/src/lib/reception/seed.json
+/reception-assets/library/

@@ -1,0 +1,4 @@
+.dev.vars*
+.wrangler/
+assets/
+seed.json
