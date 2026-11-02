@@ -11,6 +11,7 @@ export const contentTypes: Record<string, string> = {
   "desk.js": "application/javascript; charset=utf-8", "desk.css": "text/css; charset=utf-8",
   "brand.css": "text/css; charset=utf-8",
   "sw.js": "application/javascript; charset=utf-8", "manifest.webmanifest": "application/manifest+json",
+  "photo-video.webmanifest": "application/manifest+json",
   "icon.svg": "image/svg+xml", "icon-192.png": "image/png", "icon-512.png": "image/png",
   "logo-dark.svg": "image/svg+xml", "logo-light.svg": "image/svg+xml", "logo-date.svg": "image/svg+xml",
   "inter-latin.woff2": "font/woff2", "cormorant-garamond-latin.woff2": "font/woff2",
@@ -24,6 +25,12 @@ export async function assetVersion() {
   return hash.digest("hex").slice(0, 16);
 }
 export const library: Record<string, string> = {
+  "nover-ton-mac-intermission-7682861210999687968.mp3": "audio/mpeg",
+  "harana-v6-tagalog-host-guide.mp4": "video/mp4",
+  "bridesquad-flashmob-preview-22-full.mp3": "audio/mpeg",
+  "bridesmaids-entrance-mama-mia-instrumental-v1.mp3": "audio/mpeg",
+  "bridesmaids-entrance-mama-mia.mp3": "audio/mpeg",
+  "bridesquad-flashmob-version-2.mp3": "audio/mpeg",
   "harana-v6-rehearsal.mp4": "video/mp4", "harana-v6-audio.mp3": "audio/mpeg",
   "harana-formation.png": "image/png", "forevermore-reference-sample.mp4": "video/mp4",
 };

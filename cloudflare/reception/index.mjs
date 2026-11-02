@@ -109,8 +109,8 @@ async function media(request,env,url){
   return new Response(object?.body||null,{status:range?206:200,headers});
  }catch{return new Response('Access denied or file transfer failed',{status:403,headers:{...noCache,...cors}});}
 }
-const LIBRARY_BYTES={'harana-v6-rehearsal.mp4':11200619,'harana-v6-audio.mp3':8856385,'harana-formation.png':90190,'forevermore-reference-sample.mp4':1197143};
-const LIBRARY = new Set(['harana-v6-rehearsal.mp4','harana-v6-audio.mp3','harana-formation.png','forevermore-reference-sample.mp4']);
+const LIBRARY_BYTES={'nover-ton-mac-intermission-7682861210999687968.mp3':526775,'harana-v6-tagalog-host-guide.mp4':11218017,'bridesquad-flashmob-preview-22-full.mp3':5535405,'bridesmaids-entrance-mama-mia-instrumental-v1.mp3':2162982,'bridesmaids-entrance-mama-mia.mp3':1842199,'bridesquad-flashmob-version-2.mp3':6269805,'harana-v6-rehearsal.mp4':11200619,'harana-v6-audio.mp3':8856385,'harana-formation.png':90190,'forevermore-reference-sample.mp4':1197143};
+const LIBRARY = new Set(['nover-ton-mac-intermission-7682861210999687968.mp3','harana-v6-tagalog-host-guide.mp4','bridesquad-flashmob-preview-22-full.mp3','bridesmaids-entrance-mama-mia-instrumental-v1.mp3','bridesmaids-entrance-mama-mia.mp3','bridesquad-flashmob-version-2.mp3','harana-v6-rehearsal.mp4','harana-v6-audio.mp3','harana-formation.png','forevermore-reference-sample.mp4']);
 async function libraryGrant(request,env){
  const {file}=await parse(request,1000);
  if(!env.ASSETS||!LIBRARY.has(file))return json({error:'File not found'},404);

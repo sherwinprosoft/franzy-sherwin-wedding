@@ -3,13 +3,14 @@
 // are never cached or intercepted by its navigation strategy.
 const CACHE='reception-private-shell-__RECEPTION_VERSION__';
 const HOME='/reception';
-const ASSETS=[HOME,'/reception/desk.css','/reception/brand.css','/reception/desk.js','/reception/manifest.webmanifest','/reception/icon.svg','/reception/icon-192.png','/reception/icon-512.png','/reception/logo-dark.svg','/reception/logo-light.svg','/reception/logo-date.svg','/reception/inter-latin.woff2','/reception/cormorant-garamond-latin.woff2','/reception/cormorant-garamond-italic-latin.woff2','/reception/great-vibes-latin.woff2'];
+const PAGES=[HOME,HOME+'/church-checklist',HOME+'/reception-checklist',HOME+'/photo-video'];
+const ASSETS=[...PAGES,'/reception/desk.css','/reception/brand.css','/reception/desk.js','/reception/manifest.webmanifest','/reception/photo-video.webmanifest','/reception/icon.svg','/reception/icon-192.png','/reception/icon-512.png','/reception/logo-dark.svg','/reception/logo-light.svg','/reception/logo-date.svg','/reception/inter-latin.woff2','/reception/cormorant-garamond-latin.woff2','/reception/cormorant-garamond-italic-latin.woff2','/reception/great-vibes-latin.woff2'];
 async function saveShell(){
  const downloaded=[];
  for(const path of ASSETS){
   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
   let response;try{response=await fetch(path,{credentials:'same-origin',cache:'reload',signal:controller.signal});}finally{clearTimeout(timeout);}
-  if(!response.ok||response.redirected||(path===HOME&&response.headers.get('x-reception-shell')!=='1'))throw new Error('Open and sign in online before offline preparation.');
+  if(!response.ok||response.redirected||(PAGES.includes(path)&&response.headers.get('x-reception-shell')!=='1'))throw new Error('Open and sign in online before offline preparation.');
   const bytes=await response.arrayBuffer();
   const headers=new Headers(response.headers);headers.delete('content-encoding');headers.delete('content-length');headers.delete('transfer-encoding');
   downloaded.push([path,new Response(bytes,{status:response.status,headers})]);
@@ -25,13 +26,14 @@ self.addEventListener('activate',event=>event.waitUntil((async()=>{
 self.addEventListener('fetch',event=>{
  const request=event.request,url=new URL(request.url);
  if(request.method!=='GET'||url.origin!==self.location.origin)return;
- if(request.mode==='navigate'&&(url.pathname===HOME||url.pathname===HOME+'/')){
+ const pagePath=url.pathname.replace(/\/+$/,'');
+ if(request.mode==='navigate'&&PAGES.includes(pagePath)){
   event.respondWith((async()=>{
-   const cache=await caches.open(CACHE),saved=await cache.match(HOME);
+   const cache=await caches.open(CACHE),saved=await cache.match(pagePath)||await cache.match(HOME);
    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),2500);
    try{
     const response=await fetch(request,{signal:controller.signal});
-    if(response.ok&&!response.redirected&&response.headers.get('x-reception-shell')==='1'){await cache.put(HOME,response.clone());return response;}
+    if(response.ok&&!response.redirected&&response.headers.get('x-reception-shell')==='1'){await cache.put(pagePath,response.clone());return response;}
     // An online sign-in redirect or access denial must never reveal a cached
     // private page. Only connection/server failures use the saved device copy.
     if(response.status>=500&&saved)return saved;

@@ -89,3 +89,8 @@ export function requireSession(request: Request) {
   const session = readSession(request);
   return session ? { session, error: null } : { session: null, error: json({ error: "Please sign in to Reception Desk." }, 401) };
 }
+
+export function receptionReturnPath(value: string | null) {
+  const requested = value || "/reception";
+  return ["/reception", "/reception/church-checklist", "/reception/reception-checklist", "/reception/photo-video"].includes(requested) ? requested : "/reception";
+}
