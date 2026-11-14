@@ -25,6 +25,13 @@ export async function assetVersion() {
   return hash.digest("hex").slice(0, 16);
 }
 export const library: Record<string, string> = {
+  "la-vie-en-rose-english-french-karaoke.mp4": "video/mp4",
+  "la-vie-en-rose-backing.mp3": "audio/mpeg",
+  "pangarap-ko-ang-ibigin-ka-fanny-aijems-duet.mp4": "video/mp4",
+  "ate-lala-you-made-me-live-again-karaoke.mp3": "audio/mpeg",
+  "palagi-f-sharp-major-instrumental.mp3": "audio/mpeg",
+  "palagi-f-sharp-major-karaoke.mp4": "video/mp4",
+  "palagi-e-major-karaoke.mp4": "video/mp4",
   "nover-ton-mac-intermission-7682861210999687968.mp3": "audio/mpeg",
   "harana-v6-tagalog-host-guide.mp4": "video/mp4",
   "bridesquad-flashmob-preview-22-full.mp3": "audio/mpeg",
